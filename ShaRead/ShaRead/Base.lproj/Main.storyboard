@@ -8,7 +8,7 @@
         <!--首頁-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="MainViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -71,9 +71,11 @@
                                         <constraint firstItem="xFN-Dl-5hY" firstAttribute="leading" secondItem="hvL-Zi-jSN" secondAttribute="leading" constant="60" id="JSl-9I-fUT">
                                             <variation key="heightClass=regular-widthClass=compact" constant="50"/>
                                         </constraint>
-                                        <constraint firstAttribute="bottom" secondItem="YnK-eH-uyX" secondAttribute="bottom" id="S5U-mf-VeD"/>
-                                        <constraint firstAttribute="bottom" secondItem="xRR-zD-8wU" secondAttribute="bottom" id="Vge-hm-pWh">
+                                        <constraint firstAttribute="bottom" secondItem="YnK-eH-uyX" secondAttribute="bottom" id="S5U-mf-VeD">
                                             <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                                        </constraint>
+                                        <constraint firstAttribute="bottom" secondItem="xRR-zD-8wU" secondAttribute="bottom" id="Vge-hm-pWh">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="40"/>
                                         </constraint>
                                         <constraint firstItem="xFN-Dl-5hY" firstAttribute="centerY" secondItem="hvL-Zi-jSN" secondAttribute="centerY" id="aSD-BE-SN4"/>
                                         <constraint firstItem="YnK-eH-uyX" firstAttribute="leading" secondItem="hvL-Zi-jSN" secondAttribute="leading" constant="20" id="uPn-na-Qc7"/>
@@ -132,6 +134,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Kak-tY-KNd"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="3GS-1z-OSV"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
