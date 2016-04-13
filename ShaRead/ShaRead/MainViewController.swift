@@ -11,6 +11,7 @@ import UIKit
 class MainViewController: UIViewController {
 
     @IBOutlet weak var mainTableView: UITableView!
+    @IBOutlet weak var searchButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,11 @@ class MainViewController: UIViewController {
         // Expand table row height according to content
         mainTableView.rowHeight = UITableViewAutomaticDimension
         mainTableView.estimatedRowHeight = 200
+    }
+    
+    override func viewWillLayoutSubviews() {
+        // Change to rounded search button
+        searchButton.layer.cornerRadius = searchButton.frame.width / 2
     }
 
     override func didReceiveMemoryWarning() {
