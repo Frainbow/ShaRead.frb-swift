@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6yQ-DI-8Yw">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--首頁-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -17,9 +18,96 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="首頁" image="HomeIcon" id="PTB-cj-zR0"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1078.5" y="-1176"/>
+        </scene>
+        <!--最愛-->
+        <scene sceneID="LYa-Re-sog">
+            <objects>
+                <viewController id="Eyf-B3-s2b" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0dm-P5-vcE"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kb2-uc-gXk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YdQ-WI-TiC">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="最愛" image="HeartsIcon" id="Jdg-Wl-Ux9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tph-en-etf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078.5" y="-512.25"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="TJI-dB-Am2">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="6yQ-DI-8Yw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="m2e-yQ-iB7">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="ETd-hF-cBE"/>
+                        <segue destination="Eyf-B3-s2b" kind="relationship" relationship="viewControllers" id="Obx-me-u1i"/>
+                        <segue destination="3eA-1d-UwF" kind="relationship" relationship="viewControllers" id="pxr-di-zEU"/>
+                        <segue destination="4v6-0m-K9g" kind="relationship" relationship="viewControllers" id="ezO-rW-gIs"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lNC-fh-V3Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="304.5" y="160.5"/>
+        </scene>
+        <!--清單-->
+        <scene sceneID="3TS-Ed-lOB">
+            <objects>
+                <viewController id="3eA-1d-UwF" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MRa-Ma-31n"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kcm-jy-313"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Rca-JE-Q4N">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="清單" image="ListIcon" id="tYf-Sf-SQL"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="feJ-w1-Gxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078.5" y="160.5"/>
+        </scene>
+        <!--會員-->
+        <scene sceneID="Fto-4p-jb3">
+            <objects>
+                <viewController id="4v6-0m-K9g" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uHN-lF-BpZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wpv-oL-Lbt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SFC-4X-zL5">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="會員" image="UserIcon" id="UPx-Ud-JfP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qMm-Ru-Xdz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="304.5" y="864.75"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="HeartsIcon" width="25" height="25"/>
+        <image name="HomeIcon" width="25" height="25"/>
+        <image name="ListIcon" width="32" height="32"/>
+        <image name="UserIcon" width="32" height="32"/>
+    </resources>
 </document>

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5BED59AF1CBE18A0003D73AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59AE1CBE18A0003D73AD /* AppDelegate.swift */; };
-		5BED59B11CBE18A0003D73AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59B01CBE18A0003D73AD /* ViewController.swift */; };
+		5BED59B11CBE18A0003D73AD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59B01CBE18A0003D73AD /* MainViewController.swift */; };
 		5BED59B41CBE18A0003D73AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BED59B21CBE18A0003D73AD /* Main.storyboard */; };
 		5BED59B71CBE18A0003D73AD /* ShaRead.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59B51CBE18A0003D73AD /* ShaRead.xcdatamodeld */; };
 		5BED59B91CBE18A0003D73AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BED59B81CBE18A0003D73AD /* Assets.xcassets */; };
@@ -37,7 +37,7 @@
 /* Begin PBXFileReference section */
 		5BED59AB1CBE18A0003D73AD /* ShaRead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShaRead.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BED59AE1CBE18A0003D73AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5BED59B01CBE18A0003D73AD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5BED59B01CBE18A0003D73AD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5BED59B31CBE18A0003D73AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5BED59B61CBE18A0003D73AD /* ShaRead.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShaRead.xcdatamodel; sourceTree = "<group>"; };
 		5BED59B81CBE18A0003D73AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				5BED59AE1CBE18A0003D73AD /* AppDelegate.swift */,
-				5BED59B01CBE18A0003D73AD /* ViewController.swift */,
+				5BED59B01CBE18A0003D73AD /* MainViewController.swift */,
 				5BED59B21CBE18A0003D73AD /* Main.storyboard */,
 				5BED59B81CBE18A0003D73AD /* Assets.xcassets */,
 				5BED59BA1CBE18A0003D73AD /* LaunchScreen.storyboard */,
@@ -260,7 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BED59B71CBE18A0003D73AD /* ShaRead.xcdatamodeld in Sources */,
-				5BED59B11CBE18A0003D73AD /* ViewController.swift in Sources */,
+				5BED59B11CBE18A0003D73AD /* MainViewController.swift in Sources */,
 				5BED59AF1CBE18A0003D73AD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
