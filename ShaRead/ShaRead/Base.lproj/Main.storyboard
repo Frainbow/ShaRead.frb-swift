@@ -16,9 +16,122 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Acx-oj-3n6">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="hvL-Zi-jSN">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeHeader" translatesAutoresizingMaskIntoConstraints="NO" id="xRR-zD-8wU">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在這裡 每個人都可以找到專屬於你的特色書店" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFN-Dl-5hY">
+                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="xFN-Dl-5hY" secondAttribute="trailing" constant="60" id="2Z3-D6-kdA">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="50"/>
+                                        </constraint>
+                                        <constraint firstAttribute="trailing" secondItem="xRR-zD-8wU" secondAttribute="trailing" id="3do-DX-NMQ"/>
+                                        <constraint firstItem="xFN-Dl-5hY" firstAttribute="centerX" secondItem="hvL-Zi-jSN" secondAttribute="centerX" id="FSV-8y-CU1"/>
+                                        <constraint firstItem="xRR-zD-8wU" firstAttribute="top" secondItem="hvL-Zi-jSN" secondAttribute="top" id="HnD-oN-aoM"/>
+                                        <constraint firstItem="xFN-Dl-5hY" firstAttribute="leading" secondItem="hvL-Zi-jSN" secondAttribute="leading" constant="60" id="JSl-9I-fUT">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="50"/>
+                                        </constraint>
+                                        <constraint firstAttribute="bottom" secondItem="xRR-zD-8wU" secondAttribute="bottom" id="Vge-hm-pWh"/>
+                                        <constraint firstItem="xFN-Dl-5hY" firstAttribute="centerY" secondItem="hvL-Zi-jSN" secondAttribute="centerY" id="aSD-BE-SN4"/>
+                                        <constraint firstItem="xRR-zD-8wU" firstAttribute="leading" secondItem="hvL-Zi-jSN" secondAttribute="leading" id="wFx-IW-tel"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="xRR-zD-8wU"/>
+                                            <exclude reference="xFN-Dl-5hY"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <exclude reference="3do-DX-NMQ"/>
+                                            <exclude reference="HnD-oN-aoM"/>
+                                            <exclude reference="Vge-hm-pWh"/>
+                                            <exclude reference="wFx-IW-tel"/>
+                                            <exclude reference="2Z3-D6-kdA"/>
+                                            <exclude reference="FSV-8y-CU1"/>
+                                            <exclude reference="JSl-9I-fUT"/>
+                                            <exclude reference="aSD-BE-SN4"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="subviews">
+                                            <include reference="xRR-zD-8wU"/>
+                                            <include reference="xFN-Dl-5hY"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <include reference="3do-DX-NMQ"/>
+                                            <include reference="HnD-oN-aoM"/>
+                                            <include reference="Vge-hm-pWh"/>
+                                            <include reference="wFx-IW-tel"/>
+                                            <include reference="2Z3-D6-kdA"/>
+                                            <include reference="FSV-8y-CU1"/>
+                                            <include reference="JSl-9I-fUT"/>
+                                            <include reference="aSD-BE-SN4"/>
+                                        </mask>
+                                    </variation>
+                                </view>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="u7f-T2-JIh">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainTableCell" id="2E8-Zy-eYK">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2E8-Zy-eYK" id="77F-CW-DWN">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Acx-oj-3n6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0CR-5K-R90"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Acx-oj-3n6" secondAttribute="bottom" id="K6R-JQ-UdE"/>
+                            <constraint firstItem="Acx-oj-3n6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="TnV-lo-SyR"/>
+                            <constraint firstAttribute="trailing" secondItem="Acx-oj-3n6" secondAttribute="trailing" id="d27-0M-4yq"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Acx-oj-3n6"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="0CR-5K-R90"/>
+                                <exclude reference="TnV-lo-SyR"/>
+                                <exclude reference="d27-0M-4yq"/>
+                                <exclude reference="K6R-JQ-UdE"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="Acx-oj-3n6"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="0CR-5K-R90"/>
+                                <include reference="TnV-lo-SyR"/>
+                                <include reference="d27-0M-4yq"/>
+                                <include reference="K6R-JQ-UdE"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="首頁" image="HomeIcon" id="PTB-cj-zR0"/>
+                    <connections>
+                        <outlet property="mainTableView" destination="Acx-oj-3n6" id="v3G-5r-emY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,6 +219,7 @@
     </scenes>
     <resources>
         <image name="HeartsIcon" width="25" height="25"/>
+        <image name="HomeHeader" width="442" height="318"/>
         <image name="HomeIcon" width="25" height="25"/>
         <image name="ListIcon" width="32" height="32"/>
         <image name="UserIcon" width="32" height="32"/>
