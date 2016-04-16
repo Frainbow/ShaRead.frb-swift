@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dgM-Z3-Fjr">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Search View Controller-->
+        <scene sceneID="xd3-iO-UZb">
+            <objects>
+                <viewController id="n9A-hj-Rkz" customClass="SearchViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NUj-wd-QLk"/>
+                        <viewControllerLayoutGuide type="bottom" id="oNg-qW-g2j"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fEo-Gs-aB0">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2r9-c4-UaA">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="ISBN 掃描"/>
+                                <connections>
+                                    <segue destination="YTa-lJ-mAF" kind="show" id="bIs-e0-5zB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2r9-c4-UaA" firstAttribute="width" secondItem="fEo-Gs-aB0" secondAttribute="width" multiplier="1:2" id="71o-Qh-w2s"/>
+                            <constraint firstItem="2r9-c4-UaA" firstAttribute="top" secondItem="NUj-wd-QLk" secondAttribute="bottom" constant="8" id="DV7-zF-tln"/>
+                            <constraint firstItem="2r9-c4-UaA" firstAttribute="centerX" secondItem="fEo-Gs-aB0" secondAttribute="centerX" id="hN3-dO-oXX"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="2r9-c4-UaA"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="71o-Qh-w2s"/>
+                                <exclude reference="DV7-zF-tln"/>
+                                <exclude reference="hN3-dO-oXX"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="2r9-c4-UaA"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="71o-Qh-w2s"/>
+                                <include reference="DV7-zF-tln"/>
+                                <include reference="hN3-dO-oXX"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="EeO-Pj-B5i">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="niQ-9b-AhM"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y73-hD-oYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1261.5" y="347.25"/>
+        </scene>
+        <!--Scanner View Controller-->
+        <scene sceneID="m4P-LV-txN">
+            <objects>
+                <viewController id="YTa-lJ-mAF" customClass="ScannerViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8kU-0B-xqJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="lwZ-jw-WhT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qDU-7F-nRx">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LNT-XW-eKW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2055" y="347.25"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fs3-Fb-Wbf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dgM-Z3-Fjr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JhJ-Dj-IvE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="n9A-hj-Rkz" kind="relationship" relationship="rootViewController" id="nTo-Ib-Ofm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qvp-UX-rks" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="486" y="347.25"/>
+        </scene>
+    </scenes>
+</document>

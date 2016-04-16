@@ -15,6 +15,9 @@
 		5BED59BC1CBE18A0003D73AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BED59BA1CBE18A0003D73AD /* LaunchScreen.storyboard */; };
 		5BED59C71CBE18A1003D73AD /* ShaReadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59C61CBE18A1003D73AD /* ShaReadTests.swift */; };
 		5BED59D21CBE18A1003D73AD /* ShaReadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59D11CBE18A1003D73AD /* ShaReadUITests.swift */; };
+		5BED59E01CBE7362003D73AD /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59DF1CBE7362003D73AD /* ScannerViewController.swift */; };
+		5BED59E41CC1D2F7003D73AD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59E31CC1D2F7003D73AD /* SearchViewController.swift */; };
+		5BED59E61CC22546003D73AD /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BED59E51CC22546003D73AD /* Search.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		5BED59CD1CBE18A1003D73AD /* ShaReadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShaReadUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BED59D11CBE18A1003D73AD /* ShaReadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaReadUITests.swift; sourceTree = "<group>"; };
 		5BED59D31CBE18A1003D73AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BED59DF1CBE7362003D73AD /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		5BED59E31CC1D2F7003D73AD /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		5BED59E51CC22546003D73AD /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,7 @@
 		5BED59AD1CBE18A0003D73AD /* ShaRead */ = {
 			isa = PBXGroup;
 			children = (
+				5BED59E71CC22575003D73AD /* Search */,
 				5BED59AE1CBE18A0003D73AD /* AppDelegate.swift */,
 				5BED59B01CBE18A0003D73AD /* MainViewController.swift */,
 				5BED59B21CBE18A0003D73AD /* Main.storyboard */,
@@ -126,6 +133,16 @@
 				5BED59D31CBE18A1003D73AD /* Info.plist */,
 			);
 			path = ShaReadUITests;
+			sourceTree = "<group>";
+		};
+		5BED59E71CC22575003D73AD /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				5BED59E31CC1D2F7003D73AD /* SearchViewController.swift */,
+				5BED59DF1CBE7362003D73AD /* ScannerViewController.swift */,
+				5BED59E51CC22546003D73AD /* Search.storyboard */,
+			);
+			name = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +213,7 @@
 				TargetAttributes = {
 					5BED59AA1CBE18A0003D73AD = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = VVXY4GH26U;
 					};
 					5BED59C11CBE18A0003D73AD = {
 						CreatedOnToolsVersion = 7.3;
@@ -235,6 +253,7 @@
 				5BED59BC1CBE18A0003D73AD /* LaunchScreen.storyboard in Resources */,
 				5BED59B91CBE18A0003D73AD /* Assets.xcassets in Resources */,
 				5BED59B41CBE18A0003D73AD /* Main.storyboard in Resources */,
+				5BED59E61CC22546003D73AD /* Search.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,9 +278,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BED59E41CC1D2F7003D73AD /* SearchViewController.swift in Sources */,
 				5BED59B71CBE18A0003D73AD /* ShaRead.xcdatamodeld in Sources */,
 				5BED59B11CBE18A0003D73AD /* MainViewController.swift in Sources */,
 				5BED59AF1CBE18A0003D73AD /* AppDelegate.swift in Sources */,
+				5BED59E01CBE7362003D73AD /* ScannerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +426,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ShaRead/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -417,6 +439,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ShaRead/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
