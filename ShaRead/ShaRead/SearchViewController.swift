@@ -10,10 +10,12 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
+    @IBOutlet weak var scanButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        scanButton.layer.cornerRadius = 5
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +23,9 @@ class SearchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func dismissSearch(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation

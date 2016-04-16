@@ -58,6 +58,9 @@
                                                     <include reference="7GW-dt-U6Z"/>
                                                 </mask>
                                             </variation>
+                                            <connections>
+                                                <action selector="searchBook:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nYa-3o-hQP"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

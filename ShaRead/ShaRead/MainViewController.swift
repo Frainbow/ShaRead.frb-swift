@@ -48,7 +48,12 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func searchBook(sender: AnyObject) {
+        let storyboard = UIStoryboard(name: "Search", bundle: nil)
+        let controller = storyboard.instantiateViewControllerWithIdentifier("SearchNavController")
 
+        presentViewController(controller, animated: true, completion: nil)
+    }
 }
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {

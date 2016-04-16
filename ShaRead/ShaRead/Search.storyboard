@@ -27,7 +27,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.90980392160000001" green="0.91372549020000005" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="2r9-c4-UaA" firstAttribute="width" secondItem="fEo-Gs-aB0" secondAttribute="width" multiplier="1:2" id="71o-Qh-w2s"/>
                             <constraint firstItem="2r9-c4-UaA" firstAttribute="top" secondItem="NUj-wd-QLk" secondAttribute="bottom" constant="8" id="DV7-zF-tln"/>
@@ -55,8 +55,16 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="EeO-Pj-B5i">
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="niQ-9b-AhM"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="niQ-9b-AhM">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="dismissSearch:" destination="n9A-hj-Rkz" id="BSJ-Cl-RjS"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="scanButton" destination="2r9-c4-UaA" id="0yR-QW-bsU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y73-hD-oYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -82,7 +90,7 @@
         <!--Navigation Controller-->
         <scene sceneID="fs3-Fb-Wbf">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dgM-Z3-Fjr" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SearchNavController" automaticallyAdjustsScrollViewInsets="NO" id="dgM-Z3-Fjr" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JhJ-Dj-IvE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
