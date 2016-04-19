@@ -21,6 +21,9 @@
 		5BED59E61CC22546003D73AD /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BED59E51CC22546003D73AD /* Search.storyboard */; };
 		5BED59EA1CC234A9003D73AD /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BED59E91CC234A9003D73AD /* Login.storyboard */; };
 		5BED59EC1CC234EF003D73AD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59EB1CC234EF003D73AD /* LoginViewController.swift */; };
+		5BED5A0E1CC4E75C003D73AD /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5A0C1CC4E75C003D73AD /* MainCollectionViewCell.swift */; };
+		5BED5A0F1CC4E75C003D73AD /* MainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BED5A0D1CC4E75C003D73AD /* MainCollectionViewCell.xib */; };
+		5BED5A151CC5446A003D73AD /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5A141CC5446A003D73AD /* MainTableViewCell.swift */; };
 		9ACB80B3144DBB526E7360E9 /* Pods_ShaReadTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 988AD4EFFA214F18F2FAD1B2 /* Pods_ShaReadTests.framework */; };
 		DCBCC74A968ABF53E7792F69 /* Pods_ShaRead.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5889BC3C61968C1538D663D9 /* Pods_ShaRead.framework */; };
 /* End PBXBuildFile section */
@@ -66,6 +69,9 @@
 		5BED59E51CC22546003D73AD /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		5BED59E91CC234A9003D73AD /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		5BED59EB1CC234EF003D73AD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5BED5A0C1CC4E75C003D73AD /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		5BED5A0D1CC4E75C003D73AD /* MainCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainCollectionViewCell.xib; sourceTree = "<group>"; };
+		5BED5A141CC5446A003D73AD /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		8216402F72D14236AF211876 /* Pods-ShaRead.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShaRead.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShaRead/Pods-ShaRead.release.xcconfig"; sourceTree = "<group>"; };
 		988AD4EFFA214F18F2FAD1B2 /* Pods_ShaReadTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShaReadTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F1577B009BD0751B174ABA0 /* Pods_ShaReadUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShaReadUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +132,7 @@
 		5BED59AD1CBE18A0003D73AD /* ShaRead */ = {
 			isa = PBXGroup;
 			children = (
+				5BED5A0B1CC4E6D3003D73AD /* Main */,
 				5BED59E81CC23499003D73AD /* Login */,
 				5BED59E71CC22575003D73AD /* Search */,
 				5BED59AE1CBE18A0003D73AD /* AppDelegate.swift */,
@@ -174,6 +181,16 @@
 				5BED59EB1CC234EF003D73AD /* LoginViewController.swift */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		5BED5A0B1CC4E6D3003D73AD /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5BED5A141CC5446A003D73AD /* MainTableViewCell.swift */,
+				5BED5A0C1CC4E75C003D73AD /* MainCollectionViewCell.swift */,
+				5BED5A0D1CC4E75C003D73AD /* MainCollectionViewCell.xib */,
+			);
+			name = Main;
 			sourceTree = "<group>";
 		};
 		DB3CAA3E6544504598F2C215 /* Frameworks */ = {
@@ -313,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BED59BC1CBE18A0003D73AD /* LaunchScreen.storyboard in Resources */,
+				5BED5A0F1CC4E75C003D73AD /* MainCollectionViewCell.xib in Resources */,
 				5BED59B91CBE18A0003D73AD /* Assets.xcassets in Resources */,
 				5BED59B41CBE18A0003D73AD /* Main.storyboard in Resources */,
 				5BED59EA1CC234A9003D73AD /* Login.storyboard in Resources */,
@@ -464,6 +482,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BED5A0E1CC4E75C003D73AD /* MainCollectionViewCell.swift in Sources */,
+				5BED5A151CC5446A003D73AD /* MainTableViewCell.swift in Sources */,
 				5BED59EC1CC234EF003D73AD /* LoginViewController.swift in Sources */,
 				5BED59E41CC1D2F7003D73AD /* SearchViewController.swift in Sources */,
 				5BED59B71CBE18A0003D73AD /* ShaRead.xcdatamodeld in Sources */,

@@ -12,6 +12,9 @@ class MainViewController: UIViewController {
 
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var searchButton: UIButton!
+    
+    var colWidth: CGFloat = 320
+    var colHeight: CGFloat = 200
 
     let sectionTitleArray: [String] = [
         "店長推薦書籍",
@@ -24,9 +27,12 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
+        let screenWidth: CGFloat = UIScreen.mainScreen().bounds.width
+        let screenHeight: CGFloat = UIScreen.mainScreen().bounds.height
+
         // Adjust table header height to half of screen
         if let headerView = mainTableView.tableHeaderView {
-            headerView.frame.size.height = UIScreen.mainScreen().bounds.height / 2
+            headerView.frame.size.height = screenHeight / 2
         }
 
         if let footerView = mainTableView.tableFooterView {
@@ -34,10 +40,13 @@ class MainViewController: UIViewController {
         }
 
         // Expand table row height according to content
-        mainTableView.rowHeight = UITableViewAutomaticDimension
-        mainTableView.estimatedRowHeight = 200
+//        mainTableView.rowHeight = UITableViewAutomaticDimension
+//        mainTableView.estimatedRowHeight = 500
+
+        colWidth = screenWidth - screenWidth / 5
+        colHeight = screenHeight / 2 - 80
     }
-    
+
     override func viewWillLayoutSubviews() {
         // Change to rounded search button
         searchButton.layer.cornerRadius = searchButton.frame.width / 2
@@ -70,8 +79,27 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         return 1
     }
 
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return colHeight
+    }
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MainTableCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("MainTableCell", forIndexPath: indexPath) as! MainTableViewCell
+
+        cell.mainFlowLayout.itemSize = CGSizeMake(colWidth, colHeight - 1)
+
+        return cell
+    }
+}
+
+extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MainCollectionViewCell", forIndexPath: indexPath)
 
         return cell
     }

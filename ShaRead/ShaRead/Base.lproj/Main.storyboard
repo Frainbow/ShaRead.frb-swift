@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Acx-oj-3n6">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="176" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Acx-oj-3n6">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="hvL-Zi-jSN">
@@ -129,13 +129,72 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainTableCell" id="2E8-Zy-eYK">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainTableCell" rowHeight="200" id="2E8-Zy-eYK" customClass="MainTableViewCell" customModule="ShaRead" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2E8-Zy-eYK" id="77F-CW-DWN">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TKu-he-nhT">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1Tg-QL-TEW">
+                                                        <size key="itemSize" width="50" height="50"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MainCollectionViewCell" id="86f-Lh-ALV">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            </view>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="BYZ-38-t0r" id="3mS-jJ-Zab"/>
+                                                        <outlet property="delegate" destination="BYZ-38-t0r" id="4Ep-kj-JBT"/>
+                                                    </connections>
+                                                </collectionView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="TKu-he-nhT" firstAttribute="leading" secondItem="77F-CW-DWN" secondAttribute="leading" id="c0z-0U-t6P"/>
+                                                <constraint firstAttribute="trailing" secondItem="TKu-he-nhT" secondAttribute="trailing" id="cYe-gf-YXg"/>
+                                                <constraint firstItem="TKu-he-nhT" firstAttribute="top" secondItem="77F-CW-DWN" secondAttribute="top" id="eha-45-xZs"/>
+                                                <constraint firstAttribute="bottom" secondItem="TKu-he-nhT" secondAttribute="bottom" id="yOR-to-63g"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="TKu-he-nhT"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="c0z-0U-t6P"/>
+                                                    <exclude reference="cYe-gf-YXg"/>
+                                                    <exclude reference="eha-45-xZs"/>
+                                                    <exclude reference="yOR-to-63g"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="TKu-he-nhT"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="c0z-0U-t6P"/>
+                                                    <include reference="cYe-gf-YXg"/>
+                                                    <include reference="eha-45-xZs"/>
+                                                    <include reference="yOR-to-63g"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="mainCollectionView" destination="TKu-he-nhT" id="5gE-aJ-rD2"/>
+                                            <outlet property="mainFlowLayout" destination="1Tg-QL-TEW" id="D6f-4G-Omf"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
