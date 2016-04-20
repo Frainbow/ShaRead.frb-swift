@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainCollectionViewCell: UICollectionViewCell {
+class BookCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var bannerImageView: UIView!
     @IBOutlet weak var avatarImageView: UIImageView!

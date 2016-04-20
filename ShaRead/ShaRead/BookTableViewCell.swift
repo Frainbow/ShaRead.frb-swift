@@ -8,16 +8,16 @@
 
 import UIKit
 
-class MainTableViewCell: UITableViewCell {
+class BookTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var mainCollectionView: UICollectionView!
-    @IBOutlet weak var mainFlowLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var bookCollectionView: UICollectionView!
+    @IBOutlet weak var bookFlowLayout: UICollectionViewFlowLayout!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
 
-        mainCollectionView.registerNib(UINib(nibName: "MainCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MainCollectionViewCell")
+        bookCollectionView.registerNib(UINib(nibName: "BookCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "BookCollectionViewCell")
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

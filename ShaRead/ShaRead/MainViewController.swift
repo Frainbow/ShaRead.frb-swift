@@ -92,11 +92,22 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MainTableCell", forIndexPath: indexPath) as! MainTableViewCell
 
-        cell.mainFlowLayout.itemSize = CGSizeMake(colWidth, colHeight - 1)
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("BookTableViewCell", forIndexPath: indexPath) as! BookTableViewCell
 
-        return cell
+            cell.bookFlowLayout.itemSize = CGSizeMake(colWidth, colHeight - 1)
+            cell.bookCollectionView.tag = indexPath.section
+
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("StoreTableViewCell", forIndexPath: indexPath) as! StoreTableViewCell
+
+            cell.storeFlowLayout.itemSize = CGSizeMake(colWidth, colHeight - 1)
+            cell.storeCollectionView.tag = indexPath.section
+
+            return cell
+        }
     }
 }
 
@@ -107,7 +118,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MainCollectionViewCell", forIndexPath: indexPath)
+        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+            collectionView.tag == 0 ? "BookCollectionViewCell" : "StoreCollectionViewCell",
+            forIndexPath: indexPath)
 
         return cell
     }
