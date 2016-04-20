@@ -58,11 +58,11 @@
                                 <exclude reference="qNe-cP-DcC"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="4kq-hx-Oyh"/>
-                                <exclude reference="R8a-5N-fCn"/>
                                 <exclude reference="Hfx-qk-KTv"/>
                                 <exclude reference="Wd9-Bf-u2x"/>
                                 <exclude reference="raE-k0-ehT"/>
+                                <exclude reference="4kq-hx-Oyh"/>
+                                <exclude reference="R8a-5N-fCn"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -71,11 +71,11 @@
                                 <include reference="qNe-cP-DcC"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="4kq-hx-Oyh"/>
-                                <include reference="R8a-5N-fCn"/>
                                 <include reference="Hfx-qk-KTv"/>
                                 <include reference="Wd9-Bf-u2x"/>
                                 <include reference="raE-k0-ehT"/>
+                                <include reference="4kq-hx-Oyh"/>
+                                <include reference="R8a-5N-fCn"/>
                             </mask>
                         </variation>
                     </view>

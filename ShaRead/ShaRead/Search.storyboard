@@ -29,6 +29,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.90980392160000001" green="0.91372549020000005" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="2r9-c4-UaA" firstAttribute="width" secondItem="fEo-Gs-aB0" secondAttribute="width" multiplier="1:2" id="71o-Qh-w2s"/>
                             <constraint firstItem="2r9-c4-UaA" firstAttribute="top" secondItem="NUj-wd-QLk" secondAttribute="bottom" constant="8" id="DV7-zF-tln"/>
@@ -54,8 +55,36 @@
                                 <include reference="hN3-dO-oXX"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="gkm-51-ej3" appends="YES" id="FU6-Km-whc"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="EeO-Pj-B5i">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="1qg-PV-YxG">
+                            <rect key="frame" x="20" y="5.5" width="501" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="搜尋" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zmk-mO-efP">
+                                    <rect key="frame" x="20" y="0.0" width="461" height="33"/>
+                                    <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <action selector="endOnExit:" destination="n9A-hj-Rkz" eventType="editingDidEndOnExit" id="gWi-56-dr5"/>
+                                    </connections>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="Zmk-mO-efP" secondAttribute="trailing" constant="20" id="APO-C9-Cb3">
+                                    <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                                </constraint>
+                                <constraint firstItem="Zmk-mO-efP" firstAttribute="top" secondItem="1qg-PV-YxG" secondAttribute="top" id="NAg-k5-Np3"/>
+                                <constraint firstItem="Zmk-mO-efP" firstAttribute="leading" secondItem="1qg-PV-YxG" secondAttribute="leading" constant="20" id="a9j-hO-lu2"/>
+                                <constraint firstAttribute="bottom" secondItem="Zmk-mO-efP" secondAttribute="bottom" id="lQd-NA-T5S"/>
+                            </constraints>
+                        </view>
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="niQ-9b-AhM">
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -65,11 +94,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="scanButton" destination="2r9-c4-UaA" id="0yR-QW-bsU"/>
+                        <outlet property="searchTextField" destination="Zmk-mO-efP" id="xd8-h6-POD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y73-hD-oYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="gkm-51-ej3">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="n9A-hj-Rkz" id="Omt-k1-dHj"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1261.5" y="347.25"/>
+            <point key="canvasLocation" x="1260" y="346.5"/>
         </scene>
         <!--Scanner View Controller-->
         <scene sceneID="m4P-LV-txN">
