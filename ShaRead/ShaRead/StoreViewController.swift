@@ -12,6 +12,8 @@ class StoreViewController: UIViewController {
 
     @IBOutlet weak var storeTableView: UITableView!
     @IBOutlet weak var avatarImageView: UIImageView!
+    
+    var shelfSize: CGFloat = 3
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +32,6 @@ class StoreViewController: UIViewController {
 //        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
 //        self.navigationController?.navigationBar.barTintColor = UIColor.orangeColor()
 //        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-
-        // custom book table cell
-        storeTableView.registerNib(UINib(nibName: "BookCategoryTableViewCell", bundle: nil), forCellReuseIdentifier: "BookCategoryCell")
 
         storeTableView.rowHeight = UITableViewAutomaticDimension
         storeTableView.estimatedRowHeight = 200
@@ -79,10 +78,35 @@ extension StoreViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(
-            indexPath.section == 0 ? "StoreDescriptionCell" : "BookCategoryCell",
-            forIndexPath: indexPath)
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("StoreDescriptionCell", forIndexPath: indexPath)
+
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("ShelfTableViewCell", forIndexPath: indexPath) as! ShelfTableViewCell
+            
+            let screenWidth = UIScreen.mainScreen().bounds.width
+            let itemWidth: CGFloat = screenWidth / shelfSize
+            let itemHeight: CGFloat = cell.frame.height
+
+            cell.shelfFlowLayout.itemSize = CGSizeMake(itemWidth, itemHeight)
+            
+            return cell
+        }
+    }
+}
+
+extension StoreViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return Int(shelfSize)
+    }
+
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ShelfCollectionViewCell", forIndexPath: indexPath) as! ShelfCollectionViewCell
 
         return cell
     }
 }
+

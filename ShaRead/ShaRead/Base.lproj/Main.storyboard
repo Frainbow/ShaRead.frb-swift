@@ -586,13 +586,104 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookCategoryCell" rowHeight="165" id="4a4-qp-QDZ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShelfTableViewCell" rowHeight="150" id="4a4-qp-QDZ" customClass="ShelfTableViewCell" customModule="ShaRead" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4a4-qp-QDZ" id="4Za-Ww-xXt">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="165"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yK9-oh-2G5">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="200" id="hL8-sY-nKT">
+                                                            <variation key="heightClass=regular-widthClass=compact" constant="150"/>
+                                                        </constraint>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="hL8-sY-nKT"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="hL8-sY-nKT"/>
+                                                        </mask>
+                                                    </variation>
+                                                </view>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JJL-ex-CJo">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="f1D-gK-PBI">
+                                                        <size key="itemSize" width="50" height="50"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ShelfCollectionViewCell" id="ea7-BU-eqo">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            </view>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="h1h-nG-wfs" id="f2Q-e8-g9M"/>
+                                                        <outlet property="delegate" destination="h1h-nG-wfs" id="6Qa-Gf-y6u"/>
+                                                    </connections>
+                                                </collectionView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="JJL-ex-CJo" secondAttribute="bottom" id="4Xs-Le-Hq6"/>
+                                                <constraint firstItem="yK9-oh-2G5" firstAttribute="leading" secondItem="4Za-Ww-xXt" secondAttribute="leading" id="Aa0-1z-xd8"/>
+                                                <constraint firstItem="JJL-ex-CJo" firstAttribute="leading" secondItem="4Za-Ww-xXt" secondAttribute="leading" id="JhP-C0-dH8"/>
+                                                <constraint firstItem="yK9-oh-2G5" firstAttribute="top" secondItem="4Za-Ww-xXt" secondAttribute="top" id="PWA-x8-HsV"/>
+                                                <constraint firstAttribute="bottom" secondItem="yK9-oh-2G5" secondAttribute="bottom" id="SbA-ag-k8l"/>
+                                                <constraint firstAttribute="trailing" secondItem="yK9-oh-2G5" secondAttribute="trailing" id="hfs-ui-ULD"/>
+                                                <constraint firstAttribute="trailing" secondItem="JJL-ex-CJo" secondAttribute="trailing" id="m0R-ti-ZOC"/>
+                                                <constraint firstItem="JJL-ex-CJo" firstAttribute="top" secondItem="4Za-Ww-xXt" secondAttribute="top" id="nL4-j6-l4W"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="yK9-oh-2G5"/>
+                                                    <exclude reference="JJL-ex-CJo"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="4Xs-Le-Hq6"/>
+                                                    <exclude reference="JhP-C0-dH8"/>
+                                                    <exclude reference="m0R-ti-ZOC"/>
+                                                    <exclude reference="nL4-j6-l4W"/>
+                                                    <exclude reference="Aa0-1z-xd8"/>
+                                                    <exclude reference="PWA-x8-HsV"/>
+                                                    <exclude reference="SbA-ag-k8l"/>
+                                                    <exclude reference="hfs-ui-ULD"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="yK9-oh-2G5"/>
+                                                    <include reference="JJL-ex-CJo"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="4Xs-Le-Hq6"/>
+                                                    <include reference="JhP-C0-dH8"/>
+                                                    <include reference="m0R-ti-ZOC"/>
+                                                    <include reference="nL4-j6-l4W"/>
+                                                    <include reference="Aa0-1z-xd8"/>
+                                                    <include reference="PWA-x8-HsV"/>
+                                                    <include reference="SbA-ag-k8l"/>
+                                                    <include reference="hfs-ui-ULD"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="shelfCollectionView" destination="JJL-ex-CJo" id="XtS-WM-TmN"/>
+                                            <outlet property="shelfFlowLayout" destination="f1D-gK-PBI" id="OLm-Uz-tVR"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

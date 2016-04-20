@@ -1,5 +1,5 @@
 //
-//  BookCategoryTableViewCell.swift
+//  ShelfTableViewCell.swift
 //  ShaRead
 //
 //  Created by martin on 2016/4/19.
@@ -8,14 +8,16 @@
 
 import UIKit
 
-class BookCategoryTableViewCell: UITableViewCell {
-    @IBOutlet weak var view1: UIView!
-    @IBOutlet weak var view2: UIView!
-    @IBOutlet weak var view3: UIView!
+class ShelfTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var shelfCollectionView: UICollectionView!
+    @IBOutlet weak var shelfFlowLayout: UICollectionViewFlowLayout!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+
+        shelfCollectionView.registerNib(UINib(nibName: "ShelfCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ShelfCollectionViewCell")
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
