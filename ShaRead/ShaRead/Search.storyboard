@@ -24,7 +24,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="ISBN 掃描"/>
                                 <connections>
-                                    <segue destination="YTa-lJ-mAF" kind="show" id="bIs-e0-5zB"/>
+                                    <segue destination="YTa-lJ-mAF" kind="show" identifier="ShowScanner" id="bIs-e0-5zB"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -67,7 +67,6 @@
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="搜尋" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zmk-mO-efP">
                                     <rect key="frame" x="20" y="0.0" width="461" height="33"/>
-                                    <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
@@ -75,7 +74,6 @@
                                     </connections>
                                 </textField>
                             </subviews>
-                            <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="Zmk-mO-efP" secondAttribute="trailing" constant="20" id="APO-C9-Cb3">
                                     <variation key="heightClass=regular-widthClass=compact" constant="20"/>
@@ -95,6 +93,7 @@
                     <connections>
                         <outlet property="scanButton" destination="2r9-c4-UaA" id="0yR-QW-bsU"/>
                         <outlet property="searchTextField" destination="Zmk-mO-efP" id="xd8-h6-POD"/>
+                        <segue destination="c3q-RZ-cTI" kind="show" identifier="ShowSearchResult" id="qwS-t3-m17"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y73-hD-oYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -119,10 +118,99 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="c3q-RZ-cTI" kind="show" identifier="ShowScanResult" id="ZFy-AS-JmJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LNT-XW-eKW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2055" y="347.25"/>
+            <point key="canvasLocation" x="2037" y="-5.25"/>
+        </scene>
+        <!--書名-->
+        <scene sceneID="Jvi-Sd-2a0">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="c3q-RZ-cTI" customClass="SearchResultViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="d74-IG-4p8"/>
+                        <viewControllerLayoutGuide type="bottom" id="fwo-Ff-Gic"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XaC-3U-6am">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="P0g-80-fx6">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="C8w-xv-l4P">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookItemCell" id="LHx-7z-bNi">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LHx-7z-bNi" id="xFf-kS-mJt">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoreItemCell" id="KPr-T3-RLJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KPr-T3-RLJ" id="UPp-uA-39c">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="c3q-RZ-cTI" id="J8A-4I-kAa"/>
+                                    <outlet property="delegate" destination="c3q-RZ-cTI" id="sXZ-V1-ED9"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="P0g-80-fx6" firstAttribute="leading" secondItem="XaC-3U-6am" secondAttribute="leading" id="25P-1o-d8v"/>
+                            <constraint firstItem="fwo-Ff-Gic" firstAttribute="top" secondItem="P0g-80-fx6" secondAttribute="bottom" id="Eg7-g9-9Nh"/>
+                            <constraint firstAttribute="trailing" secondItem="P0g-80-fx6" secondAttribute="trailing" id="Hhe-XE-NMy"/>
+                            <constraint firstItem="P0g-80-fx6" firstAttribute="top" secondItem="d74-IG-4p8" secondAttribute="bottom" id="LyK-hm-6dn"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="P0g-80-fx6"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="25P-1o-d8v"/>
+                                <exclude reference="Hhe-XE-NMy"/>
+                                <exclude reference="LyK-hm-6dn"/>
+                                <exclude reference="Eg7-g9-9Nh"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="P0g-80-fx6"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="25P-1o-d8v"/>
+                                <include reference="Hhe-XE-NMy"/>
+                                <include reference="LyK-hm-6dn"/>
+                                <include reference="Eg7-g9-9Nh"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="書名" id="BZs-Cu-BoC">
+                        <barButtonItem key="leftBarButtonItem" image="Left" id="Jov-hk-NV0">
+                            <connections>
+                                <action selector="navBack:" destination="c3q-RZ-cTI" id="u9q-Jh-BGU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bookTableView" destination="P0g-80-fx6" id="4K6-OP-oFq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BND-ru-Z4V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2806.5" y="347.25"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fs3-Fb-Wbf">
@@ -132,6 +220,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JhJ-Dj-IvE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.99607843139999996" green="0.48627450979999998" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -143,4 +236,10 @@
             <point key="canvasLocation" x="486" y="347.25"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Left" width="25" height="25"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="qwS-t3-m17"/>
+    </inferredMetricsTieBreakers>
 </document>

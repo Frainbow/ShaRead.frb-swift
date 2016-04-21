@@ -12,18 +12,27 @@ class SearchViewController: UIViewController {
 
     @IBOutlet weak var scanButton: UIButton!
     @IBOutlet weak var searchTextField: UITextField!
+    
+    var originalBarTintColor: UIColor?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         scanButton.layer.cornerRadius = 5
+        
+        // custom nav bar color
+        originalBarTintColor = self.navigationController?.navigationBar.barTintColor
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
+
         searchTextField.becomeFirstResponder()
     }
     
     override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.navigationBar.barTintColor = originalBarTintColor
+
         searchTextField.resignFirstResponder()
     }
 
@@ -42,6 +51,8 @@ class SearchViewController: UIViewController {
 
     @IBAction func endOnExit(sender: AnyObject) {
         self.resignFirstResponder()
+
+        performSegueWithIdentifier("ShowSearchResult", sender: sender)
     }
 
     /*

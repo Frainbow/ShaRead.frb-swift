@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="StoreItemView" customModule="ShaRead" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ceT-Vg-5Li">
+                    <rect key="frame" x="20" y="0.0" width="560" height="580"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h9C-J5-SLb">
+                            <rect key="frame" x="0.0" y="0.0" width="560" height="348"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserIcon" translatesAutoresizingMaskIntoConstraints="NO" id="som-1b-QkG">
+                            <rect key="frame" x="10" y="323" width="50" height="50"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="Fxp-4d-gMm"/>
+                                <constraint firstAttribute="width" constant="50" id="JCO-h1-fzK"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="店名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KXn-tD-18l">
+                            <rect key="frame" x="70" y="358" width="480" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="書店特色簡介書店特色簡介書店特色簡介書店特色簡介" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzh-Z8-D9R">
+                            <rect key="frame" x="70" y="384" width="480" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="h9C-J5-SLb" firstAttribute="top" secondItem="ceT-Vg-5Li" secondAttribute="top" id="34x-CE-bPH"/>
+                        <constraint firstItem="zzh-Z8-D9R" firstAttribute="leading" secondItem="KXn-tD-18l" secondAttribute="leading" id="5zc-Az-L9h"/>
+                        <constraint firstItem="som-1b-QkG" firstAttribute="leading" secondItem="ceT-Vg-5Li" secondAttribute="leading" constant="10" id="COJ-nC-kHZ"/>
+                        <constraint firstItem="som-1b-QkG" firstAttribute="bottom" secondItem="h9C-J5-SLb" secondAttribute="bottom" constant="25" id="GGL-bV-loE"/>
+                        <constraint firstItem="KXn-tD-18l" firstAttribute="top" secondItem="h9C-J5-SLb" secondAttribute="bottom" constant="10" id="KEU-IN-Haw"/>
+                        <constraint firstItem="zzh-Z8-D9R" firstAttribute="trailing" secondItem="KXn-tD-18l" secondAttribute="trailing" id="MyK-kP-FGM"/>
+                        <constraint firstItem="h9C-J5-SLb" firstAttribute="height" secondItem="ceT-Vg-5Li" secondAttribute="height" multiplier="3:5" id="PEy-cA-QGj"/>
+                        <constraint firstAttribute="trailing" secondItem="h9C-J5-SLb" secondAttribute="trailing" id="PfM-uB-ULR"/>
+                        <constraint firstItem="h9C-J5-SLb" firstAttribute="leading" secondItem="ceT-Vg-5Li" secondAttribute="leading" id="RMJ-La-Uyb"/>
+                        <constraint firstItem="zzh-Z8-D9R" firstAttribute="top" secondItem="KXn-tD-18l" secondAttribute="bottom" constant="5" id="RUH-tq-AxX"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zzh-Z8-D9R" secondAttribute="bottom" constant="10" id="VMU-Xa-LtW"/>
+                        <constraint firstItem="KXn-tD-18l" firstAttribute="leading" secondItem="som-1b-QkG" secondAttribute="trailing" constant="10" id="YYd-pu-u5P"/>
+                        <constraint firstAttribute="trailing" secondItem="KXn-tD-18l" secondAttribute="trailing" constant="10" id="reT-x1-i9L"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="ceT-Vg-5Li" secondAttribute="trailing" constant="20" id="F97-Sv-52l"/>
+                <constraint firstItem="ceT-Vg-5Li" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="NQ3-JJ-uqJ"/>
+                <constraint firstItem="ceT-Vg-5Li" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XNQ-aH-rOR"/>
+                <constraint firstItem="ceT-Vg-5Li" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="neR-0f-y9g"/>
+                <constraint firstAttribute="bottom" secondItem="ceT-Vg-5Li" secondAttribute="bottom" id="pRB-CX-i0K"/>
+                <constraint firstAttribute="trailing" secondItem="ceT-Vg-5Li" secondAttribute="trailing" id="qTU-ye-sph"/>
+                <constraint firstAttribute="bottom" secondItem="ceT-Vg-5Li" secondAttribute="bottom" constant="20" id="qrP-y0-zsE"/>
+                <constraint firstItem="ceT-Vg-5Li" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="wIQ-p6-S80"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="neR-0f-y9g"/>
+                    <exclude reference="pRB-CX-i0K"/>
+                    <exclude reference="qTU-ye-sph"/>
+                    <exclude reference="wIQ-p6-S80"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="avatarImageView" destination="som-1b-QkG" id="9O5-2d-4yC"/>
+                <outlet property="bannerImageView" destination="h9C-J5-SLb" id="xGY-Ul-NWf"/>
+                <outlet property="descriptionLabel" destination="zzh-Z8-D9R" id="eHl-AT-boM"/>
+                <outlet property="mainLabel" destination="KXn-tD-18l" id="aLL-qR-xhn"/>
+                <outlet property="shadowView" destination="ceT-Vg-5Li" id="5E0-ks-lJD"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="UserIcon" width="32" height="32"/>
+    </resources>
+</document>
