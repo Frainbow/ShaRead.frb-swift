@@ -135,6 +135,7 @@
                         <viewControllerLayoutGuide type="bottom" id="fwo-Ff-Gic"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XaC-3U-6am">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="P0g-80-fx6">
@@ -150,6 +151,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LHx-7z-bNi" id="xFf-kS-mJt">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -157,6 +159,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KPr-T3-RLJ" id="UPp-uA-39c">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -179,10 +182,10 @@
                                 <exclude reference="P0g-80-fx6"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Eg7-g9-9Nh"/>
                                 <exclude reference="25P-1o-d8v"/>
                                 <exclude reference="Hhe-XE-NMy"/>
                                 <exclude reference="LyK-hm-6dn"/>
-                                <exclude reference="Eg7-g9-9Nh"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -190,10 +193,10 @@
                                 <include reference="P0g-80-fx6"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Eg7-g9-9Nh"/>
                                 <include reference="25P-1o-d8v"/>
                                 <include reference="Hhe-XE-NMy"/>
                                 <include reference="LyK-hm-6dn"/>
-                                <include reference="Eg7-g9-9Nh"/>
                             </mask>
                         </variation>
                     </view>

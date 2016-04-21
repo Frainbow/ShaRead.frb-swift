@@ -161,8 +161,6 @@
 				5BED59E81CC23499003D73AD /* Login */,
 				5BED59E71CC22575003D73AD /* Search */,
 				5BED59AE1CBE18A0003D73AD /* AppDelegate.swift */,
-				5BED59B01CBE18A0003D73AD /* MainViewController.swift */,
-				5BED59B21CBE18A0003D73AD /* Main.storyboard */,
 				5BED59B81CBE18A0003D73AD /* Assets.xcassets */,
 				5BED59BA1CBE18A0003D73AD /* LaunchScreen.storyboard */,
 				5BED59BD1CBE18A0003D73AD /* Info.plist */,
@@ -192,14 +190,14 @@
 		5BED59E71CC22575003D73AD /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				5BED59E31CC1D2F7003D73AD /* SearchViewController.swift */,
-				5BED59DF1CBE7362003D73AD /* ScannerViewController.swift */,
-				5B1350991CC7DE68004E1637 /* SearchResultViewController.swift */,
-				5BED59E51CC22546003D73AD /* Search.storyboard */,
 				5B13509D1CC8B0CB004E1637 /* BookItemView.swift */,
 				5B13509B1CC8ACBE004E1637 /* BookItemView.xib */,
 				5B1350A51CC8BBED004E1637 /* StoreItemView.swift */,
 				5B1350A31CC8BBD3004E1637 /* StoreItemView.xib */,
+				5B1350991CC7DE68004E1637 /* SearchResultViewController.swift */,
+				5BED59DF1CBE7362003D73AD /* ScannerViewController.swift */,
+				5BED59E31CC1D2F7003D73AD /* SearchViewController.swift */,
+				5BED59E51CC22546003D73AD /* Search.storyboard */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -207,8 +205,8 @@
 		5BED59E81CC23499003D73AD /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				5BED59E91CC234A9003D73AD /* Login.storyboard */,
 				5BED59EB1CC234EF003D73AD /* LoginViewController.swift */,
+				5BED59E91CC234A9003D73AD /* Login.storyboard */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -216,12 +214,14 @@
 		5BED5A0B1CC4E6D3003D73AD /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				5BED5A141CC5446A003D73AD /* BookTableViewCell.swift */,
 				5BED5A0C1CC4E75C003D73AD /* BookCollectionViewCell.swift */,
 				5BED5A0D1CC4E75C003D73AD /* BookCollectionViewCell.xib */,
-				5B1350931CC711F2004E1637 /* StoreTableViewCell.swift */,
+				5BED5A141CC5446A003D73AD /* BookTableViewCell.swift */,
 				5B13508F1CC6709B004E1637 /* StoreCollectionViewCell.swift */,
 				5B1350901CC6709B004E1637 /* StoreCollectionViewCell.xib */,
+				5B1350931CC711F2004E1637 /* StoreTableViewCell.swift */,
+				5BED59B01CBE18A0003D73AD /* MainViewController.swift */,
+				5BED59B21CBE18A0003D73AD /* Main.storyboard */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -229,10 +229,10 @@
 		5BED5A2C1CC63155003D73AD /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				5BED5A261CC6152F003D73AD /* StoreViewController.swift */,
-				5BED5A281CC63138003D73AD /* ShelfTableViewCell.swift */,
 				5B1350951CC77838004E1637 /* ShelfCollectionViewCell.swift */,
 				5B1350961CC77838004E1637 /* ShelfCollectionViewCell.xib */,
+				5BED5A281CC63138003D73AD /* ShelfTableViewCell.swift */,
+				5BED5A261CC6152F003D73AD /* StoreViewController.swift */,
 			);
 			name = Store;
 			sourceTree = "<group>";
