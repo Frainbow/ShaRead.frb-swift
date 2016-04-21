@@ -10,15 +10,20 @@ import UIKit
 
 class BookCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var bannerImageView: UIView!
     @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
+//    @IBOutlet weak var priceLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        self.avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
+        
+        shadowView.layer.masksToBounds = false
+        shadowView.layer.shadowColor = UIColor.blackColor().CGColor
+        shadowView.layer.shadowOffset = CGSizeMake(2, 2)
+        shadowView.layer.shadowOpacity = 0.3
     }
 }

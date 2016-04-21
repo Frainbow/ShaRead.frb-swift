@@ -10,9 +10,20 @@ import UIKit
 
 class StoreCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var bannerImageView: UIImageView!
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var mainLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
+        
+        shadowView.layer.masksToBounds = false
+        shadowView.layer.shadowColor = UIColor.blackColor().CGColor
+        shadowView.layer.shadowOffset = CGSizeMake(2, 2)
+        shadowView.layer.shadowOpacity = 0.3
     }
-
 }

@@ -25,6 +25,7 @@ class StoreItemView: UITableViewCell {
     */
     
     override func awakeFromNib() {
+        super.awakeFromNib()
         avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
         
         shadowView.layer.masksToBounds = false
