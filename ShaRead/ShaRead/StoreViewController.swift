@@ -108,5 +108,11 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
 
         return cell
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if let sender = collectionView.cellForItemAtIndexPath(indexPath) {
+            performSegueWithIdentifier("ShowBookDetail", sender: sender)
+        }
+    }
 }
 
