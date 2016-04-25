@@ -10,10 +10,13 @@ import UIKit
 
 class StoreStyleViewController: UIViewController {
 
+    @IBOutlet weak var styleCollectionView: UICollectionView!
+    @IBOutlet weak var styleFlowLayout: UICollectionViewFlowLayout!
+
+    var styleItems: [String] = ["ShelfCollectionViewCell"]
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,5 +37,20 @@ class StoreStyleViewController: UIViewController {
 
     @IBAction func navBack(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
+    }
+}
+
+extension StoreStyleViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return styleItems.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StyleCell", forIndexPath: indexPath) as! StyleCollectionViewCell
+
+        cell.registerNib(styleItems[indexPath.row])
+
+        return cell
     }
 }

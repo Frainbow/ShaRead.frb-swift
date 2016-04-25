@@ -28,6 +28,7 @@
 		5B1350DA1CCDEB90004E1637 /* StorePositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350D91CCDEB90004E1637 /* StorePositionViewController.swift */; };
 		5B1350DC1CCDEBAE004E1637 /* StoreCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350DB1CCDEBAE004E1637 /* StoreCategoryViewController.swift */; };
 		5B1350DE1CCDEBC0004E1637 /* StoreStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350DD1CCDEBC0004E1637 /* StoreStyleViewController.swift */; };
+		5B1350E01CCE1F8D004E1637 /* StyleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350DF1CCE1F8D004E1637 /* StyleCollectionViewCell.swift */; };
 		5BED59AF1CBE18A0003D73AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59AE1CBE18A0003D73AD /* AppDelegate.swift */; };
 		5BED59B11CBE18A0003D73AD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59B01CBE18A0003D73AD /* MainViewController.swift */; };
 		5BED59B41CBE18A0003D73AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BED59B21CBE18A0003D73AD /* Main.storyboard */; };
@@ -92,6 +93,7 @@
 		5B1350D91CCDEB90004E1637 /* StorePositionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorePositionViewController.swift; sourceTree = "<group>"; };
 		5B1350DB1CCDEBAE004E1637 /* StoreCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreCategoryViewController.swift; sourceTree = "<group>"; };
 		5B1350DD1CCDEBC0004E1637 /* StoreStyleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreStyleViewController.swift; sourceTree = "<group>"; };
+		5B1350DF1CCE1F8D004E1637 /* StyleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleCollectionViewCell.swift; sourceTree = "<group>"; };
 		5BED59AB1CBE18A0003D73AD /* ShaRead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShaRead.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BED59AE1CBE18A0003D73AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BED59B01CBE18A0003D73AD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		5B1350AC1CCCDFCA004E1637 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
+				5B1350DF1CCE1F8D004E1637 /* StyleCollectionViewCell.swift */,
 				5B1350B31CCD30B2004E1637 /* StoreConfigTableViewCell.swift */,
 				5B1350B41CCD30B2004E1637 /* StoreConfigTableViewCell.xib */,
 				5B1350B11CCCF5B1004E1637 /* StoreConfigViewController.swift */,
@@ -594,6 +597,7 @@
 				5B1350D81CCDEB7C004E1637 /* StoreDescriptionViewController.swift in Sources */,
 				5B13509A1CC7DE68004E1637 /* SearchResultViewController.swift in Sources */,
 				5B1350DA1CCDEB90004E1637 /* StorePositionViewController.swift in Sources */,
+				5B1350E01CCE1F8D004E1637 /* StyleCollectionViewCell.swift in Sources */,
 				5BED59B71CBE18A0003D73AD /* ShaRead.xcdatamodeld in Sources */,
 				5BED5A271CC6152F003D73AD /* StoreViewController.swift in Sources */,
 				5BED59B11CBE18A0003D73AD /* MainViewController.swift in Sources */,
