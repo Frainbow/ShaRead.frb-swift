@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             toggleRootView("Login", controllerIdentifier: "LoginMainController")
         } else {
             //toggleRootView("Main", controllerIdentifier: "MainController")
-            toggleRootView("Admin", controllerIdentifier: "AdminMainController")
+            toggleRootView("StoreAdmin", controllerIdentifier: "StoreAdminMainController")
         }
     }
 

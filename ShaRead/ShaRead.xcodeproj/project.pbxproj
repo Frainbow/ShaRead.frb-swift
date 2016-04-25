@@ -19,7 +19,7 @@
 		5B1350A41CC8BBD3004E1637 /* StoreItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B1350A31CC8BBD3004E1637 /* StoreItemView.xib */; };
 		5B1350A61CC8BBED004E1637 /* StoreItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350A51CC8BBED004E1637 /* StoreItemView.swift */; };
 		5B1350AB1CC9D6A3004E1637 /* BookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350AA1CC9D6A3004E1637 /* BookTableViewController.swift */; };
-		5B1350AE1CCCDFE6004E1637 /* Admin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B1350AD1CCCDFE5004E1637 /* Admin.storyboard */; };
+		5B1350AE1CCCDFE6004E1637 /* StoreAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B1350AD1CCCDFE5004E1637 /* StoreAdmin.storyboard */; };
 		5B1350B01CCCEB91004E1637 /* StoreNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350AF1CCCEB91004E1637 /* StoreNameViewController.swift */; };
 		5B1350B21CCCF5B1004E1637 /* StoreConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350B11CCCF5B1004E1637 /* StoreConfigViewController.swift */; };
 		5B1350B51CCD30B2004E1637 /* StoreConfigTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350B31CCD30B2004E1637 /* StoreConfigTableViewCell.swift */; };
@@ -84,7 +84,7 @@
 		5B1350A31CC8BBD3004E1637 /* StoreItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreItemView.xib; sourceTree = "<group>"; };
 		5B1350A51CC8BBED004E1637 /* StoreItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreItemView.swift; sourceTree = "<group>"; };
 		5B1350AA1CC9D6A3004E1637 /* BookTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTableViewController.swift; sourceTree = "<group>"; };
-		5B1350AD1CCCDFE5004E1637 /* Admin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Admin.storyboard; sourceTree = "<group>"; };
+		5B1350AD1CCCDFE5004E1637 /* StoreAdmin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StoreAdmin.storyboard; sourceTree = "<group>"; };
 		5B1350AF1CCCEB91004E1637 /* StoreNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreNameViewController.swift; sourceTree = "<group>"; };
 		5B1350B11CCCF5B1004E1637 /* StoreConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreConfigViewController.swift; sourceTree = "<group>"; };
 		5B1350B31CCD30B2004E1637 /* StoreConfigTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreConfigTableViewCell.swift; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 			name = Book;
 			sourceTree = "<group>";
 		};
-		5B1350AC1CCCDFCA004E1637 /* Admin */ = {
+		5B1350AC1CCCDFCA004E1637 /* StoreAdmin */ = {
 			isa = PBXGroup;
 			children = (
 				5B1350DF1CCE1F8D004E1637 /* StyleCollectionViewCell.swift */,
@@ -173,9 +173,9 @@
 				5B1350D91CCDEB90004E1637 /* StorePositionViewController.swift */,
 				5B1350D71CCDEB7C004E1637 /* StoreDescriptionViewController.swift */,
 				5B1350AF1CCCEB91004E1637 /* StoreNameViewController.swift */,
-				5B1350AD1CCCDFE5004E1637 /* Admin.storyboard */,
+				5B1350AD1CCCDFE5004E1637 /* StoreAdmin.storyboard */,
 			);
-			name = Admin;
+			name = StoreAdmin;
 			sourceTree = "<group>";
 		};
 		5BED59A21CBE18A0003D73AD = {
@@ -203,7 +203,7 @@
 		5BED59AD1CBE18A0003D73AD /* ShaRead */ = {
 			isa = PBXGroup;
 			children = (
-				5B1350AC1CCCDFCA004E1637 /* Admin */,
+				5B1350AC1CCCDFCA004E1637 /* StoreAdmin */,
 				5B1350A71CC9B50B004E1637 /* Book */,
 				5BED5A2C1CC63155003D73AD /* Store */,
 				5BED5A0B1CC4E6D3003D73AD /* Main */,
@@ -431,7 +431,7 @@
 				5B1350A41CC8BBD3004E1637 /* StoreItemView.xib in Resources */,
 				5BED59EA1CC234A9003D73AD /* Login.storyboard in Resources */,
 				5BED59E61CC22546003D73AD /* Search.storyboard in Resources */,
-				5B1350AE1CCCDFE6004E1637 /* Admin.storyboard in Resources */,
+				5B1350AE1CCCDFE6004E1637 /* StoreAdmin.storyboard in Resources */,
 				5B13509C1CC8ACBE004E1637 /* BookItemView.xib in Resources */,
 				5B1350981CC77838004E1637 /* ShelfCollectionViewCell.xib in Resources */,
 			);
