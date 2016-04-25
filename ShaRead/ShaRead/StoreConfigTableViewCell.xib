@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="115" id="KGk-i7-Jjw" customClass="StoreConfigTableViewCell" customModule="ShaRead" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="72.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vZ3-1o-Oe8">
+                        <rect key="frame" x="20" y="10" width="230" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.85098039215686272" green="0.35294117647058826" blue="0.17647058823529413" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lnk-iC-Efn">
+                        <rect key="frame" x="20" y="40.5" width="230" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbN-Ms-J5Z">
+                        <rect key="frame" x="270" y="21.5" width="30" height="30"/>
+                        <color key="backgroundColor" red="0.94117647058823528" green="0.3843137254901961" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="4QD-8b-JmW"/>
+                            <constraint firstAttribute="width" constant="30" id="Q06-NI-3eU"/>
+                        </constraints>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <state key="normal" image="Checkmark"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="vZ3-1o-Oe8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="26V-EW-ZA2"/>
+                    <constraint firstItem="cbN-Ms-J5Z" firstAttribute="leading" secondItem="vZ3-1o-Oe8" secondAttribute="trailing" constant="20" id="6iK-U6-mCT"/>
+                    <constraint firstItem="lnk-iC-Efn" firstAttribute="top" secondItem="vZ3-1o-Oe8" secondAttribute="bottom" constant="10" id="9lS-gr-ach"/>
+                    <constraint firstItem="lnk-iC-Efn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="KTw-ki-uZI"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lnk-iC-Efn" secondAttribute="bottom" constant="10" id="KWh-gm-xwH"/>
+                    <constraint firstItem="vZ3-1o-Oe8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="WuG-B4-zVg"/>
+                    <constraint firstItem="cbN-Ms-J5Z" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZFU-EB-DlZ"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cbN-Ms-J5Z" secondAttribute="bottom" constant="20" id="mew-Ud-ntz"/>
+                    <constraint firstItem="cbN-Ms-J5Z" firstAttribute="leading" secondItem="lnk-iC-Efn" secondAttribute="trailing" constant="20" id="sAw-sa-3tm"/>
+                    <constraint firstItem="cbN-Ms-J5Z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="tfO-mS-aPW"/>
+                    <constraint firstAttribute="trailing" secondItem="cbN-Ms-J5Z" secondAttribute="trailing" constant="20" id="tow-tt-zj9"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="mew-Ud-ntz"/>
+                        <exclude reference="tfO-mS-aPW"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="checkButton" destination="cbN-Ms-J5Z" id="7pb-qi-22Z"/>
+                <outlet property="subtitleLabel" destination="lnk-iC-Efn" id="EFB-y3-TT4"/>
+                <outlet property="titleLabel" destination="vZ3-1o-Oe8" id="PGa-nu-swr"/>
+            </connections>
+            <point key="canvasLocation" x="244" y="319.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Checkmark" width="25" height="25"/>
+    </resources>
+</document>

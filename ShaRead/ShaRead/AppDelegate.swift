@@ -30,7 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if FBSDKAccessToken.currentAccessToken() == nil {
             toggleRootView("Login", controllerIdentifier: "LoginMainController")
         } else {
-            toggleRootView("Main", controllerIdentifier: "MainController")
+            //toggleRootView("Main", controllerIdentifier: "MainController")
+            toggleRootView("Admin", controllerIdentifier: "AdminMainController")
         }
     }
 

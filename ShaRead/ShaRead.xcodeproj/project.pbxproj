@@ -19,6 +19,15 @@
 		5B1350A41CC8BBD3004E1637 /* StoreItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B1350A31CC8BBD3004E1637 /* StoreItemView.xib */; };
 		5B1350A61CC8BBED004E1637 /* StoreItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350A51CC8BBED004E1637 /* StoreItemView.swift */; };
 		5B1350AB1CC9D6A3004E1637 /* BookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350AA1CC9D6A3004E1637 /* BookTableViewController.swift */; };
+		5B1350AE1CCCDFE6004E1637 /* Admin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B1350AD1CCCDFE5004E1637 /* Admin.storyboard */; };
+		5B1350B01CCCEB91004E1637 /* StoreNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350AF1CCCEB91004E1637 /* StoreNameViewController.swift */; };
+		5B1350B21CCCF5B1004E1637 /* StoreConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350B11CCCF5B1004E1637 /* StoreConfigViewController.swift */; };
+		5B1350B51CCD30B2004E1637 /* StoreConfigTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350B31CCD30B2004E1637 /* StoreConfigTableViewCell.swift */; };
+		5B1350B61CCD30B2004E1637 /* StoreConfigTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B1350B41CCD30B2004E1637 /* StoreConfigTableViewCell.xib */; };
+		5B1350D81CCDEB7C004E1637 /* StoreDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350D71CCDEB7C004E1637 /* StoreDescriptionViewController.swift */; };
+		5B1350DA1CCDEB90004E1637 /* StorePositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350D91CCDEB90004E1637 /* StorePositionViewController.swift */; };
+		5B1350DC1CCDEBAE004E1637 /* StoreCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350DB1CCDEBAE004E1637 /* StoreCategoryViewController.swift */; };
+		5B1350DE1CCDEBC0004E1637 /* StoreStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350DD1CCDEBC0004E1637 /* StoreStyleViewController.swift */; };
 		5BED59AF1CBE18A0003D73AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59AE1CBE18A0003D73AD /* AppDelegate.swift */; };
 		5BED59B11CBE18A0003D73AD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59B01CBE18A0003D73AD /* MainViewController.swift */; };
 		5BED59B41CBE18A0003D73AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BED59B21CBE18A0003D73AD /* Main.storyboard */; };
@@ -74,6 +83,15 @@
 		5B1350A31CC8BBD3004E1637 /* StoreItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreItemView.xib; sourceTree = "<group>"; };
 		5B1350A51CC8BBED004E1637 /* StoreItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreItemView.swift; sourceTree = "<group>"; };
 		5B1350AA1CC9D6A3004E1637 /* BookTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTableViewController.swift; sourceTree = "<group>"; };
+		5B1350AD1CCCDFE5004E1637 /* Admin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Admin.storyboard; sourceTree = "<group>"; };
+		5B1350AF1CCCEB91004E1637 /* StoreNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreNameViewController.swift; sourceTree = "<group>"; };
+		5B1350B11CCCF5B1004E1637 /* StoreConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreConfigViewController.swift; sourceTree = "<group>"; };
+		5B1350B31CCD30B2004E1637 /* StoreConfigTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreConfigTableViewCell.swift; sourceTree = "<group>"; };
+		5B1350B41CCD30B2004E1637 /* StoreConfigTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreConfigTableViewCell.xib; sourceTree = "<group>"; };
+		5B1350D71CCDEB7C004E1637 /* StoreDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDescriptionViewController.swift; sourceTree = "<group>"; };
+		5B1350D91CCDEB90004E1637 /* StorePositionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorePositionViewController.swift; sourceTree = "<group>"; };
+		5B1350DB1CCDEBAE004E1637 /* StoreCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreCategoryViewController.swift; sourceTree = "<group>"; };
+		5B1350DD1CCDEBC0004E1637 /* StoreStyleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreStyleViewController.swift; sourceTree = "<group>"; };
 		5BED59AB1CBE18A0003D73AD /* ShaRead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShaRead.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BED59AE1CBE18A0003D73AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BED59B01CBE18A0003D73AD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +159,22 @@
 			name = Book;
 			sourceTree = "<group>";
 		};
+		5B1350AC1CCCDFCA004E1637 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				5B1350B31CCD30B2004E1637 /* StoreConfigTableViewCell.swift */,
+				5B1350B41CCD30B2004E1637 /* StoreConfigTableViewCell.xib */,
+				5B1350B11CCCF5B1004E1637 /* StoreConfigViewController.swift */,
+				5B1350DD1CCDEBC0004E1637 /* StoreStyleViewController.swift */,
+				5B1350DB1CCDEBAE004E1637 /* StoreCategoryViewController.swift */,
+				5B1350D91CCDEB90004E1637 /* StorePositionViewController.swift */,
+				5B1350D71CCDEB7C004E1637 /* StoreDescriptionViewController.swift */,
+				5B1350AF1CCCEB91004E1637 /* StoreNameViewController.swift */,
+				5B1350AD1CCCDFE5004E1637 /* Admin.storyboard */,
+			);
+			name = Admin;
+			sourceTree = "<group>";
+		};
 		5BED59A21CBE18A0003D73AD = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +200,7 @@
 		5BED59AD1CBE18A0003D73AD /* ShaRead */ = {
 			isa = PBXGroup;
 			children = (
+				5B1350AC1CCCDFCA004E1637 /* Admin */,
 				5B1350A71CC9B50B004E1637 /* Book */,
 				5BED5A2C1CC63155003D73AD /* Store */,
 				5BED5A0B1CC4E6D3003D73AD /* Main */,
@@ -387,11 +422,13 @@
 				5B1350921CC6709B004E1637 /* StoreCollectionViewCell.xib in Resources */,
 				5BED59BC1CBE18A0003D73AD /* LaunchScreen.storyboard in Resources */,
 				5BED5A0F1CC4E75C003D73AD /* BookCollectionViewCell.xib in Resources */,
+				5B1350B61CCD30B2004E1637 /* StoreConfigTableViewCell.xib in Resources */,
 				5BED59B91CBE18A0003D73AD /* Assets.xcassets in Resources */,
 				5BED59B41CBE18A0003D73AD /* Main.storyboard in Resources */,
 				5B1350A41CC8BBD3004E1637 /* StoreItemView.xib in Resources */,
 				5BED59EA1CC234A9003D73AD /* Login.storyboard in Resources */,
 				5BED59E61CC22546003D73AD /* Search.storyboard in Resources */,
+				5B1350AE1CCCDFE6004E1637 /* Admin.storyboard in Resources */,
 				5B13509C1CC8ACBE004E1637 /* BookItemView.xib in Resources */,
 				5B1350981CC77838004E1637 /* ShelfCollectionViewCell.xib in Resources */,
 			);
@@ -550,14 +587,21 @@
 				5B1350A61CC8BBED004E1637 /* StoreItemView.swift in Sources */,
 				5B13509E1CC8B0CB004E1637 /* BookItemView.swift in Sources */,
 				5BED59EC1CC234EF003D73AD /* LoginViewController.swift in Sources */,
+				5B1350B01CCCEB91004E1637 /* StoreNameViewController.swift in Sources */,
 				5BED59E41CC1D2F7003D73AD /* SearchViewController.swift in Sources */,
+				5B1350B51CCD30B2004E1637 /* StoreConfigTableViewCell.swift in Sources */,
 				5B1350911CC6709B004E1637 /* StoreCollectionViewCell.swift in Sources */,
+				5B1350D81CCDEB7C004E1637 /* StoreDescriptionViewController.swift in Sources */,
 				5B13509A1CC7DE68004E1637 /* SearchResultViewController.swift in Sources */,
+				5B1350DA1CCDEB90004E1637 /* StorePositionViewController.swift in Sources */,
 				5BED59B71CBE18A0003D73AD /* ShaRead.xcdatamodeld in Sources */,
 				5BED5A271CC6152F003D73AD /* StoreViewController.swift in Sources */,
 				5BED59B11CBE18A0003D73AD /* MainViewController.swift in Sources */,
 				5BED59AF1CBE18A0003D73AD /* AppDelegate.swift in Sources */,
+				5B1350B21CCCF5B1004E1637 /* StoreConfigViewController.swift in Sources */,
 				5BED59E01CBE7362003D73AD /* ScannerViewController.swift in Sources */,
+				5B1350DE1CCDEBC0004E1637 /* StoreStyleViewController.swift in Sources */,
+				5B1350DC1CCDEBAE004E1637 /* StoreCategoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,7 +693,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -689,7 +733,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
