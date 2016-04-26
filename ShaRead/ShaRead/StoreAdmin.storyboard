@@ -26,26 +26,6 @@
             </objects>
             <point key="canvasLocation" x="571.5" y="-339"/>
         </scene>
-        <!--我的書店-->
-        <scene sceneID="lR2-Gt-vCy">
-            <objects>
-                <viewController id="nMB-fC-TWi" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Irb-94-7UP"/>
-                        <viewControllerLayoutGuide type="bottom" id="iP7-Po-9pU"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fsJ-Dk-HKQ">
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="我的書店" id="Hzy-0m-jfU">
-                        <barButtonItem key="rightBarButtonItem" title="新增" id="gFG-hV-LLU"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AbU-KP-U4G" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1341" y="-1700.25"/>
-        </scene>
         <!--開店-->
         <scene sceneID="NCs-G8-zPA">
             <objects>
@@ -259,7 +239,9 @@
                             <outletCollection property="gestureRecognizers" destination="xIx-kZ-pur" appends="YES" id="X8F-zh-18W"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="開店" id="6p9-RF-UwX"/>
+                    <navigationItem key="navigationItem" title="開店" id="6p9-RF-UwX">
+                        <barButtonItem key="leftBarButtonItem" title=" " id="rbF-sp-5xF"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="inputLengthLabel" destination="LNd-yk-Zvy" id="db9-AD-LlD"/>
                         <segue destination="tWp-LP-ZRr" kind="show" identifier="ShowStoreConfig" id="i7z-AJ-G6X"/>
@@ -272,7 +254,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1341" y="-1016.25"/>
+            <point key="canvasLocation" x="2119.5" y="-1016.25"/>
         </scene>
         <!--開店-->
         <scene sceneID="Qnr-WI-jEz">
@@ -399,6 +381,9 @@
                                                     <include reference="37y-SJ-UxG"/>
                                                 </mask>
                                             </variation>
+                                            <connections>
+                                                <segue destination="rwq-V8-M8v" kind="presentation" id="U7u-VM-X8M"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.92156862745098034" green="0.37647058823529411" blue="0.24705882352941178" alpha="1" colorSpace="calibratedRGB"/>
@@ -496,7 +481,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VqF-Ke-ol9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2119.5" y="-1016.25"/>
+            <point key="canvasLocation" x="2893.5" y="-1016.25"/>
+        </scene>
+        <!--BookAdmin-->
+        <scene sceneID="Lej-eF-cn0">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BookAdmin" id="rwq-V8-M8v" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="owD-Tw-HFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3495.75" y="-1016.25"/>
         </scene>
         <!--關於書店-->
         <scene sceneID="n7O-Ee-Wg8">
@@ -534,18 +527,18 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="oFD-gT-tup" firstAttribute="top" secondItem="Xdc-UF-Ft1" secondAttribute="bottom" constant="20" id="4fr-b8-4F4"/>
+                            <constraint firstItem="8SS-7U-KLX" firstAttribute="top" secondItem="Q2D-nw-dyl" secondAttribute="bottom" constant="20" id="8PT-kZ-ksb"/>
                             <constraint firstItem="oFD-gT-tup" firstAttribute="leading" secondItem="6cl-00-EWn" secondAttribute="leading" constant="20" id="ARq-4m-cOV"/>
                             <constraint firstItem="Xdc-UF-Ft1" firstAttribute="height" secondItem="6cl-00-EWn" secondAttribute="height" multiplier="1:4" id="EYE-Rs-WuK"/>
                             <constraint firstAttribute="trailing" secondItem="8SS-7U-KLX" secondAttribute="trailing" constant="20" id="I70-cG-CiW"/>
+                            <constraint firstItem="Xdc-UF-Ft1" firstAttribute="top" secondItem="Q2D-nw-dyl" secondAttribute="bottom" constant="20" id="Lha-vu-dgM"/>
                             <constraint firstItem="Xdc-UF-Ft1" firstAttribute="leading" secondItem="6cl-00-EWn" secondAttribute="leading" constant="20" id="NXa-tV-Npb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Xdc-UF-Ft1" secondAttribute="trailing" constant="20" id="OlO-Di-LU5"/>
                             <constraint firstItem="8SS-7U-KLX" firstAttribute="leading" secondItem="6cl-00-EWn" secondAttribute="leading" constant="20" id="Q2E-eD-ZeM"/>
                             <constraint firstAttribute="trailing" secondItem="Xdc-UF-Ft1" secondAttribute="trailing" constant="20" id="VmX-7e-ncV"/>
-                            <constraint firstItem="Xdc-UF-Ft1" firstAttribute="top" secondItem="Q2D-nw-dyl" secondAttribute="bottom" constant="20" id="aXk-ua-KIv"/>
                             <constraint firstAttribute="trailing" secondItem="oFD-gT-tup" secondAttribute="trailing" constant="20" id="bcq-gG-zgE"/>
-                            <constraint firstItem="Xdc-UF-Ft1" firstAttribute="top" secondItem="Q2D-nw-dyl" secondAttribute="bottom" constant="20" id="nuB-0l-3N5"/>
+                            <constraint firstItem="Xdc-UF-Ft1" firstAttribute="top" secondItem="Q2D-nw-dyl" secondAttribute="bottom" constant="20" id="bi4-IS-oeS"/>
                             <constraint firstItem="Xdc-UF-Ft1" firstAttribute="leading" secondItem="6cl-00-EWn" secondAttribute="leadingMargin" constant="20" id="qc1-cp-NjP"/>
-                            <constraint firstItem="8SS-7U-KLX" firstAttribute="top" secondItem="Q2D-nw-dyl" secondAttribute="bottom" constant="20" id="v95-rt-A8A"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -556,13 +549,10 @@
                             <mask key="constraints">
                                 <exclude reference="I70-cG-CiW"/>
                                 <exclude reference="Q2E-eD-ZeM"/>
-                                <exclude reference="v95-rt-A8A"/>
                                 <exclude reference="EYE-Rs-WuK"/>
                                 <exclude reference="NXa-tV-Npb"/>
                                 <exclude reference="OlO-Di-LU5"/>
                                 <exclude reference="VmX-7e-ncV"/>
-                                <exclude reference="aXk-ua-KIv"/>
-                                <exclude reference="nuB-0l-3N5"/>
                                 <exclude reference="qc1-cp-NjP"/>
                                 <exclude reference="4fr-b8-4F4"/>
                                 <exclude reference="ARq-4m-cOV"/>
@@ -578,13 +568,11 @@
                             <mask key="constraints">
                                 <include reference="I70-cG-CiW"/>
                                 <include reference="Q2E-eD-ZeM"/>
-                                <include reference="v95-rt-A8A"/>
                                 <include reference="EYE-Rs-WuK"/>
                                 <include reference="NXa-tV-Npb"/>
                                 <exclude reference="OlO-Di-LU5"/>
                                 <include reference="VmX-7e-ncV"/>
-                                <include reference="aXk-ua-KIv"/>
-                                <exclude reference="nuB-0l-3N5"/>
+                                <exclude reference="bi4-IS-oeS"/>
                                 <exclude reference="qc1-cp-NjP"/>
                                 <include reference="4fr-b8-4F4"/>
                                 <include reference="ARq-4m-cOV"/>
@@ -615,7 +603,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3007.5" y="-1016.25"/>
+            <point key="canvasLocation" x="2119.5" y="-1673.25"/>
         </scene>
         <!--面交地點-->
         <scene sceneID="wmF-AG-7Bn">
@@ -880,7 +868,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3787.5" y="-1016.25"/>
+            <point key="canvasLocation" x="2893.5" y="-1673.25"/>
         </scene>
         <!--選擇書櫃樣式-->
         <scene sceneID="1ba-rm-VhA">
@@ -1143,7 +1131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G9F-Lu-HX9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3787.5" y="-339"/>
+            <point key="canvasLocation" x="4399.5" y="-1673.25"/>
         </scene>
         <!--選擇類別-->
         <scene sceneID="UjE-y0-K2w">
@@ -1356,7 +1344,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2995.5" y="-339"/>
+            <point key="canvasLocation" x="3649.5" y="-1673.25"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="AjQ-C1-CIv">
@@ -1437,34 +1425,53 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="iZw-dq-ZAs" kind="relationship" relationship="rootViewController" id="geX-X1-obc"/>
+                        <segue destination="l9V-5I-nuz" kind="relationship" relationship="rootViewController" id="bJs-3B-DKn"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTz-RM-RgA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="571.5" y="-1016.25"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="1Hy-fV-Hkl">
+        <!--我的書店-->
+        <scene sceneID="ft6-3m-Buh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="r2y-HG-usm" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OXc-sB-bQ6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.96470588235294119" green="0.40000000000000002" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.41960784313725491" green="0.41960784313725491" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                <tableViewController id="l9V-5I-nuz" customClass="StoreAdminTableViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lzB-JW-ZEX">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="c2e-Rt-kcj">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="top-hY-MYf">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoreBookCell" id="ppH-5K-FjD">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ppH-5K-FjD" id="b32-2U-DB4">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="l9V-5I-nuz" id="y8R-aV-ESy"/>
+                            <outlet property="delegate" destination="l9V-5I-nuz" id="dIM-ui-iV8"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="我的書店" id="nSA-VY-r7w">
+                        <barButtonItem key="rightBarButtonItem" title="新增" id="Anw-Jj-H55"/>
+                    </navigationItem>
                     <connections>
-                        <segue destination="nMB-fC-TWi" kind="relationship" relationship="rootViewController" id="Cov-iQ-nhE"/>
+                        <segue destination="iZw-dq-ZAs" kind="show" identifier="ShowStoreAdmin" id="q0v-nm-ulT"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6xZ-UJ-z1w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VvP-SN-QxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="571.5" y="-1700.25"/>
+            <point key="canvasLocation" x="1347" y="-1016.25"/>
         </scene>
     </scenes>
     <resources>

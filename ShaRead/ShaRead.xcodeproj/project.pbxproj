@@ -29,6 +29,15 @@
 		5B1350DC1CCDEBAE004E1637 /* StoreCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350DB1CCDEBAE004E1637 /* StoreCategoryViewController.swift */; };
 		5B1350DE1CCDEBC0004E1637 /* StoreStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350DD1CCDEBC0004E1637 /* StoreStyleViewController.swift */; };
 		5B1350E01CCE1F8D004E1637 /* StyleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350DF1CCE1F8D004E1637 /* StyleCollectionViewCell.swift */; };
+		5B1350E31CCE6F81004E1637 /* BookAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B1350E21CCE6F81004E1637 /* BookAdmin.storyboard */; };
+		5B1350E51CCE727C004E1637 /* StoreAdminTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350E41CCE727C004E1637 /* StoreAdminTableViewController.swift */; };
+		5B1350E71CCE7AE6004E1637 /* BookNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350E61CCE7AE6004E1637 /* BookNameViewController.swift */; };
+		5B1350E91CCE7B19004E1637 /* BookConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350E81CCE7B19004E1637 /* BookConfigViewController.swift */; };
+		5B1350EF1CCF3C64004E1637 /* BookStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350EE1CCF3C64004E1637 /* BookStatusViewController.swift */; };
+		5B1350F11CCF3C86004E1637 /* BookPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350F01CCF3C86004E1637 /* BookPriceViewController.swift */; };
+		5B1350F31CCF3CA9004E1637 /* BookCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350F21CCF3CA9004E1637 /* BookCommentViewController.swift */; };
+		5B1350F51CCF3CEF004E1637 /* BookPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350F41CCF3CEF004E1637 /* BookPhotoViewController.swift */; };
+		5B1350F71CCF67E8004E1637 /* BookPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350F61CCF67E8004E1637 /* BookPhotoCollectionViewCell.swift */; };
 		5BED59AF1CBE18A0003D73AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59AE1CBE18A0003D73AD /* AppDelegate.swift */; };
 		5BED59B11CBE18A0003D73AD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59B01CBE18A0003D73AD /* MainViewController.swift */; };
 		5BED59B41CBE18A0003D73AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BED59B21CBE18A0003D73AD /* Main.storyboard */; };
@@ -94,6 +103,15 @@
 		5B1350DB1CCDEBAE004E1637 /* StoreCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreCategoryViewController.swift; sourceTree = "<group>"; };
 		5B1350DD1CCDEBC0004E1637 /* StoreStyleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreStyleViewController.swift; sourceTree = "<group>"; };
 		5B1350DF1CCE1F8D004E1637 /* StyleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleCollectionViewCell.swift; sourceTree = "<group>"; };
+		5B1350E21CCE6F81004E1637 /* BookAdmin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BookAdmin.storyboard; sourceTree = "<group>"; };
+		5B1350E41CCE727C004E1637 /* StoreAdminTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreAdminTableViewController.swift; sourceTree = "<group>"; };
+		5B1350E61CCE7AE6004E1637 /* BookNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookNameViewController.swift; sourceTree = "<group>"; };
+		5B1350E81CCE7B19004E1637 /* BookConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookConfigViewController.swift; sourceTree = "<group>"; };
+		5B1350EE1CCF3C64004E1637 /* BookStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookStatusViewController.swift; sourceTree = "<group>"; };
+		5B1350F01CCF3C86004E1637 /* BookPriceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPriceViewController.swift; sourceTree = "<group>"; };
+		5B1350F21CCF3CA9004E1637 /* BookCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCommentViewController.swift; sourceTree = "<group>"; };
+		5B1350F41CCF3CEF004E1637 /* BookPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPhotoViewController.swift; sourceTree = "<group>"; };
+		5B1350F61CCF67E8004E1637 /* BookPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		5BED59AB1CBE18A0003D73AD /* ShaRead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShaRead.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BED59AE1CBE18A0003D73AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BED59B01CBE18A0003D73AD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -173,9 +191,25 @@
 				5B1350D91CCDEB90004E1637 /* StorePositionViewController.swift */,
 				5B1350D71CCDEB7C004E1637 /* StoreDescriptionViewController.swift */,
 				5B1350AF1CCCEB91004E1637 /* StoreNameViewController.swift */,
+				5B1350E41CCE727C004E1637 /* StoreAdminTableViewController.swift */,
 				5B1350AD1CCCDFE5004E1637 /* StoreAdmin.storyboard */,
 			);
 			name = StoreAdmin;
+			sourceTree = "<group>";
+		};
+		5B1350E11CCE6F61004E1637 /* BookAdmin */ = {
+			isa = PBXGroup;
+			children = (
+				5B1350E81CCE7B19004E1637 /* BookConfigViewController.swift */,
+				5B1350EE1CCF3C64004E1637 /* BookStatusViewController.swift */,
+				5B1350F21CCF3CA9004E1637 /* BookCommentViewController.swift */,
+				5B1350F01CCF3C86004E1637 /* BookPriceViewController.swift */,
+				5B1350F61CCF67E8004E1637 /* BookPhotoCollectionViewCell.swift */,
+				5B1350F41CCF3CEF004E1637 /* BookPhotoViewController.swift */,
+				5B1350E61CCE7AE6004E1637 /* BookNameViewController.swift */,
+				5B1350E21CCE6F81004E1637 /* BookAdmin.storyboard */,
+			);
+			name = BookAdmin;
 			sourceTree = "<group>";
 		};
 		5BED59A21CBE18A0003D73AD = {
@@ -203,6 +237,7 @@
 		5BED59AD1CBE18A0003D73AD /* ShaRead */ = {
 			isa = PBXGroup;
 			children = (
+				5B1350E11CCE6F61004E1637 /* BookAdmin */,
 				5B1350AC1CCCDFCA004E1637 /* StoreAdmin */,
 				5B1350A71CC9B50B004E1637 /* Book */,
 				5BED5A2C1CC63155003D73AD /* Store */,
@@ -429,6 +464,7 @@
 				5BED59B91CBE18A0003D73AD /* Assets.xcassets in Resources */,
 				5BED59B41CBE18A0003D73AD /* Main.storyboard in Resources */,
 				5B1350A41CC8BBD3004E1637 /* StoreItemView.xib in Resources */,
+				5B1350E31CCE6F81004E1637 /* BookAdmin.storyboard in Resources */,
 				5BED59EA1CC234A9003D73AD /* Login.storyboard in Resources */,
 				5BED59E61CC22546003D73AD /* Search.storyboard in Resources */,
 				5B1350AE1CCCDFE6004E1637 /* StoreAdmin.storyboard in Resources */,
@@ -582,12 +618,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BED5A2A1CC63138003D73AD /* ShelfTableViewCell.swift in Sources */,
+				5B1350E71CCE7AE6004E1637 /* BookNameViewController.swift in Sources */,
+				5B1350F31CCF3CA9004E1637 /* BookCommentViewController.swift in Sources */,
 				5B1350AB1CC9D6A3004E1637 /* BookTableViewController.swift in Sources */,
 				5BED5A0E1CC4E75C003D73AD /* BookCollectionViewCell.swift in Sources */,
 				5BED5A151CC5446A003D73AD /* BookTableViewCell.swift in Sources */,
+				5B1350F11CCF3C86004E1637 /* BookPriceViewController.swift in Sources */,
+				5B1350E91CCE7B19004E1637 /* BookConfigViewController.swift in Sources */,
 				5B1350941CC711F2004E1637 /* StoreTableViewCell.swift in Sources */,
 				5B1350971CC77838004E1637 /* ShelfCollectionViewCell.swift in Sources */,
+				5B1350EF1CCF3C64004E1637 /* BookStatusViewController.swift in Sources */,
 				5B1350A61CC8BBED004E1637 /* StoreItemView.swift in Sources */,
+				5B1350F51CCF3CEF004E1637 /* BookPhotoViewController.swift in Sources */,
+				5B1350E51CCE727C004E1637 /* StoreAdminTableViewController.swift in Sources */,
 				5B13509E1CC8B0CB004E1637 /* BookItemView.swift in Sources */,
 				5BED59EC1CC234EF003D73AD /* LoginViewController.swift in Sources */,
 				5B1350B01CCCEB91004E1637 /* StoreNameViewController.swift in Sources */,
@@ -605,6 +648,7 @@
 				5B1350B21CCCF5B1004E1637 /* StoreConfigViewController.swift in Sources */,
 				5BED59E01CBE7362003D73AD /* ScannerViewController.swift in Sources */,
 				5B1350DE1CCDEBC0004E1637 /* StoreStyleViewController.swift in Sources */,
+				5B1350F71CCF67E8004E1637 /* BookPhotoCollectionViewCell.swift in Sources */,
 				5B1350DC1CCDEBAE004E1637 /* StoreCategoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
