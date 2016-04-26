@@ -38,6 +38,7 @@
 		5B1350F31CCF3CA9004E1637 /* BookCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350F21CCF3CA9004E1637 /* BookCommentViewController.swift */; };
 		5B1350F51CCF3CEF004E1637 /* BookPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350F41CCF3CEF004E1637 /* BookPhotoViewController.swift */; };
 		5B1350F71CCF67E8004E1637 /* BookPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350F61CCF67E8004E1637 /* BookPhotoCollectionViewCell.swift */; };
+		5B1350FA1CCF8F56004E1637 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350F91CCF8F56004E1637 /* HttpManager.swift */; };
 		5BED59AF1CBE18A0003D73AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59AE1CBE18A0003D73AD /* AppDelegate.swift */; };
 		5BED59B11CBE18A0003D73AD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59B01CBE18A0003D73AD /* MainViewController.swift */; };
 		5BED59B41CBE18A0003D73AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BED59B21CBE18A0003D73AD /* Main.storyboard */; };
@@ -112,6 +113,7 @@
 		5B1350F21CCF3CA9004E1637 /* BookCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCommentViewController.swift; sourceTree = "<group>"; };
 		5B1350F41CCF3CEF004E1637 /* BookPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPhotoViewController.swift; sourceTree = "<group>"; };
 		5B1350F61CCF67E8004E1637 /* BookPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		5B1350F91CCF8F56004E1637 /* HttpManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
 		5BED59AB1CBE18A0003D73AD /* ShaRead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShaRead.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BED59AE1CBE18A0003D73AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BED59B01CBE18A0003D73AD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +214,14 @@
 			name = BookAdmin;
 			sourceTree = "<group>";
 		};
+		5B1350F81CCF8F44004E1637 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				5B1350F91CCF8F56004E1637 /* HttpManager.swift */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
 		5BED59A21CBE18A0003D73AD = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +247,7 @@
 		5BED59AD1CBE18A0003D73AD /* ShaRead */ = {
 			isa = PBXGroup;
 			children = (
+				5B1350F81CCF8F44004E1637 /* Network */,
 				5B1350E11CCE6F61004E1637 /* BookAdmin */,
 				5B1350AC1CCCDFCA004E1637 /* StoreAdmin */,
 				5B1350A71CC9B50B004E1637 /* Book */,
@@ -628,6 +639,7 @@
 				5B1350941CC711F2004E1637 /* StoreTableViewCell.swift in Sources */,
 				5B1350971CC77838004E1637 /* ShelfCollectionViewCell.swift in Sources */,
 				5B1350EF1CCF3C64004E1637 /* BookStatusViewController.swift in Sources */,
+				5B1350FA1CCF8F56004E1637 /* HttpManager.swift in Sources */,
 				5B1350A61CC8BBED004E1637 /* StoreItemView.swift in Sources */,
 				5B1350F51CCF3CEF004E1637 /* BookPhotoViewController.swift in Sources */,
 				5B1350E51CCE727C004E1637 /* StoreAdminTableViewController.swift in Sources */,

@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (3.3.1)
   - Bolts (1.7.0):
     - Bolts/AppLinks (= 1.7.0)
     - Bolts/Tasks (= 1.7.0)
@@ -11,18 +12,26 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.11.0):
     - FBSDKCoreKit
+  - PKHUD (3.1.0)
+  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
+  - Alamofire
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
+  - PKHUD
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
   FBSDKLoginKit: bade9fc78277764149ccc5bfaadbf13c83175c6a
   FBSDKShareKit: 2d1746144cfc8a9dbbd24997c34ee0471be51b6a
+  PKHUD: 4167eccdb1b3a892fd80ce2b51cb6ba412a889ab
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 08cdf4ffd12ab10d029fca9cc523570884033d54
+PODFILE CHECKSUM: f8f1b587636cc9e1a6e517d8abfd75d668c12d00
 
 COCOAPODS: 1.0.0.beta.6
