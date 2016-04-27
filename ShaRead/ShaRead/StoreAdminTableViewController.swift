@@ -20,7 +20,9 @@ class StoreAdminTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
         dispatch_async(dispatch_get_main_queue()) { 
-            self.performSegueWithIdentifier("ShowStoreAdmin", sender: nil)
+            if let controller = self.storyboard?.instantiateViewControllerWithIdentifier("StoreAdmin") {
+                self.navigationController?.pushViewController(controller, animated: false)
+            }
         }
     }
 

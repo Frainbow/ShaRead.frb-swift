@@ -38,9 +38,10 @@
 		5B1350F51CCF3CEF004E1637 /* BookPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350F41CCF3CEF004E1637 /* BookPhotoViewController.swift */; };
 		5B1350F71CCF67E8004E1637 /* BookPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350F61CCF67E8004E1637 /* BookPhotoCollectionViewCell.swift */; };
 		5B1350FA1CCF8F56004E1637 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350F91CCF8F56004E1637 /* HttpManager.swift */; };
-		5B1350FF1CD08C3C004E1637 /* Member.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B1350FE1CD08C3C004E1637 /* Member.storyboard */; };
 		5B1351071CD0B43D004E1637 /* StoreAdminTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1351061CD0B43D004E1637 /* StoreAdminTableViewController.swift */; };
 		5B1351091CD0C601004E1637 /* StoreAdminMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1351081CD0C601004E1637 /* StoreAdminMemberViewController.swift */; };
+		5BC0F8F51CD117A200B7A839 /* Member.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BC0F8F41CD117A200B7A839 /* Member.storyboard */; };
+		5BC0F8F71CD117D500B7A839 /* MemberMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC0F8F61CD117D500B7A839 /* MemberMenuViewController.swift */; };
 		5BED59AF1CBE18A0003D73AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59AE1CBE18A0003D73AD /* AppDelegate.swift */; };
 		5BED59B11CBE18A0003D73AD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59B01CBE18A0003D73AD /* MainViewController.swift */; };
 		5BED59B41CBE18A0003D73AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BED59B21CBE18A0003D73AD /* Main.storyboard */; };
@@ -115,9 +116,10 @@
 		5B1350F41CCF3CEF004E1637 /* BookPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPhotoViewController.swift; sourceTree = "<group>"; };
 		5B1350F61CCF67E8004E1637 /* BookPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		5B1350F91CCF8F56004E1637 /* HttpManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
-		5B1350FE1CD08C3C004E1637 /* Member.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Member.storyboard; sourceTree = "<group>"; };
 		5B1351061CD0B43D004E1637 /* StoreAdminTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreAdminTableViewController.swift; sourceTree = "<group>"; };
 		5B1351081CD0C601004E1637 /* StoreAdminMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreAdminMemberViewController.swift; sourceTree = "<group>"; };
+		5BC0F8F41CD117A200B7A839 /* Member.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Member.storyboard; sourceTree = "<group>"; };
+		5BC0F8F61CD117D500B7A839 /* MemberMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberMenuViewController.swift; sourceTree = "<group>"; };
 		5BED59AB1CBE18A0003D73AD /* ShaRead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShaRead.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BED59AE1CBE18A0003D73AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BED59B01CBE18A0003D73AD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -227,10 +229,11 @@
 			name = Network;
 			sourceTree = "<group>";
 		};
-		5B1350FB1CD04AF6004E1637 /* Member */ = {
+		5BC0F8F31CD1178900B7A839 /* Member */ = {
 			isa = PBXGroup;
 			children = (
-				5B1350FE1CD08C3C004E1637 /* Member.storyboard */,
+				5BC0F8F61CD117D500B7A839 /* MemberMenuViewController.swift */,
+				5BC0F8F41CD117A200B7A839 /* Member.storyboard */,
 			);
 			name = Member;
 			sourceTree = "<group>";
@@ -260,7 +263,7 @@
 		5BED59AD1CBE18A0003D73AD /* ShaRead */ = {
 			isa = PBXGroup;
 			children = (
-				5B1350FB1CD04AF6004E1637 /* Member */,
+				5BC0F8F31CD1178900B7A839 /* Member */,
 				5B1350F81CCF8F44004E1637 /* Network */,
 				5B1350E11CCE6F61004E1637 /* BookAdmin */,
 				5B1350AC1CCCDFCA004E1637 /* StoreAdmin */,
@@ -488,7 +491,7 @@
 				5B1350B61CCD30B2004E1637 /* StoreConfigTableViewCell.xib in Resources */,
 				5BED59B91CBE18A0003D73AD /* Assets.xcassets in Resources */,
 				5BED59B41CBE18A0003D73AD /* Main.storyboard in Resources */,
-				5B1350FF1CD08C3C004E1637 /* Member.storyboard in Resources */,
+				5BC0F8F51CD117A200B7A839 /* Member.storyboard in Resources */,
 				5B1350A41CC8BBD3004E1637 /* StoreItemView.xib in Resources */,
 				5B1350E31CCE6F81004E1637 /* BookAdmin.storyboard in Resources */,
 				5BED59EA1CC234A9003D73AD /* Login.storyboard in Resources */,
@@ -677,6 +680,7 @@
 				5B1350DE1CCDEBC0004E1637 /* StoreStyleViewController.swift in Sources */,
 				5B1350F71CCF67E8004E1637 /* BookPhotoCollectionViewCell.swift in Sources */,
 				5B1350DC1CCDEBAE004E1637 /* StoreCategoryViewController.swift in Sources */,
+				5BC0F8F71CD117D500B7A839 /* MemberMenuViewController.swift in Sources */,
 				5B1351091CD0C601004E1637 /* StoreAdminMemberViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -206,7 +206,8 @@
                                                     <exclude reference="dcq-aY-aYP"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="200"/>
                                                 <mask key="constraints">
                                                     <include reference="dcq-aY-aYP"/>
                                                 </mask>
@@ -232,7 +233,8 @@
                                                     <exclude reference="QrJ-Me-ZBP"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="70" y="46" width="100" height="35"/>
                                                 <mask key="constraints">
                                                     <include reference="60L-Zt-IPa"/>
                                                     <include reference="QrJ-Me-ZBP"/>
@@ -301,7 +303,8 @@
                                                     <exclude reference="zMB-pN-wkN"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="40"/>
                                                 <mask key="constraints">
                                                     <include reference="zMB-pN-wkN"/>
                                                 </mask>
@@ -323,7 +326,8 @@
                                                     <exclude reference="BtZ-be-GgA"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="120" y="0.0" width="120" height="40"/>
                                                 <mask key="constraints">
                                                     <include reference="BtZ-be-GgA"/>
                                                 </mask>

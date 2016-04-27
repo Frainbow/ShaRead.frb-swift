@@ -13,9 +13,14 @@ import PKRevealController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, PKRevealing {
+    
+    enum ViewMode {
+        case AdminViewMode
+        case DefaultViewMode
+    }
 
     var window: UIWindow?
-
+    var viewMode: ViewMode = .DefaultViewMode
     weak var revealController: PKRevealController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -33,8 +38,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PKRevealing {
         if FBSDKAccessToken.currentAccessToken() == nil {
             toggleRootView("Login", controllerIdentifier: "LoginMainController")
         } else {
-            //toggleRootView("Main", controllerIdentifier: "MainController")
+            toggleRootViewMode()
+        }
+    }
+
+    func toggleRootViewMode() {
+        switch viewMode {
+        case .DefaultViewMode:
             toggleRootView("StoreAdmin", controllerIdentifier: "StoreAdminMainController")
+            viewMode = .AdminViewMode
+        case .AdminViewMode:
+            toggleRootView("Main", controllerIdentifier: "MainController")
+            viewMode = .DefaultViewMode
         }
     }
 
@@ -49,21 +64,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PKRevealing {
         controller.animationType = PKRevealControllerAnimationTypeStatic
         controller.setMinimumWidth(200, maximumWidth: 200, forViewController: memberController)
         revealController = controller
+
         self.window?.rootViewController = controller
     }
     
     func revealController(revealController: PKRevealController!, didChangeToState state: PKRevealControllerState) {
 
-//        switch state.rawValue {
-//        case 3:
+        switch state.rawValue {
+        case 3:
 //            revealController.recognizesPanningOnFrontView = false
-//        case 4:
-//            break
-//        case 5:
+            revealController.frontViewController.view.alpha = 1
+            break
+        case 4:
+            revealController.frontViewController.view.alpha = 0.5
+            break
+        case 5:
+            revealController.frontViewController.view.alpha = 0.1
 //            revealController.recognizesPanningOnFrontView = true
-//        default:
-//            break
-//        }
+            break
+        default:
+            break
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {

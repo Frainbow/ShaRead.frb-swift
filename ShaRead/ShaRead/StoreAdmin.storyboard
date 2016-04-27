@@ -30,7 +30,7 @@
         <!--開店-->
         <scene sceneID="NCs-G8-zPA">
             <objects>
-                <viewController id="iZw-dq-ZAs" customClass="StoreNameViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoreAdmin" id="iZw-dq-ZAs" customClass="StoreNameViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xk5-OK-vSR"/>
                         <viewControllerLayoutGuide type="bottom" id="VE2-Vi-ory"/>
@@ -287,7 +287,8 @@
                                                     <exclude reference="IUn-BJ-WyO"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="200"/>
                                                 <mask key="constraints">
                                                     <include reference="IUn-BJ-WyO"/>
                                                 </mask>
@@ -313,7 +314,8 @@
                                                     <exclude reference="WeE-oC-j3J"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="70" y="46" width="100" height="35"/>
                                                 <mask key="constraints">
                                                     <include reference="Dqe-b4-XPc"/>
                                                     <include reference="WeE-oC-j3J"/>
@@ -378,7 +380,8 @@
                                                     <exclude reference="37y-SJ-UxG"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="40"/>
                                                 <mask key="constraints">
                                                     <include reference="37y-SJ-UxG"/>
                                                 </mask>
@@ -499,12 +502,15 @@
             <objects>
                 <tableViewController storyboardIdentifier="StoreAdminBooks" id="pGD-cH-Fwv" customClass="StoreAdminTableViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="JdS-sE-ztQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vBP-CR-HsO">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vBP-CR-HsO" id="Clc-g3-aR5">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -725,6 +731,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="10" y="10" width="187" height="23.5"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
