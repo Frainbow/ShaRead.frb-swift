@@ -13,6 +13,7 @@ PODS:
   - FBSDKShareKit (4.11.0):
     - FBSDKCoreKit
   - PKHUD (3.1.0)
+  - PKRevealController (2.0.6)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
@@ -21,6 +22,7 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - FBSDKShareKit
   - PKHUD
+  - PKRevealController
   - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -30,8 +32,9 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: bade9fc78277764149ccc5bfaadbf13c83175c6a
   FBSDKShareKit: 2d1746144cfc8a9dbbd24997c34ee0471be51b6a
   PKHUD: 4167eccdb1b3a892fd80ce2b51cb6ba412a889ab
+  PKRevealController: ffb45a16f5a5032ad90a3d16e5cbb0d8e035bd58
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: f8f1b587636cc9e1a6e517d8abfd75d668c12d00
+PODFILE CHECKSUM: ef08486326cfd575500926db397e03aa3dc553fa
 
 COCOAPODS: 1.0.0.beta.6

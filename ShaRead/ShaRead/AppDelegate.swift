@@ -9,11 +9,14 @@
 import UIKit
 import CoreData
 import FBSDKCoreKit
+import PKRevealController
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, PKRevealing {
 
     var window: UIWindow?
+
+    weak var revealController: PKRevealController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -36,10 +39,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func toggleRootView(storyboardName: String, controllerIdentifier: String) {
-        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
-        let controller = storyboard.instantiateViewControllerWithIdentifier(controllerIdentifier)
+        let frontController = UIStoryboard(name: storyboardName, bundle: nil).instantiateViewControllerWithIdentifier(controllerIdentifier)
+        let memberController = UIStoryboard(name: "Member", bundle: nil).instantiateViewControllerWithIdentifier("MemberMenu")
 
+        let controller = PKRevealController(frontViewController: frontController, rightViewController: memberController)
+
+        controller.delegate = self
+        controller.recognizesPanningOnFrontView = false
+        controller.animationType = PKRevealControllerAnimationTypeStatic
+        controller.setMinimumWidth(200, maximumWidth: 200, forViewController: memberController)
+        revealController = controller
         self.window?.rootViewController = controller
+    }
+    
+    func revealController(revealController: PKRevealController!, didChangeToState state: PKRevealControllerState) {
+
+//        switch state.rawValue {
+//        case 3:
+//            revealController.recognizesPanningOnFrontView = false
+//        case 4:
+//            break
+//        case 5:
+//            revealController.recognizesPanningOnFrontView = true
+//        default:
+//            break
+//        }
     }
 
     func applicationWillResignActive(application: UIApplication) {

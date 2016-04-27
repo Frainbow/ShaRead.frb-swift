@@ -2,7 +2,7 @@
 //  StoreAdminTableViewController.swift
 //  ShaRead
 //
-//  Created by martin on 2016/4/25.
+//  Created by martin on 2016/4/27.
 //  Copyright © 2016年 Frainbow. All rights reserved.
 //
 
@@ -18,11 +18,10 @@ class StoreAdminTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        // TODO: check store record
-        performSegueWithIdentifier("ShowStoreAdmin", sender: nil)
+
+        dispatch_async(dispatch_get_main_queue()) { 
+            self.performSegueWithIdentifier("ShowStoreAdmin", sender: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {

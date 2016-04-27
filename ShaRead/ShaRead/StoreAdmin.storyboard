@@ -492,7 +492,36 @@
                 <viewControllerPlaceholder storyboardName="BookAdmin" id="rwq-V8-M8v" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="owD-Tw-HFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3495.75" y="-1016.25"/>
+            <point key="canvasLocation" x="3650.25" y="-1016.25"/>
+        </scene>
+        <!--我的書店-->
+        <scene sceneID="4y0-Dz-t1i">
+            <objects>
+                <tableViewController storyboardIdentifier="StoreAdminBooks" id="pGD-cH-Fwv" customClass="StoreAdminTableViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="JdS-sE-ztQ">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vBP-CR-HsO">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vBP-CR-HsO" id="Clc-g3-aR5">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pGD-cH-Fwv" id="Jqg-v1-ZeA"/>
+                            <outlet property="delegate" destination="pGD-cH-Fwv" id="hNb-wu-uNx"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="我的書店" id="rmb-wq-xYc"/>
+                    <connections>
+                        <segue destination="iZw-dq-ZAs" kind="show" identifier="ShowStoreAdmin" id="5ST-ST-P4m"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z4X-DR-kmg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1351.5" y="-1016.25"/>
         </scene>
         <!--關於書店-->
         <scene sceneID="n7O-Ee-Wg8">
@@ -1386,7 +1415,7 @@
         <!--會員-->
         <scene sceneID="j9C-VG-5iU">
             <objects>
-                <viewController id="SlV-VY-53F" sceneMemberID="viewController">
+                <viewController id="SlV-VY-53F" customClass="StoreAdminMemberViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UiZ-5o-Xrm"/>
                         <viewControllerLayoutGuide type="bottom" id="ERe-Df-dYO"/>
@@ -1437,56 +1466,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="l9V-5I-nuz" kind="relationship" relationship="rootViewController" id="bJs-3B-DKn"/>
+                        <segue destination="pGD-cH-Fwv" kind="relationship" relationship="rootViewController" id="QLr-UP-Jqc"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTz-RM-RgA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="571.5" y="-1016.25"/>
-        </scene>
-        <!--我的書店-->
-        <scene sceneID="ft6-3m-Buh">
-            <objects>
-                <tableViewController id="l9V-5I-nuz" customClass="StoreAdminTableViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lzB-JW-ZEX">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="c2e-Rt-kcj">
-                            <rect key="frame" x="0.0" y="64" width="600" height="128"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="top-hY-MYf">
-                            <rect key="frame" x="0.0" y="264" width="600" height="128"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoreBookCell" id="ppH-5K-FjD">
-                                <rect key="frame" x="0.0" y="220" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ppH-5K-FjD" id="b32-2U-DB4">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="l9V-5I-nuz" id="y8R-aV-ESy"/>
-                            <outlet property="delegate" destination="l9V-5I-nuz" id="dIM-ui-iV8"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="我的書店" id="nSA-VY-r7w">
-                        <barButtonItem key="rightBarButtonItem" title="新增" id="Anw-Jj-H55"/>
-                    </navigationItem>
-                    <connections>
-                        <segue destination="iZw-dq-ZAs" kind="show" identifier="ShowStoreAdmin" id="q0v-nm-ulT"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VvP-SN-QxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1347" y="-1016.25"/>
         </scene>
     </scenes>
     <resources>
