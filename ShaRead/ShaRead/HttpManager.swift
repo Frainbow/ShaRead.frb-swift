@@ -17,12 +17,9 @@ enum HttpMethod {
     case HttpMethodDelete
 }
 
-enum HttpError: Int {
-    case HttpErrorUnknown
-}
-
-typealias HttpCallbackSuccess = (data: JSON) -> Void
-typealias HttpCallbackFailure = (error: HttpError) -> Void
+typealias HttpCallbackSuccess = (code: Int, data: JSON) -> Void
+typealias HttpCallbackFailure = (code: Int?, data: JSON?) -> Void
+typealias HttpCallbackComplete = () -> Void
 
 class HttpManager {
 
@@ -30,7 +27,7 @@ class HttpManager {
     
     let baseUrl: String = ""
 
-    func request(httpMethod: HttpMethod, path: String, param: [String: AnyObject]?, success: HttpCallbackSuccess, failure: HttpCallbackFailure) {
+    func request(httpMethod: HttpMethod, path: String, param: [String: AnyObject]?, success: HttpCallbackSuccess, failure: HttpCallbackFailure, complete: HttpCallbackComplete) {
 
         var method: Alamofire.Method = .GET
         var encode: ParameterEncoding = .URLEncodedInURL
@@ -55,13 +52,18 @@ class HttpManager {
         .responseJSON { (response) in
             switch response.result {
             case .Success(let data):
-                success(data: JSON(data))
-            case .Failure(let error):
-                switch HttpError(rawValue: error.code) {
-                default:
-                    failure(error: .HttpErrorUnknown)
+                let code = response.response?.statusCode
+
+                if code != nil && code! >= 200 && code! < 300 {
+                    success(code: code!, data: JSON(data))
+                } else {
+                    failure(code: code, data: JSON(data))
                 }
+            case .Failure(_):
+                failure(code: nil, data: nil)
             }
+
+            complete()
         }
     }
 }

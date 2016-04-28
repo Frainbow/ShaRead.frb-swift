@@ -35,11 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PKRevealing {
 
     func fbTokenChangeNoti(noti: NSNotification) {
 
-        if FBSDKAccessToken.currentAccessToken() == nil {
-            toggleRootView("Login", controllerIdentifier: "LoginMainController")
-        } else {
-            toggleRootViewMode()
-        }
     }
 
     func toggleRootViewMode() {
