@@ -27,6 +27,71 @@
             </objects>
             <point key="canvasLocation" x="571.5" y="-339"/>
         </scene>
+        <!--我的書店-->
+        <scene sceneID="tff-xu-SzF">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="jAT-ta-xP4" customClass="StoreAdminViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oWL-h5-bpH"/>
+                        <viewControllerLayoutGuide type="bottom" id="DhM-Oi-4WM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KN5-7t-4xK">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SdA-cl-qdN">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoreAdminBookCell" id="P2d-Ur-egD">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P2d-Ur-egD" id="BT6-Mi-9J2">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SdA-cl-qdN" firstAttribute="top" secondItem="oWL-h5-bpH" secondAttribute="bottom" id="7by-Wh-XfS"/>
+                            <constraint firstItem="DhM-Oi-4WM" firstAttribute="top" secondItem="SdA-cl-qdN" secondAttribute="bottom" id="7mM-I2-GIL"/>
+                            <constraint firstItem="SdA-cl-qdN" firstAttribute="leading" secondItem="KN5-7t-4xK" secondAttribute="leading" id="FnB-BU-mnx"/>
+                            <constraint firstAttribute="trailing" secondItem="SdA-cl-qdN" secondAttribute="trailing" id="W9Y-1F-Aqb"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="SdA-cl-qdN"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="7by-Wh-XfS"/>
+                                <exclude reference="FnB-BU-mnx"/>
+                                <exclude reference="W9Y-1F-Aqb"/>
+                                <exclude reference="7mM-I2-GIL"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="SdA-cl-qdN"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="7by-Wh-XfS"/>
+                                <include reference="FnB-BU-mnx"/>
+                                <include reference="W9Y-1F-Aqb"/>
+                                <include reference="7mM-I2-GIL"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="我的書店" id="vtT-2y-lB7"/>
+                    <connections>
+                        <outlet property="bookTableView" destination="SdA-cl-qdN" id="0wb-Ed-7kL"/>
+                        <segue destination="iZw-dq-ZAs" kind="show" identifier="ShowStoreAdmin" id="2Wy-8t-daK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6HJ-9p-ELi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1351.5" y="-1016.25"/>
+        </scene>
         <!--開店-->
         <scene sceneID="NCs-G8-zPA">
             <objects>
@@ -497,38 +562,6 @@
             </objects>
             <point key="canvasLocation" x="3650.25" y="-1016.25"/>
         </scene>
-        <!--我的書店-->
-        <scene sceneID="4y0-Dz-t1i">
-            <objects>
-                <tableViewController storyboardIdentifier="StoreAdminBooks" id="pGD-cH-Fwv" customClass="StoreAdminTableViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="JdS-sE-ztQ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vBP-CR-HsO">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vBP-CR-HsO" id="Clc-g3-aR5">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="pGD-cH-Fwv" id="Jqg-v1-ZeA"/>
-                            <outlet property="delegate" destination="pGD-cH-Fwv" id="hNb-wu-uNx"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="我的書店" id="rmb-wq-xYc"/>
-                    <connections>
-                        <segue destination="iZw-dq-ZAs" kind="show" identifier="ShowStoreAdmin" id="5ST-ST-P4m"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Z4X-DR-kmg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1351.5" y="-1016.25"/>
-        </scene>
         <!--關於書店-->
         <scene sceneID="n7O-Ee-Wg8">
             <objects>
@@ -687,6 +720,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="10" y="10" width="187" height="23.5"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -1475,7 +1511,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="pGD-cH-Fwv" kind="relationship" relationship="rootViewController" id="QLr-UP-Jqc"/>
+                        <segue destination="jAT-ta-xP4" kind="relationship" relationship="rootViewController" id="wDc-Xb-Fmg"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTz-RM-RgA" userLabel="First Responder" sceneMemberID="firstResponder"/>
