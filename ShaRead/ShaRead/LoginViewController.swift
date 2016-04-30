@@ -64,20 +64,14 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
 
         HUD.show(.Progress)
 
-        HttpManager.sharedInstance.request(
-            .HttpMethodPost,
-            path: "/login",
-            param: ["facebook_token": facebook_token],
-            success: { data in
+        ShaManager.sharedInstance.login(facebook_token,
+            success: {
                 HUD.hide()
                 (UIApplication.sharedApplication().delegate as! AppDelegate).toggleRootViewMode()
             },
-            failure: { code, data in
+            failure: {
                 HUD.flash(.Error)
                 FBSDKLoginManager().logOut()
-                print(data)
-            },
-            complete: {
             }
         )
     }

@@ -27,7 +27,7 @@ class HttpManager {
     
     let baseUrl: String = ""
 
-    func request(httpMethod: HttpMethod, path: String, param: [String: AnyObject]?, success: HttpCallbackSuccess, failure: HttpCallbackFailure, complete: HttpCallbackComplete) {
+    func request(httpMethod: HttpMethod, path: String, param: [String: AnyObject]?, success: HttpCallbackSuccess? = nil, failure: HttpCallbackFailure? = nil, complete: HttpCallbackComplete? = nil) {
 
         var method: Alamofire.Method = .GET
         var encode: ParameterEncoding = .URLEncodedInURL
@@ -55,15 +55,15 @@ class HttpManager {
                 let code = response.response?.statusCode
 
                 if code != nil && code! >= 200 && code! < 300 {
-                    success(code: code!, data: JSON(data))
+                    success?(code: code!, data: JSON(data))
                 } else {
-                    failure(code: code, data: JSON(data))
+                    failure?(code: code, data: JSON(data))
                 }
             case .Failure(_):
-                failure(code: nil, data: nil)
+                failure?(code: nil, data: nil)
             }
 
-            complete()
+            complete?()
         }
     }
 }
