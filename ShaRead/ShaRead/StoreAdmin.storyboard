@@ -41,6 +41,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SdA-cl-qdN">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="CH2-5K-Ag1">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoreAdminBookCell" id="P2d-Ur-egD">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -50,6 +55,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="jAT-ta-xP4" id="1uM-3u-tMu"/>
+                                    <outlet property="delegate" destination="jAT-ta-xP4" id="oGm-bM-Psz"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -82,10 +91,17 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="我的書店" id="vtT-2y-lB7"/>
+                    <navigationItem key="navigationItem" title="我的書店" id="vtT-2y-lB7">
+                        <barButtonItem key="leftBarButtonItem" title="編輯" id="S98-he-E4Q">
+                            <connections>
+                                <action selector="editBookStore:" destination="jAT-ta-xP4" id="Akd-6z-3BO"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="新增" id="4pQ-QP-iTG"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="bookTableView" destination="SdA-cl-qdN" id="0wb-Ed-7kL"/>
-                        <segue destination="iZw-dq-ZAs" kind="show" identifier="ShowStoreAdmin" id="2Wy-8t-daK"/>
+                        <segue destination="iZw-dq-ZAs" kind="show" identifier="ShowStoreNameConfig" id="2Wy-8t-daK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6HJ-9p-ELi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -95,7 +111,7 @@
         <!--開店-->
         <scene sceneID="NCs-G8-zPA">
             <objects>
-                <viewController storyboardIdentifier="StoreAdmin" id="iZw-dq-ZAs" customClass="StoreNameViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoreNameConfig" id="iZw-dq-ZAs" customClass="StoreNameViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xk5-OK-vSR"/>
                         <viewControllerLayoutGuide type="bottom" id="VE2-Vi-ory"/>
@@ -310,6 +326,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="inputLengthLabel" destination="LNd-yk-Zvy" id="db9-AD-LlD"/>
+                        <outlet property="inputTextField" destination="vnz-1U-iyM" id="ITW-lm-qkb"/>
                         <segue destination="tWp-LP-ZRr" kind="show" identifier="ShowStoreConfig" id="i7z-AJ-G6X"/>
                     </connections>
                 </viewController>
@@ -565,7 +582,7 @@
         <!--關於書店-->
         <scene sceneID="n7O-Ee-Wg8">
             <objects>
-                <viewController storyboardIdentifier="StoreDescription" id="V6g-8A-HqA" customClass="StoreDescriptionViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoreDescriptionConfig" id="V6g-8A-HqA" customClass="StoreDescriptionViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Q2D-nw-dyl"/>
                         <viewControllerLayoutGuide type="bottom" id="AE9-6k-fUr"/>
@@ -661,10 +678,15 @@
                                 <action selector="navBack:" destination="V6g-8A-HqA" id="KPn-nI-sVX"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="儲存" id="Jyd-N6-K7j"/>
+                        <barButtonItem key="rightBarButtonItem" title="儲存" id="Jyd-N6-K7j">
+                            <connections>
+                                <action selector="save:" destination="V6g-8A-HqA" id="Roy-Xd-sBj"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="inputLengthLabel" destination="oFD-gT-tup" id="fF1-yM-sgl"/>
+                        <outlet property="inputTextView" destination="Xdc-UF-Ft1" id="rZg-0A-Nbi"/>
                         <outlet property="placeholder" destination="8SS-7U-KLX" id="6cf-lk-coz"/>
                     </connections>
                 </viewController>
@@ -680,7 +702,7 @@
         <!--面交地點-->
         <scene sceneID="wmF-AG-7Bn">
             <objects>
-                <viewController storyboardIdentifier="StorePosition" automaticallyAdjustsScrollViewInsets="NO" id="fzD-1d-h1V" customClass="StorePositionViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StorePositionConfig" automaticallyAdjustsScrollViewInsets="NO" id="fzD-1d-h1V" customClass="StorePositionViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vJl-Nq-bsr"/>
                         <viewControllerLayoutGuide type="bottom" id="DU9-5J-Iqd"/>
@@ -954,7 +976,7 @@
         <!--選擇書櫃樣式-->
         <scene sceneID="1ba-rm-VhA">
             <objects>
-                <viewController storyboardIdentifier="StoreStyle" id="iat-Uq-9C4" customClass="StoreStyleViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoreStyleConfig" id="iat-Uq-9C4" customClass="StoreStyleViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ufo-AV-jQM"/>
                         <viewControllerLayoutGuide type="bottom" id="fGA-v3-EXl"/>
@@ -1218,7 +1240,7 @@
         <!--選擇類別-->
         <scene sceneID="UjE-y0-K2w">
             <objects>
-                <viewController storyboardIdentifier="StoreCategory" id="E0K-yX-Hfe" customClass="StoreCategoryViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoreCategoryConfig" id="E0K-yX-Hfe" customClass="StoreCategoryViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wLg-aO-iRP"/>
                         <viewControllerLayoutGuide type="bottom" id="E4K-jF-2Ip"/>

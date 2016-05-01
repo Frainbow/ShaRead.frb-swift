@@ -9,6 +9,7 @@
 import UIKit
 
 class StoreConfig {
+    var saved: Bool = false
     var title: String
     var description: String
     var identifier: String
@@ -24,18 +25,21 @@ class StoreConfigViewController: UIViewController {
 
     @IBOutlet weak var configTableView: UITableView!
 
-    var configItems: [StoreConfig]?
+    var store: ShaAdminStore?
+    var configItems: [ShaAdminStoreItem: StoreConfig]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // init config items
         configItems = [
-            StoreConfig(title: "關於書店", description: "描述一下您書店的特色", identifier: "StoreDescription"),
-            StoreConfig(title: "面交地點", description: "請選擇您方便面交的捷運站", identifier: "StorePosition"),
-            StoreConfig(title: "選擇書櫃類別", description: "為您的書櫃分類吧", identifier: "StoreCategory"),
-            StoreConfig(title: "選擇書櫃樣式", description: "為您的書籍選擇適合的書櫃吧", identifier: "StoreStyle")
+            .ShaAdminStoreDescription: StoreConfig(title: "關於書店", description: "描述一下您書店的特色", identifier: "StoreDescriptionConfig"),
+            .ShaAdminStorePosition: StoreConfig(title: "面交地點", description: "請選擇您方便面交的捷運站", identifier: "StorePositionConfig"),
+            .ShaAdminStoreCategory: StoreConfig(title: "選擇書櫃類別", description: "為您的書櫃分類吧", identifier: "StoreCategoryConfig"),
+            .ShaAdminStoreStyle: StoreConfig(title: "選擇書櫃樣式", description: "為您的書籍選擇適合的書櫃吧", identifier: "StoreStyleConfig")
         ]
+        
+        configItems![.ShaAdminStoreDescription]?.saved = store?.description.characters.count > 0
 
         // config table view height
 
@@ -91,7 +95,9 @@ extension StoreConfigViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("StoreConfigCell", forIndexPath: indexPath) as! StoreConfigTableViewCell
 
-        if let config = self.configItems?[indexPath.row] {
+        if let item = ShaAdminStoreItem(rawValue:indexPath.row + 1), config = self.configItems?[item] {
+
+            cell.toggleCheckMark(config.saved)
             cell.titleLabel.text = config.title
             cell.subtitleLabel.text = config.description
         }
@@ -101,10 +107,29 @@ extension StoreConfigViewController: UITableViewDataSource, UITableViewDelegate 
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        if let config = self.configItems?[indexPath.row],
+        if let item = ShaAdminStoreItem(rawValue:indexPath.row + 1), config = self.configItems?[item],
             controller = self.storyboard?.instantiateViewControllerWithIdentifier(config.identifier) {
 
+            if item == .ShaAdminStoreDescription {
+
+                if let c = controller as? StoreDescriptionViewController {
+                    c.delegate = self
+                    c.store = store
+                }
+            }
+
             self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+}
+
+extension StoreConfigViewController: StoreDescriptionDelegate {
+
+    func descriptionSaved() {
+
+        if let item = configItems?[.ShaAdminStoreDescription] {
+            item.saved = store?.description.characters.count > 0
+            configTableView.reloadData()
         }
     }
 }

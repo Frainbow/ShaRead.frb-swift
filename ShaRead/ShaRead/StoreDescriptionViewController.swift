@@ -7,18 +7,29 @@
 //
 
 import UIKit
+import PKHUD
+
+protocol StoreDescriptionDelegate: class {
+    func descriptionSaved()
+}
 
 class StoreDescriptionViewController: UIViewController {
 
+    @IBOutlet weak var inputTextView: UITextView!
     @IBOutlet weak var placeholder: UILabel!
     @IBOutlet weak var inputLengthLabel: UILabel!
+
+    weak var delegate: StoreDescriptionDelegate?
+    var store: ShaAdminStore?
 
     let maxInputLength: Int = 60
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        inputLengthLabel.text = "(0 / \(maxInputLength))"
+        inputTextView.becomeFirstResponder()
+        inputTextView.text = store?.description ?? ""
+        inputLengthLabel.text = "(\(inputTextView.text.characters.count ?? 0) / \(maxInputLength))"
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,6 +53,34 @@ class StoreDescriptionViewController: UIViewController {
 
     @IBAction func navBack(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
+    }
+
+    @IBAction func save(sender: AnyObject) {
+
+        if inputTextView.text.characters.count > 0 && store != nil {
+            
+            let originDescription = store!.description
+
+            self.store?.description = inputTextView.text
+
+            HUD.show(.Progress)
+            ShaManager.sharedInstance.updateAdminStore(store!, column: [.ShaAdminStoreDescription],
+                success: {
+                    HUD.hide()
+                    self.delegate?.descriptionSaved()
+                    self.navigationController?.popViewControllerAnimated(true)
+                },
+                failure: {
+                    self.store?.description = originDescription
+                    HUD.flash(.Error)
+                }
+            )
+        }
+        else {
+            let controller = UIAlertController(title: "錯誤", message: "請描述您書店的特色", preferredStyle: .Alert)
+            controller.addAction(UIAlertAction(title: "確定", style: .Default, handler: nil))
+            presentViewController(controller, animated: true, completion: nil)
+        }
     }
 }
 

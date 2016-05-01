@@ -13,6 +13,8 @@ class StoreAdminViewController: UIViewController {
     
     @IBOutlet weak var bookTableView: UITableView!
     
+    var store: ShaAdminStore?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,17 +28,22 @@ class StoreAdminViewController: UIViewController {
 
         ShaManager.sharedInstance.getAdminStore(
             { stores in
-                if stores.count == 0 {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        if let controller = self.storyboard?.instantiateViewControllerWithIdentifier("StoreAdmin") {
+
+                dispatch_async(dispatch_get_main_queue()) {
+                    if stores.count == 0 {
+
+                        if let controller = self.storyboard?.instantiateViewControllerWithIdentifier("StoreNameConfig") {
                             self.navigationController?.pushViewController(controller, animated: false)
                         }
-                    }
-                } else {
-                    self.bookTableView.reloadData()
-                }
 
-                HUD.hide()
+                    } else {
+                        self.store = stores[0]
+                        self.navigationItem.title = self.store?.name
+                        self.bookTableView.reloadData()
+                    }
+
+                    HUD.hide()
+                }
             },
             failure: {
                 HUD.flash(.Error)
@@ -49,14 +56,36 @@ class StoreAdminViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
+    @IBAction func editBookStore(sender: AnyObject) {
+        self.performSegueWithIdentifier("ShowStoreNameConfig", sender: sender)
+    }
+
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if let controller = segue.destinationViewController as? StoreNameViewController {
+            if ShaManager.sharedInstance.adminStores.count > 0 {
+                controller.store = self.store
+            }
+        }
     }
-    */
 
+}
+
+extension StoreAdminViewController: UITableViewDataSource, UITableViewDelegate {
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ShaManager.sharedInstance.adminStores.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("StoreAdminBookCell", forIndexPath: indexPath)
+        
+        cell.textLabel?.text = "Book1"
+        
+        return cell
+    }
 }

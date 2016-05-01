@@ -24,6 +24,14 @@ class ShaStorePosition {
     var latitude: Float = 0
 }
 
+enum ShaAdminStoreItem: Int {
+    case ShaAdminStoreName = 0
+    case ShaAdminStoreDescription
+    case ShaAdminStorePosition
+    case ShaAdminStoreCategory
+    case ShaAdminStoreStyle
+}
+
 class ShaAdminStore {
     var id: Int = 0
     var name: String = ""
@@ -35,13 +43,9 @@ class ShaAdminStore {
 
 class ShaManager {
     static let sharedInstance = ShaManager()
-    
+
     var adminStores: [ShaAdminStore] = []
     var authToken: String = ""
-    
-    init() {
-
-    }
     
     func login(facebook_token: String, success: () -> Void, failure: () -> Void) {
 
@@ -60,6 +64,52 @@ class ShaManager {
         )
     }
     
+    func newAdminStore(store: ShaAdminStore, success: () -> Void, failure: () -> Void) {
+
+        HttpManager.sharedInstance.request(
+            .HttpMethodPost,
+            path: "/stores?auth_token=\(authToken)",
+            param: [ "store_name": store.name ],
+            success: { code, data in
+                store.id = data["store_id"].intValue
+                self.adminStores.append(store)
+                success()
+            },
+            failure: { code, data in
+                failure()
+            }
+        )
+    }
+
+    func updateAdminStore(store: ShaAdminStore, column: [ShaAdminStoreItem],
+                          success: () -> Void, failure: () -> Void) {
+        
+        var param = [String: AnyObject]()
+        
+        for item in column {
+            switch item {
+            case .ShaAdminStoreName:
+                param["store_name"] = store.name
+            case .ShaAdminStoreDescription:
+                param["description"] = store.description
+            default:
+                break
+            }
+        }
+
+        HttpManager.sharedInstance.request(
+            .HttpMethodPut,
+            path: "/stores/\(store.id)?auth_token=\(authToken)",
+            param: param,
+            success: { code, data in
+                success()
+            },
+            failure: { code, data in
+                failure()
+            }
+        )
+    }
+
     func getAdminStore(success: ([ShaAdminStore]) -> Void, failure: () -> Void) {
         
         HttpManager.sharedInstance.request(

@@ -7,17 +7,22 @@
 //
 
 import UIKit
+import PKHUD
 
 class StoreNameViewController: UIViewController {
 
+    @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var inputLengthLabel: UILabel!
 
+    var store: ShaAdminStore?
     let maxInputLength: Int = 20
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        inputLengthLabel.text = "(0 / \(maxInputLength))"
+        inputTextField.becomeFirstResponder()
+        inputTextField.text = store?.name
+        inputLengthLabel.text = "(\(inputTextField.text?.characters.count ?? 0) / \(maxInputLength))"
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,7 +37,42 @@ class StoreNameViewController: UIViewController {
     @IBAction func endOnExit(sender: AnyObject) {
         self.resignFirstResponder()
 
-        performSegueWithIdentifier("ShowStoreConfig", sender: sender)
+        if inputTextField.text?.characters.count > 0 {
+            
+            if store == nil {
+                store = ShaAdminStore()
+                store?.name = inputTextField.text ?? ""
+
+                HUD.show(.Progress)
+                ShaManager.sharedInstance.newAdminStore(store!,
+                    success: {
+                        HUD.hide()
+                        self.performSegueWithIdentifier("ShowStoreConfig", sender: sender)
+                    },
+                    failure: {
+                        HUD.flash(.Error)
+                    }
+                )
+            } else {
+                store?.name = inputTextField.text ?? ""
+                
+                HUD.show(.Progress)
+                ShaManager.sharedInstance.updateAdminStore(store!, column: [.ShaAdminStoreName],
+                    success: {
+                        HUD.hide()
+                        self.performSegueWithIdentifier("ShowStoreConfig", sender: sender)
+                    },
+                    failure: {
+                        HUD.flash(.Error)
+                    }
+                )
+            }
+        }
+        else {
+            let controller = UIAlertController(title: "錯誤", message: "請輸入您的店名", preferredStyle: .Alert)
+            controller.addAction(UIAlertAction(title: "確定", style: .Default, handler: nil))
+            presentViewController(controller, animated: true, completion: nil)
+        }
     }
 
     @IBAction func inputEditingChanged(sender: AnyObject) {
@@ -48,14 +88,14 @@ class StoreNameViewController: UIViewController {
         }
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+
+        if let controller = segue.destinationViewController as? StoreConfigViewController {
+            controller.store = store
+        }
     }
-    */
 
 }
