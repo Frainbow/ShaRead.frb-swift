@@ -20,7 +20,7 @@ class StoreDescriptionViewController: UIViewController {
     @IBOutlet weak var inputLengthLabel: UILabel!
 
     weak var delegate: StoreDescriptionDelegate?
-    var store: ShaAdminStore?
+    weak var store: ShaAdminStore?
 
     let maxInputLength: Int = 60
 

@@ -29,6 +29,7 @@ class StoreConfigViewController: UIViewController {
     @IBOutlet weak var configTableView: UITableView!
 
     var store: ShaAdminStore?
+    var shelf: ShaAdminShelf?
     var configItems: [ShaAdminStoreItem: StoreConfig]?
 
     override func viewDidLoad() {
@@ -47,6 +48,11 @@ class StoreConfigViewController: UIViewController {
         }
 
         configItems![.ShaAdminStoreDescription]?.saved = store?.description.characters.count > 0
+        configItems![.ShaAdminStorePosition]?.saved = store?.position.address.characters.count > 0
+
+        if shelf == nil {
+            initShelf()
+        }
 
         // config table view height
 
@@ -82,6 +88,62 @@ class StoreConfigViewController: UIViewController {
         imagePickerController.delegate = self
         imagePickerController.sourceType = .SavedPhotosAlbum
         self.presentViewController(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func initShelf() {
+        
+        if let store = self.store {
+            
+            HUD.show(.Progress)
+
+            ShaManager.sharedInstance.getAdminStoreShelf(store,
+                success: { shelfs in
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        HUD.hide()
+
+                        if shelfs.count == 0 {
+                            self.newShelf()
+                        }
+                        else {
+                            self.shelf = shelfs[0]
+                            self.refreshShelf()
+                        }
+                    })
+                },
+                failure: {
+                    HUD.flash(.Error)
+                }
+            )
+        }
+    }
+    
+    func newShelf() {
+        self.shelf = ShaAdminShelf()
+        
+        if let store = self.store, shelf = self.shelf {
+
+            HUD.show(.Progress)
+
+            ShaManager.sharedInstance.newAdminStoreShelf(store, shelf: shelf,
+                success: {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        HUD.hide()
+                        self.refreshShelf()
+                    })
+                },
+                failure: {
+                    self.shelf = nil
+                    HUD.flash(.Error)
+                }
+            )
+        }
+    }
+
+    func refreshShelf() {
+        self.configItems![.ShaAdminStoreStyle]?.saved = self.shelf?.style > 0
+        self.configItems![.ShaAdminStoreCategory]?.saved = self.shelf?.category.characters.count > 0
+        self.configTableView.reloadData()
     }
 
     /*
@@ -130,6 +192,27 @@ extension StoreConfigViewController: UITableViewDataSource, UITableViewDelegate 
                     c.store = store
                 }
             }
+            else if item == .ShaAdminStorePosition {
+
+                if let c = controller as? StorePositionViewController {
+                    c.delegate = self
+                    c.store = store
+                }
+            }
+            else if item == .ShaAdminStoreStyle {
+
+                if let c = controller as? StoreStyleViewController {
+                    c.delegate = self
+                    c.shelf = shelf
+                }
+            }
+            else if item == .ShaAdminStoreCategory {
+
+                if let c = controller as? StoreCategoryViewController {
+                    c.delegate = self
+                    c.shelf = shelf
+                }
+            }
 
             self.navigationController?.pushViewController(controller, animated: true)
         }
@@ -175,4 +258,35 @@ extension StoreConfigViewController: StoreDescriptionDelegate {
     }
 }
 
+extension StoreConfigViewController: StorePositionDelegate {
+    
+    func positionSaved() {
 
+        if let item = configItems?[.ShaAdminStorePosition] {
+            item.saved = store?.position.address.characters.count > 0
+            configTableView.reloadData()
+        }
+    }
+}
+
+extension StoreConfigViewController: StoreStyleDelegate {
+
+    func styleSaved() {
+
+        if let item = configItems?[.ShaAdminStoreStyle] {
+            item.saved = store?.shelfs[0].style > 0
+            configTableView.reloadData()
+        }
+    }
+}
+
+extension StoreConfigViewController: StoreCategoryDelegate {
+
+    func categorySaved() {
+
+        if let item = configItems?[.ShaAdminStoreCategory] {
+            item.saved = store?.shelfs[0].category.characters.count > 0
+            configTableView.reloadData()
+        }
+    }
+}

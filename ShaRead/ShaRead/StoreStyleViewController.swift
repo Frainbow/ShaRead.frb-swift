@@ -7,16 +7,35 @@
 //
 
 import UIKit
+import PKHUD
+
+protocol StoreStyleDelegate: class {
+    func styleSaved()
+}
+
+enum StoreStyleTemplate: Int {
+    case StoreStyleTemplateDefault = 1
+}
 
 class StoreStyleViewController: UIViewController {
 
     @IBOutlet weak var styleCollectionView: UICollectionView!
     @IBOutlet weak var styleFlowLayout: UICollectionViewFlowLayout!
 
-    var styleItems: [String] = ["ShelfCollectionViewCell"]
+    weak var delegate: StoreStyleDelegate?
+    weak var shelf: ShaAdminShelf?
+    var template: StoreStyleTemplate = .StoreStyleTemplateDefault
+
+    var styleItems: [StoreStyleTemplate: String] = [
+        .StoreStyleTemplateDefault: "ShelfCollectionViewCell"
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if let shelf = self.shelf, template = StoreStyleTemplate(rawValue: shelf.style) {
+            self.template = template
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,6 +43,27 @@ class StoreStyleViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func save(sender: AnyObject) {
+        
+        if let shelf = self.shelf {
+            let originalStyle = shelf.style
+            
+            self.shelf?.style = self.template.rawValue
+            
+            HUD.show(.Progress)
+            ShaManager.sharedInstance.updateAdminStoreShelf(shelf,
+                success: {
+                    HUD.hide()
+                    self.delegate?.styleSaved()
+                    self.navigationController?.popViewControllerAnimated(true)
+                },
+                failure: {
+                    self.shelf?.style = originalStyle
+                    HUD.flash(.Error)
+                }
+            )
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -49,7 +89,9 @@ extension StoreStyleViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StyleCell", forIndexPath: indexPath) as! StyleCollectionViewCell
 
-        cell.registerNib(styleItems[indexPath.row])
+        if let template = StoreStyleTemplate(rawValue: indexPath.row + 1), nibName = styleItems[template] {
+            cell.registerNib(nibName)
+        }
 
         return cell
     }

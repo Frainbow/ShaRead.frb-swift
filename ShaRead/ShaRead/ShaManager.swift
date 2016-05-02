@@ -9,13 +9,35 @@
 import Foundation
 import SwiftyJSON
 
-class ShaShelf {
-    var category: String = ""
-    var style: String = ""
+class MRTStationExit {
+    var name: String
+    var longitude: Float
+    var latitude: Float
+    
+    init(data: JSON) {
+        self.name = data["exit"].stringValue
+        self.longitude = data["longitude"].floatValue
+        self.latitude = data["latitude"].floatValue
+    }
 }
 
-class ShaStore {
+class MRTStation {
+    var station: [String: [MRTStationExit]]
 
+    init(data: JSON) {
+        station = [:]
+        
+        for (stationName, exitArray) in data.dictionaryValue {
+            
+            if station[stationName] == nil {
+                station[stationName] = []
+            }
+            
+            for exitData in exitArray.arrayValue {
+                station[stationName]?.append(MRTStationExit(data: exitData))
+            }
+        }
+    }
 }
 
 class ShaStorePosition {
@@ -32,19 +54,26 @@ enum ShaAdminStoreItem: Int {
     case ShaAdminStoreStyle
 }
 
+class ShaAdminShelf {
+    var id: Int = 0
+    var style: Int = 0
+    var category: String = ""
+}
+
 class ShaAdminStore {
     var id: Int = 0
     var name: String = ""
     var image: NSURL?
     var description: String = ""
     var position = ShaStorePosition()
-    var shelfs: [ShaShelf] = []
+    var shelfs: [ShaAdminShelf] = []
 }
 
 class ShaManager {
     static let sharedInstance = ShaManager()
 
     var adminStores: [ShaAdminStore] = []
+    var mrtStation: MRTStation?
     var authToken: String = ""
     
     func login(facebook_token: String, success: () -> Void, failure: () -> Void) {
@@ -92,6 +121,10 @@ class ShaManager {
                 param["store_name"] = store.name
             case .ShaAdminStoreDescription:
                 param["description"] = store.description
+            case .ShaAdminStorePosition:
+                param["address"] = store.position.address
+                param["longitude"] = store.position.longitude
+                param["latitude"] = store.position.latitude
             default:
                 break
             }
@@ -177,6 +210,89 @@ class ShaManager {
                 }
 
                 success(self.adminStores)
+            },
+            failure: { code, data in
+                failure()
+            }
+        )
+    }
+    
+    func newAdminStoreShelf(store: ShaAdminStore, shelf: ShaAdminShelf, success: () -> Void, failure: () -> Void) {
+
+        HttpManager.sharedInstance.request(
+            .HttpMethodPost,
+            path: "/stores/\(store.id)/shelfs?auth_token=\(authToken)",
+            param: ["style": shelf.style, "category": shelf.category],
+            success: { code, data in
+                shelf.id = data["shelf_id"].intValue
+                store.shelfs.append(shelf)
+                success()
+            },
+            failure: { code, data in
+                failure()
+            }
+        )
+    }
+
+    func getAdminStoreShelf(store: ShaAdminStore, success: ([ShaAdminShelf]) -> Void, failure: () -> Void) {
+
+        HttpManager.sharedInstance.request(
+            .HttpMethodGet,
+            path: "/stores/\(store.id)/shelfs",
+            param: ["auth_token": self.authToken],
+            success: { code, data in
+
+                let shelfList = data["data"].arrayValue
+
+                store.shelfs.removeAll()
+
+                for shelf in shelfList {
+                    let adminShelf = ShaAdminShelf()
+
+                    adminShelf.id = shelf["id"].intValue
+                    adminShelf.style = shelf["style"].intValue
+                    adminShelf.category = shelf["category"].stringValue
+
+                    store.shelfs.append(adminShelf)
+                }
+
+                success(store.shelfs)
+            },
+            failure: { code, data in
+                failure()
+            }
+        )
+    }
+
+    func updateAdminStoreShelf(shelf: ShaAdminShelf, success: () -> Void, failure: () -> Void) {
+
+        HttpManager.sharedInstance.request(
+            .HttpMethodPut,
+            path: "/shelfs/\(shelf.id)?auth_token=\(authToken)",
+            param: ["style": shelf.style, "category": shelf.category],
+            success: { code, data in
+                success()
+            },
+            failure: { code, data in
+                failure()
+            }
+        )
+    }
+    
+    func getMRTStation(success: (MRTStation) -> Void, failure: () -> Void) {
+        
+        if let mrtStation = self.mrtStation {
+            success(mrtStation)
+            return
+        }
+        
+        HttpManager.sharedInstance.request(
+            .HttpMethodGet,
+            path: "/mrt",
+            param: [:],
+            success: { code, data in
+                self.mrtStation = MRTStation(data: data["data"])
+                success(self.mrtStation!)
             },
             failure: { code, data in
                 failure()
