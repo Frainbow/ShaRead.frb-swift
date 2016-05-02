@@ -108,7 +108,7 @@
         <!--Scanner View Controller-->
         <scene sceneID="m4P-LV-txN">
             <objects>
-                <viewController id="YTa-lJ-mAF" customClass="ScannerViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchScannerController" id="YTa-lJ-mAF" customClass="ScannerViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8kU-0B-xqJ"/>
                         <viewControllerLayoutGuide type="bottom" id="lwZ-jw-WhT"/>
@@ -243,6 +243,6 @@
         <image name="Left" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qwS-t3-m17"/>
+        <segue reference="ZFy-AS-JmJ"/>
     </inferredMetricsTieBreakers>
 </document>

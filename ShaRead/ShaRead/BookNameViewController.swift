@@ -9,6 +9,7 @@
 import UIKit
 
 class BookNameViewController: UIViewController {
+    @IBOutlet weak var inputTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,15 @@ class BookNameViewController: UIViewController {
         performSegueWithIdentifier("ShowBookConfig", sender: sender)
     }
 
+    @IBAction func showScanner(sender: AnyObject) {
+        let storyboard = UIStoryboard(name: "Search", bundle: nil)
+        let controller = storyboard.instantiateViewControllerWithIdentifier("SearchScannerController") as! ScannerViewController
+        
+        controller.delegate = self
+        
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+
     /*
     // MARK: - Navigation
 
@@ -41,4 +51,15 @@ class BookNameViewController: UIViewController {
     }
     */
 
+    @IBAction func navBack(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+}
+
+extension BookNameViewController: ScannerDelegate {
+    
+    func captureCode(code: String) {
+        self.navigationController?.popViewControllerAnimated(true)
+        inputTextField.text = code
+    }
 }

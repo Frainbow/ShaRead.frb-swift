@@ -50,6 +50,13 @@ class StoreAdminViewController: UIViewController {
             }
         )
     }
+    
+    override func viewDidAppear(animated: Bool) {
+
+        if store != nil && animated == false {
+            showBookAdminPage()
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -60,6 +67,9 @@ class StoreAdminViewController: UIViewController {
         self.performSegueWithIdentifier("ShowStoreNameConfig", sender: sender)
     }
 
+    @IBAction func adminBooks(sender: AnyObject) {
+        showBookAdminPage()
+    }
 
     // MARK: - Navigation
 
@@ -71,6 +81,12 @@ class StoreAdminViewController: UIViewController {
                 controller.store = self.store
             }
         }
+    }
+    
+    func showBookAdminPage() {
+        let storyboard = UIStoryboard(name: "BookAdmin", bundle: nil)
+        let controller = storyboard.instantiateViewControllerWithIdentifier("BookAdminController")
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 
 }

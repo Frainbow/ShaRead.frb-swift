@@ -99,7 +99,11 @@
                                 <action selector="editBookStore:" destination="jAT-ta-xP4" id="Akd-6z-3BO"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="新增" id="4pQ-QP-iTG"/>
+                        <barButtonItem key="rightBarButtonItem" title="新增" id="4pQ-QP-iTG">
+                            <connections>
+                                <action selector="adminBooks:" destination="jAT-ta-xP4" id="NBq-ay-YTt"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bookTableView" destination="SdA-cl-qdN" id="0wb-Ed-7kL"/>
@@ -448,7 +452,7 @@
                                         </mask>
                                     </variation>
                                 </view>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="Rc1-MW-2aF">
+                                <view key="tableFooterView" hidden="YES" contentMode="scaleToFill" id="Rc1-MW-2aF">
                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
@@ -474,7 +478,7 @@
                                                 </mask>
                                             </variation>
                                             <connections>
-                                                <segue destination="rwq-V8-M8v" kind="show" id="U7u-VM-X8M"/>
+                                                <action selector="adminBooks:" destination="tWp-LP-ZRr" eventType="touchUpInside" id="wtd-AX-YHO"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -569,6 +573,7 @@
                         <barButtonItem key="rightBarButtonItem" title="預覽" id="dWR-IN-bk1"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="adminBookContainer" destination="Rc1-MW-2aF" id="eEi-FJ-2dB"/>
                         <outlet property="configTableView" destination="j06-rX-Y0g" id="qSe-ns-baM"/>
                         <outlet property="storeImageView" destination="mZ6-Xp-8TQ" id="d7c-y4-yaf"/>
                     </connections>
@@ -576,14 +581,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VqF-Ke-ol9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2893.5" y="-1016.25"/>
-        </scene>
-        <!--BookAdmin-->
-        <scene sceneID="Lej-eF-cn0">
-            <objects>
-                <viewControllerPlaceholder storyboardName="BookAdmin" id="rwq-V8-M8v" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="owD-Tw-HFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3650.25" y="-1016.25"/>
         </scene>
         <!--關於書店-->
         <scene sceneID="n7O-Ee-Wg8">

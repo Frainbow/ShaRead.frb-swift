@@ -11,10 +11,16 @@
 import AVFoundation
 import UIKit
 
+protocol ScannerDelegate: class {
+    func captureCode(code: String)
+}
+
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
+    
+    weak var delegate: ScannerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,7 +101,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
 
     func foundCode(code: String) {
-        print(code)
+        delegate?.captureCode(code)
     }
 
     override func prefersStatusBarHidden() -> Bool {

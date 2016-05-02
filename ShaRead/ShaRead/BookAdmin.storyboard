@@ -10,7 +10,7 @@
         <!--上架書籍-->
         <scene sceneID="aJw-ex-uRr">
             <objects>
-                <viewController id="nrI-A1-dgJ" customClass="BookNameViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BookAdminController" id="nrI-A1-dgJ" customClass="BookNameViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LOO-W2-bpN"/>
                         <viewControllerLayoutGuide type="bottom" id="6DO-kW-vFr"/>
@@ -95,6 +95,9 @@
                                         <include reference="yoQ-cB-Xod"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="showScanner:" destination="nrI-A1-dgJ" eventType="touchUpInside" id="G0Z-qI-eVG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.88235294117647056" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
@@ -163,8 +166,15 @@
                             <outletCollection property="gestureRecognizers" destination="Tqq-mx-9jb" appends="YES" id="K6k-7A-dX3"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="上架書籍" id="zIu-4h-KE3"/>
+                    <navigationItem key="navigationItem" title="上架書籍" id="zIu-4h-KE3">
+                        <barButtonItem key="leftBarButtonItem" image="Left" id="uvf-lw-ztp">
+                            <connections>
+                                <action selector="navBack:" destination="nrI-A1-dgJ" id="jTm-xx-qgr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="inputTextField" destination="mnD-km-fn8" id="1lX-Kd-ivW"/>
                         <segue destination="Nmm-2H-nQC" kind="show" identifier="ShowBookConfig" id="Qhd-UQ-R2a"/>
                     </connections>
                 </viewController>

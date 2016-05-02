@@ -27,6 +27,7 @@ class StoreConfigViewController: UIViewController {
 
     @IBOutlet weak var storeImageView: UIImageView!
     @IBOutlet weak var configTableView: UITableView!
+    @IBOutlet weak var adminBookContainer: UIView!
 
     var store: ShaAdminStore?
     var shelf: ShaAdminShelf?
@@ -49,6 +50,7 @@ class StoreConfigViewController: UIViewController {
 
         configItems![.ShaAdminStoreDescription]?.saved = store?.description.characters.count > 0
         configItems![.ShaAdminStorePosition]?.saved = store?.position.address.characters.count > 0
+        checkIsFinished()
 
         if shelf == nil {
             initShelf()
@@ -88,6 +90,10 @@ class StoreConfigViewController: UIViewController {
         imagePickerController.delegate = self
         imagePickerController.sourceType = .SavedPhotosAlbum
         self.presentViewController(imagePickerController, animated: true, completion: nil)
+    }
+    
+    @IBAction func adminBooks(sender: AnyObject) {
+        self.navigationController?.popToRootViewControllerAnimated(false)
     }
     
     func initShelf() {
@@ -144,6 +150,28 @@ class StoreConfigViewController: UIViewController {
         self.configItems![.ShaAdminStoreStyle]?.saved = self.shelf?.style > 0
         self.configItems![.ShaAdminStoreCategory]?.saved = self.shelf?.category.characters.count > 0
         self.configTableView.reloadData()
+        checkIsFinished()
+    }
+    
+    func checkIsFinished() {
+        
+        var finished = true
+        
+        if let items = self.configItems {
+
+            for (_, item) in items {
+
+                if !item.saved {
+                    finished = false
+                }
+            }   
+        }
+        
+        if store?.image == nil {
+            finished = false
+        }
+
+        adminBookContainer.hidden = !finished
     }
 
     /*
@@ -254,6 +282,7 @@ extension StoreConfigViewController: StoreDescriptionDelegate {
         if let item = configItems?[.ShaAdminStoreDescription] {
             item.saved = store?.description.characters.count > 0
             configTableView.reloadData()
+            checkIsFinished()
         }
     }
 }
@@ -265,6 +294,7 @@ extension StoreConfigViewController: StorePositionDelegate {
         if let item = configItems?[.ShaAdminStorePosition] {
             item.saved = store?.position.address.characters.count > 0
             configTableView.reloadData()
+            checkIsFinished()
         }
     }
 }
@@ -276,6 +306,7 @@ extension StoreConfigViewController: StoreStyleDelegate {
         if let item = configItems?[.ShaAdminStoreStyle] {
             item.saved = store?.shelfs[0].style > 0
             configTableView.reloadData()
+            checkIsFinished()
         }
     }
 }
@@ -287,6 +318,7 @@ extension StoreConfigViewController: StoreCategoryDelegate {
         if let item = configItems?[.ShaAdminStoreCategory] {
             item.saved = store?.shelfs[0].category.characters.count > 0
             configTableView.reloadData()
+            checkIsFinished()
         }
     }
 }
