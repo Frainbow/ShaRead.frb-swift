@@ -358,9 +358,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mZ6-Xp-8TQ">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mZ6-Xp-8TQ">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="200" id="IUn-BJ-WyO"/>
                                             </constraints>
@@ -369,8 +369,7 @@
                                                     <exclude reference="IUn-BJ-WyO"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="0.0" y="0.0" width="240" height="200"/>
+                                            <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="constraints">
                                                     <include reference="IUn-BJ-WyO"/>
                                                 </mask>
@@ -396,13 +395,15 @@
                                                     <exclude reference="WeE-oC-j3J"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="70" y="46" width="100" height="35"/>
+                                            <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="constraints">
                                                     <include reference="Dqe-b4-XPc"/>
                                                     <include reference="WeE-oC-j3J"/>
                                                 </mask>
                                             </variation>
+                                            <connections>
+                                                <action selector="uploadImage:" destination="tWp-LP-ZRr" eventType="touchUpInside" id="eft-Af-jrI"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -565,6 +566,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="configTableView" destination="j06-rX-Y0g" id="qSe-ns-baM"/>
+                        <outlet property="storeImageView" destination="mZ6-Xp-8TQ" id="d7c-y4-yaf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VqF-Ke-ol9" userLabel="First Responder" sceneMemberID="firstResponder"/>

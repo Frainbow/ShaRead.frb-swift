@@ -109,6 +109,44 @@ class ShaManager {
             }
         )
     }
+    
+    func uploadAdminStoreImage(store: ShaAdminStore, image: UIImage, success: (url: NSURL) -> Void, failure: () -> Void) {
+        
+        let resizedImage = resizeImage(image, newWidth: 200)
+        
+        if let data = UIImageJPEGRepresentation(resizedImage, 0.1) {
+        
+            HttpManager.sharedInstance.uploadData(
+                "/stores/\(store.id)/images?auth_token=\(authToken)",
+                name: "store_image",
+                data: data,
+                success: { (code, data) in
+                    if let url = NSURL(string: data["image_path"].stringValue) {
+                        success(url: url)
+                    } else {
+                        failure()
+                    }
+                },
+                failure: { (code, data) in
+                    failure()
+                }
+            )
+        } else {
+            failure()
+        }
+    }
+    
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
 
     func getAdminStore(success: ([ShaAdminStore]) -> Void, failure: () -> Void) {
         
@@ -127,6 +165,7 @@ class ShaManager {
                     
                     adminStore.id = store["store_id"].intValue
                     adminStore.name = store["store_name"].stringValue
+                    adminStore.image = NSURL(string: store["store_image"].stringValue)
                     adminStore.description = store["description"].stringValue
 
                     let position = store["position"].dictionaryValue

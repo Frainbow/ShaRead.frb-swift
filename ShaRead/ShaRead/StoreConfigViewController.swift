@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import PKHUD
+import SDWebImage
 
 class StoreConfig {
     var saved: Bool = false
@@ -23,6 +25,7 @@ class StoreConfig {
 
 class StoreConfigViewController: UIViewController {
 
+    @IBOutlet weak var storeImageView: UIImageView!
     @IBOutlet weak var configTableView: UITableView!
 
     var store: ShaAdminStore?
@@ -39,6 +42,10 @@ class StoreConfigViewController: UIViewController {
             .ShaAdminStoreStyle: StoreConfig(title: "選擇書櫃樣式", description: "為您的書籍選擇適合的書櫃吧", identifier: "StoreStyleConfig")
         ]
         
+        if let url = store?.image {
+            storeImageView.sd_setImageWithURL(url)
+        }
+
         configItems![.ShaAdminStoreDescription]?.saved = store?.description.characters.count > 0
 
         // config table view height
@@ -70,6 +77,12 @@ class StoreConfigViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func uploadImage(sender: AnyObject) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .SavedPhotosAlbum
+        self.presentViewController(imagePickerController, animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation
@@ -123,6 +136,34 @@ extension StoreConfigViewController: UITableViewDataSource, UITableViewDelegate 
     }
 }
 
+extension StoreConfigViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+
+        if let store = self.store, image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+
+            self.dismissViewControllerAnimated(true, completion: {
+                HUD.show(.Progress)
+
+                ShaManager.sharedInstance.uploadAdminStoreImage(
+                    store,
+                    image: image,
+                    success: { url in
+                        HUD.hide()
+                        self.storeImageView.sd_setImageWithURL(url)
+                    },
+                    failure: {
+                        HUD.flash(.Error)
+                    }
+                )
+            })
+        }
+        else {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+}
+
 extension StoreConfigViewController: StoreDescriptionDelegate {
 
     func descriptionSaved() {
@@ -133,3 +174,5 @@ extension StoreConfigViewController: StoreDescriptionDelegate {
         }
     }
 }
+
+

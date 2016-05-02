@@ -14,6 +14,9 @@ PODS:
     - FBSDKCoreKit
   - PKHUD (3.1.0)
   - PKRevealController (2.0.6)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
@@ -23,6 +26,7 @@ DEPENDENCIES:
   - FBSDKShareKit
   - PKHUD
   - PKRevealController
+  - SDWebImage
   - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -33,8 +37,9 @@ SPEC CHECKSUMS:
   FBSDKShareKit: 2d1746144cfc8a9dbbd24997c34ee0471be51b6a
   PKHUD: 4167eccdb1b3a892fd80ce2b51cb6ba412a889ab
   PKRevealController: ffb45a16f5a5032ad90a3d16e5cbb0d8e035bd58
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: ef08486326cfd575500926db397e03aa3dc553fa
+PODFILE CHECKSUM: 3c3b79da2981acbe3f3259c1d2290178b0da75ea
 
 COCOAPODS: 1.0.0.beta.6
