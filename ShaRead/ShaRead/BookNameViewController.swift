@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import PKHUD
 
 class BookNameViewController: UIViewController {
     @IBOutlet weak var inputTextField: UITextField!
 
+    var book: ShaBook?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,7 +32,7 @@ class BookNameViewController: UIViewController {
     @IBAction func endOnExit(sender: AnyObject) {
         self.resignFirstResponder()
         
-        performSegueWithIdentifier("ShowBookConfig", sender: sender)
+        newShaBook("9789864340729")
     }
 
     @IBAction func showScanner(sender: AnyObject) {
@@ -40,16 +43,33 @@ class BookNameViewController: UIViewController {
         
         self.navigationController?.pushViewController(controller, animated: true)
     }
+    
+    func newShaBook(code: String) {
 
-    /*
+        HUD.show(.Progress)
+        ShaManager.sharedInstance.newAdminBook(code,
+            success: { books in
+                dispatch_async(dispatch_get_main_queue(), {
+                    HUD.hide()
+                    self.book = books[0]
+                    self.performSegueWithIdentifier("ShowBookConfig", sender: nil)
+                })
+            },
+            failure: {
+                HUD.flash(.Error)
+            }
+        )
+    }
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if let controller = segue.destinationViewController as? BookConfigViewController {
+            controller.book = self.book
+        }
     }
-    */
 
     @IBAction func navBack(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -61,5 +81,6 @@ extension BookNameViewController: ScannerDelegate {
     func captureCode(code: String) {
         self.navigationController?.popViewControllerAnimated(true)
         inputTextField.text = code
+        newShaBook(code)
     }
 }

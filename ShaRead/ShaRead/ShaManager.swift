@@ -54,6 +54,13 @@ enum ShaAdminStoreItem: Int {
     case ShaAdminStoreStyle
 }
 
+enum ShaBookItem: Int {
+    case ShaBookRent = 0
+    case ShaBookComment
+    case ShaBookStatus
+    case ShaBookCategory
+}
+
 class ShaAdminShelf {
     var id: Int = 0
     var style: Int = 0
@@ -69,10 +76,48 @@ class ShaAdminStore {
     var shelfs: [ShaAdminShelf] = []
 }
 
+class ShaBookBase {
+    var isbn: String
+    var name: String
+    var author: String
+    var publisher: String
+    var price: Int
+    var image: String
+    
+    init(data: JSON) {
+        self.isbn = data["isbn"].stringValue
+        self.name = data["name"].stringValue
+        self.author = data["author"].stringValue
+        self.publisher = data["publisher"].stringValue
+        self.price = data["price"].intValue
+        self.image = data["image_path"].stringValue
+    }
+}
+
+class ShaBook: ShaBookBase {
+    var id: Int = 0
+    var status_image: [String] = []
+    var rent: Int = 0
+    var comment: String = ""
+    var status: String = ""
+    var category: String = ""
+
+    override init(data: JSON) {
+        super.init(data: data)
+
+        self.id = data["id"].intValue
+        self.rent = data["rent"].intValue
+        self.comment = data["comment"].stringValue
+        self.status = data["status"].stringValue
+        self.category = data["category"].stringValue
+    }
+}
+
 class ShaManager {
     static let sharedInstance = ShaManager()
 
     var adminStores: [ShaAdminStore] = []
+    var adminBooks: [ShaBook] = []
     var mrtStation: MRTStation?
     var authToken: String = ""
     
@@ -293,6 +338,83 @@ class ShaManager {
             success: { code, data in
                 self.mrtStation = MRTStation(data: data["data"])
                 success(self.mrtStation!)
+            },
+            failure: { code, data in
+                failure()
+            }
+        )
+    }
+    
+    func newAdminBook(isbn: String, success: ([ShaBook]) -> Void, failure: () -> Void) {
+        
+        HttpManager.sharedInstance.request(
+            .HttpMethodPost,
+            path: "/books?auth_token=\(authToken)",
+            param: ["isbn": isbn],
+            success: { code, data in
+                var books = [ShaBook]()
+                
+                for book in data["data"].arrayValue {
+                    books.append(ShaBook(data: book))
+                }
+
+                success(books)
+            },
+            failure: { code, data in
+                failure()
+            }
+        )
+    }
+    
+    func getAdminBook(success: ([ShaBook]) -> Void, failure: () -> Void) {
+
+        HttpManager.sharedInstance.request(
+            .HttpMethodGet,
+            path: "/books?auth_token=\(authToken)",
+            param: [:],
+            success: { code, data in
+
+                var books = [ShaBook]()
+
+                for book in data["data"].arrayValue {
+                    books.append(ShaBook(data: book))
+                }
+
+                success(books)
+            },
+            failure: { code, data in
+                failure()
+            }
+        )
+    }
+    
+    func updateAdminBook(book: ShaBook, column: [ShaBookItem], success: () -> Void, failure: () -> Void) {
+
+        var param = [String: AnyObject]()
+
+        for item in column {
+            switch item {
+            case .ShaBookRent:
+                param["rent"] = book.rent
+                break
+            case .ShaBookComment:
+                param["comment"] = book.comment
+                break
+            case .ShaBookStatus:
+                param["status"] = book.status
+                break
+            case .ShaBookCategory:
+                param["category"] = book.category
+                break
+            }
+        }
+
+        HttpManager.sharedInstance.request(
+            .HttpMethodPut,
+            path: "/books/\(book.id)?auth_token=\(authToken)",
+            param: param,
+            success: { code, data in
+                success()
             },
             failure: { code, data in
                 failure()

@@ -12,7 +12,9 @@ class BookPhotoViewController: UIViewController {
 
     @IBOutlet weak var photoCollectionView: UICollectionView!
     @IBOutlet weak var photoFlowLayout: UICollectionViewFlowLayout!
-    
+
+    weak var book: ShaBook?
+
     var photo: [String] = [""]
     
     override func viewDidLoad() {

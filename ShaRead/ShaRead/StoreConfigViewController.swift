@@ -36,12 +36,19 @@ class StoreConfigViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let screenHeight = UIScreen.mainScreen().bounds.height
+        var navHeight: CGFloat = 0
+        var headerHeight: CGFloat = 0
+        let rowHeight: CGFloat = 70
+        var bodyHeight: CGFloat = 0
+        var footerHeight: CGFloat = 0
+
         // init config items
         configItems = [
             .ShaAdminStoreDescription: StoreConfig(title: "關於書店", description: "描述一下您書店的特色", identifier: "StoreDescriptionConfig"),
-            .ShaAdminStorePosition: StoreConfig(title: "面交地點", description: "請選擇您方便面交的捷運站", identifier: "StorePositionConfig"),
-            .ShaAdminStoreCategory: StoreConfig(title: "選擇書櫃類別", description: "為您的書櫃分類吧", identifier: "StoreCategoryConfig"),
-            .ShaAdminStoreStyle: StoreConfig(title: "選擇書櫃樣式", description: "為您的書籍選擇適合的書櫃吧", identifier: "StoreStyleConfig")
+            .ShaAdminStorePosition: StoreConfig(title: "面交地點", description: "請選擇您方便面交的捷運站", identifier: "StorePositionConfig")
+//            .ShaAdminStoreCategory: StoreConfig(title: "選擇書櫃類別", description: "為您的書櫃分類吧", identifier: "StoreCategoryConfig"),
+//            .ShaAdminStoreStyle: StoreConfig(title: "選擇書櫃樣式", description: "為您的書籍選擇適合的書櫃吧", identifier: "StoreStyleConfig")
         ]
         
         if let url = store?.image {
@@ -58,17 +65,25 @@ class StoreConfigViewController: UIViewController {
 
         // config table view height
 
+        if let navController = self.navigationController {
+            navHeight = navController.navigationBar.frame.height
+        }
+
         if let headerVeiw = configTableView.tableHeaderView {
-            headerVeiw.frame.size.height = 200
+            headerHeight = 200
+            headerVeiw.frame.size.height = headerHeight
         }
 
         configTableView.registerNib(UINib(nibName: "StoreConfigTableViewCell", bundle: nil), forCellReuseIdentifier: "StoreConfigCell")
+        configTableView.rowHeight = rowHeight
 
-        configTableView.rowHeight = UITableViewAutomaticDimension
-        configTableView.estimatedRowHeight = 200
+        if let config = configItems {
+            bodyHeight = rowHeight * CGFloat(config.count)
+        }
 
         if let footerVeiw = configTableView.tableFooterView {
-            footerVeiw.frame.size.height = 40
+            footerHeight = screenHeight - navHeight - headerHeight - bodyHeight
+            footerVeiw.frame.size.height = footerHeight > 40 ? footerHeight : 40
         }
     }
 
@@ -260,8 +275,12 @@ extension StoreConfigViewController: UIImagePickerControllerDelegate, UINavigati
                     store,
                     image: image,
                     success: { url in
-                        HUD.hide()
-                        self.storeImageView.sd_setImageWithURL(url)
+                        dispatch_async(dispatch_get_main_queue(), {
+                            HUD.hide()
+                            self.store?.image = url
+                            self.storeImageView.sd_setImageWithURL(url)
+                            self.checkIsFinished()
+                        })
                     },
                     failure: {
                         HUD.flash(.Error)

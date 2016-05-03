@@ -23,6 +23,11 @@ class StoreNameViewController: UIViewController {
         inputTextField.becomeFirstResponder()
         inputTextField.text = store?.name
         inputLengthLabel.text = "(\(inputTextField.text?.characters.count ?? 0) / \(maxInputLength))"
+
+        if store == nil {
+            self.navigationItem.leftBarButtonItems?.removeAll()
+            self.navigationItem.setHidesBackButton(true, animated: false)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,4 +103,7 @@ class StoreNameViewController: UIViewController {
         }
     }
 
+    @IBAction func navBack(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
 }

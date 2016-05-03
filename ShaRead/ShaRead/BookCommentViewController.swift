@@ -7,11 +7,20 @@
 //
 
 import UIKit
+import PKHUD
+
+protocol BookCommentDelegate: class {
+    func commentSaved()
+}
 
 class BookCommentViewController: UIViewController {
 
+    @IBOutlet weak var inputTextView: UITextView!
     @IBOutlet weak var placeholder: UILabel!
     @IBOutlet weak var inputLengthLabel: UILabel!
+
+    weak var delegate: BookCommentDelegate?
+    weak var book: ShaBook?
 
     let maxInputLength: Int = 60
 
@@ -24,6 +33,46 @@ class BookCommentViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    @IBAction func save(sender: AnyObject) {
+
+        if let inputText = inputTextView.text {
+            
+            if inputText.characters.count == 0 {
+                let controller = UIAlertController(title: "錯誤", message: "請寫下您對這本書的評價", preferredStyle: .Alert)
+                controller.addAction(UIAlertAction(title: "確定", style: .Default, handler: nil))
+                presentViewController(controller, animated: true, completion: nil)
+                return
+            }
+            
+            if let book = self.book {
+                
+                let originComment = book.comment
+                
+                self.book?.comment = inputText
+
+                HUD.show(.Progress)
+                ShaManager.sharedInstance.updateAdminBook(book, column: [.ShaBookComment],
+                    success: {
+                        HUD.hide()
+                        self.delegate?.commentSaved()
+                        self.navigationController?.popViewControllerAnimated(true)
+                    },
+                    failure: {
+                        self.book?.comment = originComment
+                        HUD.flash(.Error)
+                    }
+                )
+            }
+
+        } else {
+
+            let controller = UIAlertController(title: "錯誤", message: "請寫下您對這本書的評價", preferredStyle: .Alert)
+            controller.addAction(UIAlertAction(title: "確定", style: .Default, handler: nil))
+            presentViewController(controller, animated: true, completion: nil)
+        }
     }
     
     @IBAction func dismissKeyboard(sender: AnyObject) {

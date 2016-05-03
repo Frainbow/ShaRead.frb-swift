@@ -9,6 +9,7 @@
 import UIKit
 
 class BookConfig {
+    var saved: Bool = false
     var title: String
     var description: String
     var identifier: String
@@ -24,7 +25,8 @@ class BookConfigViewController: UIViewController {
 
     @IBOutlet weak var configTableView: UITableView!
 
-    var configItems: [BookConfig]?
+    var book: ShaBook?
+    var configItems: [ShaBookItem: BookConfig]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +40,10 @@ class BookConfigViewController: UIViewController {
 
         // init config items
         configItems = [
-            BookConfig(title: "租金定價", description: "您可以參考我們建議的價格", identifier: "BookPrice"),
-            BookConfig(title: "填寫書評", description: "寫下您對這本書的評價吧", identifier: "BookComment"),
-            BookConfig(title: "填寫書況", description: "描述一下這本書的概況吧", identifier: "BookStatus")
+            .ShaBookRent: BookConfig(title: "租金定價", description: "您可以參考我們建議的價格", identifier: "BookPrice"),
+            .ShaBookComment: BookConfig(title: "填寫書評", description: "寫下您對這本書的評價吧", identifier: "BookComment"),
+            .ShaBookStatus: BookConfig(title: "填寫書況", description: "描述一下這本書的概況吧", identifier: "BookStatus"),
+            .ShaBookCategory: BookConfig(title: "選擇書籍類別", description: "為您的書籍分類吧", identifier: "BookCatogory")
         ]
 
         // config table view height
@@ -80,6 +83,27 @@ class BookConfigViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func checkIsFinished() {
+        
+        var finished = true
+        
+        if let items = self.configItems {
+            
+            for (_, item) in items {
+                
+                if !item.saved {
+                    finished = false
+                }
+            }
+        }
+        
+        if book?.image == nil {
+            finished = false
+        }
+        
+//        adminBookContainer.hidden = !finished
+    }
+
     /*
     // MARK: - Navigation
 
@@ -112,7 +136,8 @@ extension BookConfigViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("BookConfigCell", forIndexPath: indexPath) as! StoreConfigTableViewCell
 
-        if let config = self.configItems?[indexPath.row] {
+        if let item = ShaBookItem(rawValue:indexPath.row), config = self.configItems?[item] {
+            cell.toggleCheckMark(config.saved)
             cell.titleLabel.text = config.title
             cell.subtitleLabel.text = config.description
         }
@@ -122,10 +147,86 @@ extension BookConfigViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        if let config = self.configItems?[indexPath.row],
+        if let item = ShaBookItem(rawValue:indexPath.row), config = self.configItems?[item],
             controller = self.storyboard?.instantiateViewControllerWithIdentifier(config.identifier) {
             
+            if item == .ShaBookRent {
+
+                if let c = controller as? BookPriceViewController {
+                    c.delegate = self
+                    c.book = self.book
+                }
+            }
+            else if item == .ShaBookComment {
+                
+                if let c = controller as? BookCommentViewController {
+                    c.delegate = self
+                    c.book = self.book
+                }
+            }
+            else if item == .ShaBookStatus {
+                
+                if let c = controller as? BookStatusViewController {
+                    c.delegate = self
+                    c.book = self.book
+                }
+            }
+            else if item == .ShaBookCategory {
+                
+                if let c = controller as? BookCategoryViewController {
+                    c.delegate = self
+                    c.book = self.book
+                }
+            }
+            
             self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+}
+
+extension BookConfigViewController: BookPriceDelegate {
+
+    func priceSaved() {
+        if let item = configItems?[.ShaBookRent] {
+            item.saved = book?.rent > 0
+            configTableView.reloadData()
+            checkIsFinished()
+        }
+    }
+}
+
+extension BookConfigViewController: BookCommentDelegate {
+    
+    func commentSaved() {
+
+        if let item = configItems?[.ShaBookComment] {
+            item.saved = book?.comment.characters.count > 0
+            configTableView.reloadData()
+            checkIsFinished()
+        }
+    }
+}
+
+extension BookConfigViewController: BookStatusDelegate {
+    
+    func statusSaved() {
+
+        if let item = configItems?[.ShaBookStatus] {
+            item.saved = book?.status.characters.count > 0
+            configTableView.reloadData()
+            checkIsFinished()
+        }
+    }
+}
+
+extension BookConfigViewController: BookCategoryDelegate {
+    
+    func categorySaved() {
+
+        if let item = configItems?[.ShaBookCategory] {
+            item.saved = book?.category.characters.count > 0
+            configTableView.reloadData()
+            checkIsFinished()
         }
     }
 }
