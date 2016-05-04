@@ -1,15 +1,15 @@
 //
-//  StoreAdminMemberViewController.swift
+//  StoreMemberViewController.swift
 //  ShaRead
 //
-//  Created by martin on 2016/4/27.
+//  Created by martin on 2016/5/4.
 //  Copyright © 2016年 Frainbow. All rights reserved.
 //
 
 import UIKit
 
-class StoreAdminMemberViewController: UIViewController {
-    
+class StoreMemberViewController: UIViewController {
+
     @IBOutlet weak var sideContainerView: UIView!
     
     var previousTab: Int?
@@ -20,7 +20,7 @@ class StoreAdminMemberViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         previousTab = self.tabBarController?.selectedIndex
         centerX = sideContainerView.center.x
@@ -30,10 +30,10 @@ class StoreAdminMemberViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
 //        setTabBarVisible(false, animated: false)
     }
-
+    
     override func viewDidAppear(animated: Bool) {
 //        setTabBarVisible(true, animated: false)
-
+        
         UIView.animateWithDuration(0.3, animations: {
             self.sideContainerView.center.x = self.centerX!
         })
@@ -45,7 +45,7 @@ class StoreAdminMemberViewController: UIViewController {
     }
     
     @IBAction func changeMode(sender: AnyObject) {
-        (UIApplication.sharedApplication().delegate as! AppDelegate).toggleUserMode()
+        (UIApplication.sharedApplication().delegate as! AppDelegate).toggleAdminMode()
     }
     
     // MARK: - TabBar
@@ -76,6 +76,7 @@ class StoreAdminMemberViewController: UIViewController {
     func tabBarIsVisible() ->Bool {
         return self.tabBarController?.tabBar.frame.origin.y < CGRectGetMaxY(self.view.frame)
     }
+    
 
     /*
     // MARK: - Navigation
@@ -86,6 +87,7 @@ class StoreAdminMemberViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
     @IBAction func navPreviousTab(sender: AnyObject) {
         
         if let index = previousTab {

@@ -13,8 +13,7 @@ class StoreAdminViewController: UIViewController {
     
     @IBOutlet weak var bookTableView: UITableView!
     
-    var store: ShaAdminStore?
-    var books: [ShaBook]?
+    var uploadBook: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,22 +26,30 @@ class StoreAdminViewController: UIViewController {
 
         bookTableView.rowHeight = UITableViewAutomaticDimension
         bookTableView.estimatedRowHeight = 200
-        
+
         if let footerView = bookTableView.tableFooterView {
             footerView.frame.size.height = 0
         }
 
-        getAdminStore()
+        if ShaManager.sharedInstance.adminStores.count == 0 {
+            getAdminStore()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
+        let instance = ShaManager.sharedInstance
 
-        bookTableView.reloadData()
+        if instance.adminStores.count != 0 {
+            navigationItem.title = instance.adminStores[0].name
+            bookTableView.reloadData()
+        }
 
-        // deselect row on appear
-//        if let indexPath = bookTableView.indexPathForSelectedRow {
-//            bookTableView.deselectRowAtIndexPath(indexPath, animated: false)
-//        }
+        if uploadBook == true {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.uploadBook = false
+                self.showBookAdminPage()
+            })
+        }
     }
 
     override func viewWillDisappear(animated: Bool) {
@@ -51,12 +58,6 @@ class StoreAdminViewController: UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         setTabBarVisible(true, animated: false)
-
-        dispatch_async(dispatch_get_main_queue(), {
-            if self.store != nil && animated == false {
-                self.showBookAdminPage()
-            }
-        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,6 +65,8 @@ class StoreAdminViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: - IBAction
+    
     @IBAction func editBookStore(sender: AnyObject) {
         self.performSegueWithIdentifier("ShowStoreNameConfig", sender: sender)
     }
@@ -105,14 +108,11 @@ class StoreAdminViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if let controller = segue.destinationViewController as? StoreNameViewController {
-            if ShaManager.sharedInstance.adminStores.count > 0 {
-                controller.store = self.store
-            }
-        }
+
     }
     
+    // MARK: - Custom method
+
     func showBookAdminPage() {
         let storyboard = UIStoryboard(name: "BookAdmin", bundle: nil)
         let controller = storyboard.instantiateViewControllerWithIdentifier("BookAdminController")
@@ -120,25 +120,26 @@ class StoreAdminViewController: UIViewController {
     }
     
     func getAdminStore() {
+        let instance = ShaManager.sharedInstance
+
         HUD.show(.Progress)
-        
-        ShaManager.sharedInstance.getAdminStore(
-            { stores in
-                
+
+        instance.getAdminStore(
+            { // success
                 dispatch_async(dispatch_get_main_queue()) {
-                    if stores.count == 0 {
 
-                        if let controller = self.storyboard?.instantiateViewControllerWithIdentifier("StoreNameConfig") {
-                            self.navigationController?.pushViewController(controller, animated: false)
-                        }
-
+                    if instance.adminStores.count == 0 {
+                        // Go to create store page
+                        let controller = self.storyboard!
+                            .instantiateViewControllerWithIdentifier("StoreNameConfig")
+                        self.navigationController?.pushViewController(controller, animated: false)
                         HUD.hide()
-
-                    } else {
-                        self.store = stores[0]
-                        self.navigationItem.title = self.store?.name
-                        self.getAdminBook()
+                        return
                     }
+
+                    // Get store books
+                    self.navigationItem.title = instance.adminStores[0].name
+                    self.getAdminBook()
                 }
             },
             failure: {
@@ -148,22 +149,25 @@ class StoreAdminViewController: UIViewController {
     }
     
     func getAdminBook() {
+        let instance = ShaManager.sharedInstance
+
         HUD.show(.Progress)
         
-        ShaManager.sharedInstance.getAdminBook(
-            { books in
-                
+        instance.getAdminBook(
+            { // success
                 dispatch_async(dispatch_get_main_queue()) {
-                    if books.count == 0 {
+
+                    if instance.adminBooks.count == 0 {
+                        // Go to book create page
                         let storyboard = UIStoryboard(name: "BookAdmin", bundle: nil)
                         let controller = storyboard.instantiateViewControllerWithIdentifier("BookAdminController")
 
                         self.navigationController?.pushViewController(controller, animated: false)
-                    } else {
-                        self.books = books
-                        self.bookTableView.reloadData()
+                        HUD.hide()
+                        return
                     }
-                    
+
+                    self.bookTableView.reloadData()
                     HUD.hide()
                 }
             },
@@ -177,35 +181,37 @@ class StoreAdminViewController: UIViewController {
 extension StoreAdminViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return books?.count ?? 0
+        return ShaManager.sharedInstance.adminBooks.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let books = ShaManager.sharedInstance.adminBooks
         let cell = tableView.dequeueReusableCellWithIdentifier("StoreAdminBookCell", forIndexPath: indexPath) as! StoreAdminTableViewCell
 
-        if let books = self.books {
-
-            if let url = NSURL(string: books[indexPath.row].image) {
-                cell.bookImageView.sd_setImageWithURL(url)
-            }
-            
-            let price = books[indexPath.row].price
-            let rent = books[indexPath.row].rent
-
-            cell.bookNameLabel.text = books[indexPath.row].name
-            cell.bookPriceLabel.text = "定價：\(price == 0 ? "? " : String(price))元"
-            cell.bookRentLabel.text = "租金：\(rent == 0 ? "? " : String(rent))元"
-            cell.bookCategoryLabel.text = books[indexPath.row].category
+        if let url = NSURL(string: books[indexPath.row].image) {
+            cell.bookImageView.sd_setImageWithURL(url)
         }
+
+        let name = books[indexPath.row].name
+        let price = books[indexPath.row].price
+        let rent = books[indexPath.row].rent
+        let category = books[indexPath.row].category
+
+        cell.bookNameLabel.text = name
+        cell.bookPriceLabel.text = "定價：\(price == 0 ? "? " : String(price))元"
+        cell.bookRentLabel.text = "租金：\(rent == 0 ? "? " : String(rent))元"
+        cell.bookCategoryLabel.text = category
 
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // Go to book config page
+        let books = ShaManager.sharedInstance.adminBooks
         let storyboard = UIStoryboard(name: "BookAdmin", bundle: nil)
         let controller = storyboard.instantiateViewControllerWithIdentifier("BookAdminConfigController") as! BookConfigViewController
 
-        controller.book = books?[indexPath.row]
+        controller.book = books[indexPath.row]
 
         self.navigationController?.pushViewController(controller, animated: true)
     }

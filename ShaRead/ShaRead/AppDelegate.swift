@@ -9,19 +9,11 @@
 import UIKit
 import CoreData
 import FBSDKCoreKit
-import PKRevealController
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, PKRevealing {
-    
-    enum ViewMode {
-        case AdminViewMode
-        case DefaultViewMode
-    }
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var viewMode: ViewMode = .DefaultViewMode
-    weak var revealController: PKRevealController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -36,50 +28,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PKRevealing {
     func fbTokenChangeNoti(noti: NSNotification) {
 
     }
-
-    func toggleRootViewMode() {
-        switch viewMode {
-        case .DefaultViewMode:
-            toggleRootView("StoreAdmin", controllerIdentifier: "StoreAdminMainController")
-            viewMode = .AdminViewMode
-        case .AdminViewMode:
-            toggleRootView("Main", controllerIdentifier: "MainController")
-            viewMode = .DefaultViewMode
-        }
+    
+    func toggleUserMode() {
+        toggleRootView("Main", controllerIdentifier: "MainController")
+    }
+    
+    func toggleAdminMode() {
+        toggleRootView("StoreAdmin", controllerIdentifier: "StoreAdminMainController")
     }
 
     func toggleRootView(storyboardName: String, controllerIdentifier: String) {
-        let frontController = UIStoryboard(name: storyboardName, bundle: nil).instantiateViewControllerWithIdentifier(controllerIdentifier)
-        let memberController = UIStoryboard(name: "Member", bundle: nil).instantiateViewControllerWithIdentifier("MemberMenu")
-
-        let controller = PKRevealController(frontViewController: frontController, rightViewController: memberController)
-
-        controller.delegate = self
-        controller.recognizesPanningOnFrontView = false
-        controller.animationType = PKRevealControllerAnimationTypeStatic
-        controller.setMinimumWidth(200, maximumWidth: 200, forViewController: memberController)
-        revealController = controller
-
-        self.window?.rootViewController = controller
-    }
-    
-    func revealController(revealController: PKRevealController!, didChangeToState state: PKRevealControllerState) {
-
-        switch state.rawValue {
-        case 3:
-//            revealController.recognizesPanningOnFrontView = false
-            revealController.frontViewController.view.alpha = 1
-            break
-        case 4:
-            revealController.frontViewController.view.alpha = 0.5
-            break
-        case 5:
-            revealController.frontViewController.view.alpha = 0.1
-//            revealController.recognizesPanningOnFrontView = true
-            break
-        default:
-            break
-        }
+        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+        let rootController = storyboard.instantiateViewControllerWithIdentifier(controllerIdentifier)
+        
+        self.window!.rootViewController = rootController
     }
 
     func applicationWillResignActive(application: UIApplication) {

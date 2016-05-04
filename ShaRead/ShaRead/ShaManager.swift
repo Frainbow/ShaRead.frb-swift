@@ -26,13 +26,13 @@ class MRTStation {
 
     init(data: JSON) {
         station = [:]
-        
+
         for (stationName, exitArray) in data.dictionaryValue {
-            
+
             if station[stationName] == nil {
                 station[stationName] = []
             }
-            
+
             for exitData in exitArray.arrayValue {
                 station[stationName]?.append(MRTStationExit(data: exitData))
             }
@@ -50,8 +50,6 @@ enum ShaAdminStoreItem: Int {
     case ShaAdminStoreName = 0
     case ShaAdminStoreDescription
     case ShaAdminStorePosition
-    case ShaAdminStoreCategory
-    case ShaAdminStoreStyle
 }
 
 enum ShaBookItem: Int {
@@ -62,19 +60,12 @@ enum ShaBookItem: Int {
     case ShaBookStyle
 }
 
-class ShaAdminShelf {
-    var id: Int = 0
-    var style: Int = 0
-    var category: String = ""
-}
-
 class ShaAdminStore {
     var id: Int = 0
     var name: String = ""
     var image: NSURL?
     var description: String = ""
     var position = ShaStorePosition()
-    var shelfs: [ShaAdminShelf] = []
 }
 
 class ShaBookBase {
@@ -121,9 +112,10 @@ class ShaManager {
 
     var adminStores: [ShaAdminStore] = []
     var adminBooks: [ShaBook] = []
+
     var mrtStation: MRTStation?
     var authToken: String = ""
-    
+
     func login(facebook_token: String, success: () -> Void, failure: () -> Void) {
 
         HttpManager.sharedInstance.request(
@@ -140,7 +132,7 @@ class ShaManager {
             }
         )
     }
-    
+
     func newAdminStore(store: ShaAdminStore, success: () -> Void, failure: () -> Void) {
 
         HttpManager.sharedInstance.request(
@@ -150,6 +142,42 @@ class ShaManager {
             success: { code, data in
                 store.id = data["store_id"].intValue
                 self.adminStores.append(store)
+                success()
+            },
+            failure: { code, data in
+                failure()
+            }
+        )
+    }
+
+    func getAdminStore(success: () -> Void, failure: () -> Void) {
+        
+        HttpManager.sharedInstance.request(
+            .HttpMethodGet,
+            path: "/stores",
+            param: ["auth_token": self.authToken],
+            success: { code, data in
+                
+                let storeList = data["data"].arrayValue
+                
+                self.adminStores.removeAll()
+                
+                for store in storeList {
+                    let adminStore = ShaAdminStore()
+                    
+                    adminStore.id = store["store_id"].intValue
+                    adminStore.name = store["store_name"].stringValue
+                    adminStore.image = NSURL(string: store["store_image"].stringValue)
+                    adminStore.description = store["description"].stringValue
+                    
+                    let position = store["position"].dictionaryValue
+                    adminStore.position.address = position["address"]?.stringValue ?? ""
+                    adminStore.position.longitude = position["longitude"]?.floatValue ?? 0
+                    adminStore.position.latitude = position["latitude"]?.floatValue ?? 0
+                    
+                    self.adminStores.append(adminStore)
+                }
+                
                 success()
             },
             failure: { code, data in
@@ -173,8 +201,6 @@ class ShaManager {
                 param["address"] = store.position.address
                 param["longitude"] = store.position.longitude
                 param["latitude"] = store.position.latitude
-            default:
-                break
             }
         }
 
@@ -228,111 +254,8 @@ class ShaManager {
         
         return newImage
     }
-
-    func getAdminStore(success: ([ShaAdminStore]) -> Void, failure: () -> Void) {
-        
-        HttpManager.sharedInstance.request(
-            .HttpMethodGet,
-            path: "/stores",
-            param: ["auth_token": self.authToken],
-            success: { code, data in
-
-                let storeList = data["data"].arrayValue
-
-                self.adminStores.removeAll()
-                
-                for store in storeList {
-                    let adminStore = ShaAdminStore()
-                    
-                    adminStore.id = store["store_id"].intValue
-                    adminStore.name = store["store_name"].stringValue
-                    adminStore.image = NSURL(string: store["store_image"].stringValue)
-                    adminStore.description = store["description"].stringValue
-
-                    let position = store["position"].dictionaryValue
-                    adminStore.position.address = position["address"]?.stringValue ?? ""
-                    adminStore.position.longitude = position["longitude"]?.floatValue ?? 0
-                    adminStore.position.latitude = position["latitude"]?.floatValue ?? 0
-                    
-                    self.adminStores.append(adminStore)
-                }
-
-                success(self.adminStores)
-            },
-            failure: { code, data in
-                failure()
-            }
-        )
-    }
     
-    func newAdminStoreShelf(store: ShaAdminStore, shelf: ShaAdminShelf, success: () -> Void, failure: () -> Void) {
-
-        HttpManager.sharedInstance.request(
-            .HttpMethodPost,
-            path: "/stores/\(store.id)/shelfs?auth_token=\(authToken)",
-            param: ["style": shelf.style, "category": shelf.category],
-            success: { code, data in
-                shelf.id = data["shelf_id"].intValue
-                store.shelfs.append(shelf)
-                success()
-            },
-            failure: { code, data in
-                failure()
-            }
-        )
-    }
-
-    func getAdminStoreShelf(store: ShaAdminStore, success: ([ShaAdminShelf]) -> Void, failure: () -> Void) {
-
-        HttpManager.sharedInstance.request(
-            .HttpMethodGet,
-            path: "/stores/\(store.id)/shelfs",
-            param: ["auth_token": self.authToken],
-            success: { code, data in
-
-                let shelfList = data["data"].arrayValue
-
-                store.shelfs.removeAll()
-
-                for shelf in shelfList {
-                    let adminShelf = ShaAdminShelf()
-
-                    adminShelf.id = shelf["id"].intValue
-                    adminShelf.style = shelf["style"].intValue
-                    adminShelf.category = shelf["category"].stringValue
-
-                    store.shelfs.append(adminShelf)
-                }
-
-                success(store.shelfs)
-            },
-            failure: { code, data in
-                failure()
-            }
-        )
-    }
-
-    func updateAdminStoreShelf(shelf: ShaAdminShelf, success: () -> Void, failure: () -> Void) {
-
-        HttpManager.sharedInstance.request(
-            .HttpMethodPut,
-            path: "/shelfs/\(shelf.id)?auth_token=\(authToken)",
-            param: ["style": shelf.style, "category": shelf.category],
-            success: { code, data in
-                success()
-            },
-            failure: { code, data in
-                failure()
-            }
-        )
-    }
-    
-    func getMRTStation(success: (MRTStation) -> Void, failure: () -> Void) {
-        
-        if let mrtStation = self.mrtStation {
-            success(mrtStation)
-            return
-        }
+    func getMRTStation(success: () -> Void, failure: () -> Void) {
         
         HttpManager.sharedInstance.request(
             .HttpMethodGet,
@@ -340,7 +263,7 @@ class ShaManager {
             param: [:],
             success: { code, data in
                 self.mrtStation = MRTStation(data: data["data"])
-                success(self.mrtStation!)
+                success()
             },
             failure: { code, data in
                 failure()
@@ -348,28 +271,27 @@ class ShaManager {
         )
     }
     
-    func newAdminBook(isbn: String, success: ([ShaBook]) -> Void, failure: () -> Void) {
-        
+    func newAdminBook(isbn: String, success: () -> Void, failure: () -> Void) {
+
         HttpManager.sharedInstance.request(
             .HttpMethodPost,
             path: "/books?auth_token=\(authToken)",
             param: ["isbn": isbn],
             success: { code, data in
-                var books = [ShaBook]()
-                
+
                 for book in data["data"].arrayValue {
-                    books.append(ShaBook(data: book))
+                    self.adminBooks.append(ShaBook(data: book))
                 }
 
-                success(books)
+                success()
             },
             failure: { code, data in
                 failure()
             }
         )
     }
-    
-    func getAdminBook(success: ([ShaBook]) -> Void, failure: () -> Void) {
+
+    func getAdminBook(success: () -> Void, failure: () -> Void) {
 
         HttpManager.sharedInstance.request(
             .HttpMethodGet,
@@ -377,13 +299,13 @@ class ShaManager {
             param: [:],
             success: { code, data in
 
-                var books = [ShaBook]()
+                self.adminBooks.removeAll()
 
                 for book in data["data"].arrayValue {
-                    books.append(ShaBook(data: book))
+                    self.adminBooks.append(ShaBook(data: book))
                 }
 
-                success(books)
+                success()
             },
             failure: { code, data in
                 failure()

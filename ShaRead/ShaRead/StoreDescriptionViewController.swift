@@ -20,15 +20,19 @@ class StoreDescriptionViewController: UIViewController {
     @IBOutlet weak var inputLengthLabel: UILabel!
 
     weak var delegate: StoreDescriptionDelegate?
-    weak var store: ShaAdminStore?
 
     let maxInputLength: Int = 60
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let stores = ShaManager.sharedInstance.adminStores
+        
+        if stores.count != 0 {
+            inputTextView.text = stores[0].description
+        }
 
         inputTextView.becomeFirstResponder()
-        inputTextView.text = store?.description ?? ""
         inputLengthLabel.text = "(\(inputTextView.text.characters.count ?? 0) / \(maxInputLength))"
     }
 
@@ -57,30 +61,39 @@ class StoreDescriptionViewController: UIViewController {
 
     @IBAction func save(sender: AnyObject) {
 
-        if inputTextView.text.characters.count > 0 && store != nil {
+        let instance = ShaManager.sharedInstance
+        
+        if inputTextView.text.characters.count > 0 {
             
-            let originDescription = store!.description
+            if instance.adminStores.count > 0 {
+                let store = instance.adminStores[0]
+                let originDescription = store.description
 
-            self.store?.description = inputTextView.text
+                store.description = inputTextView.text
 
-            HUD.show(.Progress)
-            ShaManager.sharedInstance.updateAdminStore(store!, column: [.ShaAdminStoreDescription],
-                success: {
-                    HUD.hide()
-                    self.delegate?.descriptionSaved()
-                    self.navigationController?.popViewControllerAnimated(true)
-                },
-                failure: {
-                    self.store?.description = originDescription
-                    HUD.flash(.Error)
-                }
-            )
+                HUD.show(.Progress)
+                instance.updateAdminStore(store, column: [.ShaAdminStoreDescription],
+                    success: {
+                        HUD.hide()
+                        // Go to previous page
+                        self.delegate?.descriptionSaved()
+                        self.navigationController?.popViewControllerAnimated(true)
+                    },
+                    failure: {
+                        HUD.flash(.Error)
+                        // Recover value
+                        store.description = originDescription
+                    }
+                )
+            }
+            
+            return
         }
-        else {
-            let controller = UIAlertController(title: "錯誤", message: "請描述您書店的特色", preferredStyle: .Alert)
-            controller.addAction(UIAlertAction(title: "確定", style: .Default, handler: nil))
-            presentViewController(controller, animated: true, completion: nil)
-        }
+
+        // Error handling
+        let controller = UIAlertController(title: "錯誤", message: "請描述您書店的特色", preferredStyle: .Alert)
+        controller.addAction(UIAlertAction(title: "確定", style: .Default, handler: nil))
+        presentViewController(controller, animated: true, completion: nil)
     }
 }
 

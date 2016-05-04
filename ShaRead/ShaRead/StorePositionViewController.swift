@@ -22,8 +22,7 @@ class StorePositionViewController: UIViewController {
     @IBOutlet weak var exitPickerView: UIPickerView!
 
     weak var delegate: StorePositionDelegate?
-    weak var store: ShaAdminStore?
-    var station: MRTStation?
+
     var selectedStation: String?
     var selectedExit: MRTStationExit?
 
@@ -32,9 +31,20 @@ class StorePositionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        initMRTStation()
+        let instance = ShaManager.sharedInstance
+        
+        if instance.mrtStation == nil {
+            initMRTStation()
+        }
+        else {
+            reloadData()
+        }
+
+        // TODO
         inputLengthLabel.text = "(0 / \(maxInputLength))"
 
+        
+        // config table view height
         if let headerView = positionTableView.tableHeaderView {
             headerView.frame.size.height = 0
         }
@@ -59,23 +69,9 @@ class StorePositionViewController: UIViewController {
     func initMRTStation() {
         HUD.show(.Progress)
         ShaManager.sharedInstance.getMRTStation(
-            { station in
+            { // success
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.station = station
-                    self.positionPickerView.reloadAllComponents()
-                    
-                    for (name, exitList) in station.station {
-                        for exitItem in exitList {
-                            if self.store?.position.address == "\(name)\(exitItem.name)"{
-                                self.selectedStation = name
-                                self.selectedExit = exitItem
-                                self.positionTableView.reloadData()
-                                HUD.hide()
-                                return
-                            }
-                        }
-                    }
-
+                    self.reloadData()
                     HUD.hide()
                 })
             },
@@ -84,9 +80,42 @@ class StorePositionViewController: UIViewController {
             }
         )
     }
+    
+    func reloadData() {
+        let instance = ShaManager.sharedInstance
+        
+        if instance.adminStores.count > 0 {
+            
+            let station = instance.mrtStation!.station
+            let store = instance.adminStores[0]
+            
+            self.positionPickerView.reloadAllComponents()
+            
+            for (name, exitList) in station {
+                for exitItem in exitList {
+                    if store.position.address == "\(name)\(exitItem.name)"{
+                        self.selectedStation = name
+                        self.selectedExit = exitItem
+                        self.positionTableView.reloadData()
+                        HUD.hide()
+                        return
+                    }
+                }
+            }
+        }
+    }
 
     @IBAction func save(sender: AnyObject) {
-        if let station = selectedStation, exit = selectedExit, store = self.store {
+
+        let instance = ShaManager.sharedInstance
+
+        if instance.adminStores.count == 0 {
+            return
+        }
+
+        let store = instance.adminStores[0]
+
+        if let station = selectedStation, exit = selectedExit {
 
             let originAddress = store.position.address
             let originLongitude = store.position.longitude
@@ -97,25 +126,29 @@ class StorePositionViewController: UIViewController {
             store.position.latitude = exit.latitude
             
             HUD.show(.Progress)
-            ShaManager.sharedInstance.updateAdminStore(store, column: [.ShaAdminStorePosition],
+            instance.updateAdminStore(store, column: [.ShaAdminStorePosition],
                 success: {
                     HUD.hide()
+                    // Go to previous page
                     self.delegate?.positionSaved()
                     self.navigationController?.popViewControllerAnimated(true)
                 },
                 failure: {
                     HUD.flash(.Error)
+                    // Recover value
                     store.position.address = originAddress
                     store.position.longitude = originLongitude
                     store.position.latitude = originLatitude
                 }
             )
+            
+            return
         }
-        else {
-            let controller = UIAlertController(title: "錯誤", message: "請選擇地點", preferredStyle: .Alert)
-            controller.addAction(UIAlertAction(title: "確定", style: .Default, handler: nil))
-            presentViewController(controller, animated: true, completion: nil)
-        }
+        
+        // Error handling
+        let controller = UIAlertController(title: "錯誤", message: "請選擇地點", preferredStyle: .Alert)
+        controller.addAction(UIAlertAction(title: "確定", style: .Default, handler: nil))
+        presentViewController(controller, animated: true, completion: nil)
     }
 
     @IBAction func endOnExit(sender: AnyObject) {
@@ -196,13 +229,13 @@ extension StorePositionViewController: UIPickerViewDataSource, UIPickerViewDeleg
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        if let station = self.station {
-            
+        if let station = ShaManager.sharedInstance.mrtStation?.station {
+                
             if pickerView.tag == 0 {
-                return station.station.count
+                return station.count
             }
 
-            if let s = selectedStation, exit = station.station[s] {
+            if let s = selectedStation, exit = station[s] {
                 return exit.count
             }
         }
@@ -211,14 +244,14 @@ extension StorePositionViewController: UIPickerViewDataSource, UIPickerViewDeleg
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if let station = self.station {
+        if let station = ShaManager.sharedInstance.mrtStation?.station {
 
             if pickerView.tag == 0 {
-                let arr = Array(station.station.keys)
+                let arr = Array(station.keys)
                 return arr[row]
             }
 
-            if let s = selectedStation, exit = station.station[s] {
+            if let s = selectedStation, exit = station[s] {
                 return exit[row].name
             }
         }
@@ -228,14 +261,14 @@ extension StorePositionViewController: UIPickerViewDataSource, UIPickerViewDeleg
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
-        if let station = self.station {
+        if let station = ShaManager.sharedInstance.mrtStation?.station {
 
             if pickerView.tag == 0 {
-                let arr = Array(station.station.keys)
+                let arr = Array(station.keys)
                 selectedStation = arr[row]
                 selectedExit = nil
                 exitPickerView.reloadAllComponents()
-            } else if let s = selectedStation, exit = station.station[s] {
+            } else if let s = selectedStation, exit = station[s] {
                 selectedExit = exit[row]
                 pickerContainerView.hidden = true
                 positionTableView.reloadData()

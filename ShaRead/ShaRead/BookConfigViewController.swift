@@ -133,7 +133,7 @@ class BookConfigViewController: UIViewController {
     }
 
     @IBAction func navRoot(sender: AnyObject) {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        self.navigationController?.popToRootViewControllerAnimated(false)
     }
 }
 

@@ -42,7 +42,7 @@ class SearchViewController: UIViewController {
     }
 
     @IBAction func dismissSearch(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(false, completion: nil)
     }
 
     @IBAction func dismissKeyboard(sender: AnyObject) {

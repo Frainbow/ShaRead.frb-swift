@@ -75,7 +75,7 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
         ShaManager.sharedInstance.login(facebook_token,
             success: {
                 HUD.hide()
-                (UIApplication.sharedApplication().delegate as! AppDelegate).toggleRootViewMode()
+                (UIApplication.sharedApplication().delegate as! AppDelegate).toggleUserMode()
             },
             failure: {
                 HUD.flash(.Error)

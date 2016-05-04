@@ -29,8 +29,6 @@ class StoreConfigViewController: UIViewController {
     @IBOutlet weak var configTableView: UITableView!
     @IBOutlet weak var adminBookContainer: UIView!
 
-    var store: ShaAdminStore?
-    var shelf: ShaAdminShelf?
     var configItems: [ShaAdminStoreItem: StoreConfig]?
 
     override func viewDidLoad() {
@@ -47,20 +45,19 @@ class StoreConfigViewController: UIViewController {
         configItems = [
             .ShaAdminStoreDescription: StoreConfig(title: "關於書店", description: "描述一下您書店的特色", identifier: "StoreDescriptionConfig"),
             .ShaAdminStorePosition: StoreConfig(title: "面交地點", description: "請選擇您方便面交的捷運站", identifier: "StorePositionConfig")
-//            .ShaAdminStoreCategory: StoreConfig(title: "選擇書櫃類別", description: "為您的書櫃分類吧", identifier: "StoreCategoryConfig"),
-//            .ShaAdminStoreStyle: StoreConfig(title: "選擇書櫃樣式", description: "為您的書籍選擇適合的書櫃吧", identifier: "StoreStyleConfig")
         ]
         
-        if let url = store?.image {
-            storeImageView.sd_setImageWithURL(url)
-        }
+        let stores = ShaManager.sharedInstance.adminStores
+        
+        if stores.count != 0 {
+        
+            if let url = stores[0].image {
+                storeImageView.sd_setImageWithURL(url)
+            }
 
-        configItems![.ShaAdminStoreDescription]?.saved = store?.description.characters.count > 0
-        configItems![.ShaAdminStorePosition]?.saved = store?.position.address.characters.count > 0
-        checkIsFinished()
-
-        if shelf == nil {
-            initShelf()
+            configItems![.ShaAdminStoreDescription]?.saved = stores[0].description.characters.count > 0
+            configItems![.ShaAdminStorePosition]?.saved = stores[0].position.address.characters.count > 0
+            checkIsFinished()
         }
 
         // config table view height
@@ -99,6 +96,8 @@ class StoreConfigViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - IBAction
 
     @IBAction func uploadImage(sender: AnyObject) {
         let imagePickerController = UIImagePickerController()
@@ -108,70 +107,19 @@ class StoreConfigViewController: UIViewController {
     }
     
     @IBAction func adminBooks(sender: AnyObject) {
-        self.navigationController?.popToRootViewControllerAnimated(false)
-    }
-    
-    func initShelf() {
         
-        if let store = self.store {
-            
-            HUD.show(.Progress)
-
-            ShaManager.sharedInstance.getAdminStoreShelf(store,
-                success: { shelfs in
-                    
-                    dispatch_async(dispatch_get_main_queue(), {
-                        HUD.hide()
-
-                        if shelfs.count == 0 {
-                            self.newShelf()
-                        }
-                        else {
-                            self.shelf = shelfs[0]
-                            self.refreshShelf()
-                        }
-                    })
-                },
-                failure: {
-                    HUD.flash(.Error)
-                }
-            )
-        }
-    }
-    
-    func newShelf() {
-        self.shelf = ShaAdminShelf()
-        
-        if let store = self.store, shelf = self.shelf {
-
-            HUD.show(.Progress)
-
-            ShaManager.sharedInstance.newAdminStoreShelf(store, shelf: shelf,
-                success: {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        HUD.hide()
-                        self.refreshShelf()
-                    })
-                },
-                failure: {
-                    self.shelf = nil
-                    HUD.flash(.Error)
-                }
-            )
+        if let controller = self.navigationController?.viewControllers[0] as? StoreAdminViewController {
+            controller.uploadBook = true
+            self.navigationController?.popToRootViewControllerAnimated(false)
         }
     }
 
-    func refreshShelf() {
-        self.configItems![.ShaAdminStoreStyle]?.saved = self.shelf?.style > 0
-        self.configItems![.ShaAdminStoreCategory]?.saved = self.shelf?.category.characters.count > 0
-        self.configTableView.reloadData()
-        checkIsFinished()
-    }
-    
+    // MARK: - Custom method
+
     func checkIsFinished() {
-        
+
         var finished = true
-        
+
         if let items = self.configItems {
 
             for (_, item) in items {
@@ -181,8 +129,10 @@ class StoreConfigViewController: UIViewController {
                 }
             }   
         }
-        
-        if store?.image == nil {
+
+        let stores = ShaManager.sharedInstance.adminStores
+
+        if stores[0].image == nil {
             finished = false
         }
 
@@ -232,28 +182,12 @@ extension StoreConfigViewController: UITableViewDataSource, UITableViewDelegate 
 
                 if let c = controller as? StoreDescriptionViewController {
                     c.delegate = self
-                    c.store = store
                 }
             }
             else if item == .ShaAdminStorePosition {
 
                 if let c = controller as? StorePositionViewController {
                     c.delegate = self
-                    c.store = store
-                }
-            }
-            else if item == .ShaAdminStoreStyle {
-
-                if let c = controller as? StoreStyleViewController {
-                    c.delegate = self
-                    c.shelf = shelf
-                }
-            }
-            else if item == .ShaAdminStoreCategory {
-
-                if let c = controller as? StoreCategoryViewController {
-                    c.delegate = self
-                    c.shelf = shelf
                 }
             }
 
@@ -266,18 +200,21 @@ extension StoreConfigViewController: UIImagePickerControllerDelegate, UINavigati
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
 
-        if let store = self.store, image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+        let instance = ShaManager.sharedInstance
+        let store = instance.adminStores[0]
+        
+        if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
 
             self.dismissViewControllerAnimated(true, completion: {
                 HUD.show(.Progress)
 
-                ShaManager.sharedInstance.uploadAdminStoreImage(
+                instance.uploadAdminStoreImage(
                     store,
                     image: image,
                     success: { url in
                         dispatch_async(dispatch_get_main_queue(), {
                             HUD.hide()
-                            self.store?.image = url
+                            store.image = url
                             self.storeImageView.sd_setImageWithURL(url)
                             self.checkIsFinished()
                         })
@@ -287,10 +224,12 @@ extension StoreConfigViewController: UIImagePickerControllerDelegate, UINavigati
                     }
                 )
             })
+            
+            return
         }
-        else {
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
+
+        // Error handling
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
@@ -298,10 +237,14 @@ extension StoreConfigViewController: StoreDescriptionDelegate {
 
     func descriptionSaved() {
 
-        if let item = configItems?[.ShaAdminStoreDescription] {
-            item.saved = store?.description.characters.count > 0
-            configTableView.reloadData()
-            checkIsFinished()
+        if ShaManager.sharedInstance.adminStores.count > 0 {
+            let store = ShaManager.sharedInstance.adminStores[0]
+
+            if let item = configItems?[.ShaAdminStoreDescription] {
+                item.saved = store.description.characters.count > 0
+                configTableView.reloadData()
+                checkIsFinished()
+            }
         }
     }
 }
@@ -310,34 +253,14 @@ extension StoreConfigViewController: StorePositionDelegate {
     
     func positionSaved() {
 
-        if let item = configItems?[.ShaAdminStorePosition] {
-            item.saved = store?.position.address.characters.count > 0
-            configTableView.reloadData()
-            checkIsFinished()
-        }
-    }
-}
+        if ShaManager.sharedInstance.adminStores.count > 0 {
+            let store = ShaManager.sharedInstance.adminStores[0]
 
-extension StoreConfigViewController: StoreStyleDelegate {
-
-    func styleSaved() {
-
-        if let item = configItems?[.ShaAdminStoreStyle] {
-            item.saved = store?.shelfs[0].style > 0
-            configTableView.reloadData()
-            checkIsFinished()
-        }
-    }
-}
-
-extension StoreConfigViewController: StoreCategoryDelegate {
-
-    func categorySaved() {
-
-        if let item = configItems?[.ShaAdminStoreCategory] {
-            item.saved = store?.shelfs[0].category.characters.count > 0
-            configTableView.reloadData()
-            checkIsFinished()
+            if let item = configItems?[.ShaAdminStorePosition] {
+                item.saved = store.position.address.characters.count > 0
+                configTableView.reloadData()
+                checkIsFinished()
+            }
         }
     }
 }
