@@ -35,6 +35,14 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func dismissKeyboard(sender: AnyObject) {
+        self.view.endEditing(true)
+    }
+
+    @IBAction func endOnExit(sender: AnyObject) {
+        self.resignFirstResponder()
+    }
+
     /*
     // MARK: - Navigation
 

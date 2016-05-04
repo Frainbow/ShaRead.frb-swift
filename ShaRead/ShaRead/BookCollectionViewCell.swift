@@ -22,8 +22,10 @@ class BookCollectionViewCell: UICollectionViewCell {
         avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
         
         shadowView.layer.masksToBounds = false
-        shadowView.layer.shadowColor = UIColor.blackColor().CGColor
-        shadowView.layer.shadowOffset = CGSizeMake(2, 2)
-        shadowView.layer.shadowOpacity = 0.3
+        shadowView.layer.borderWidth = 1
+        shadowView.layer.borderColor = UIColor.lightGrayColor().CGColor
+//        shadowView.layer.shadowColor = UIColor.blackColor().CGColor
+//        shadowView.layer.shadowOffset = CGSizeMake(2, 2)
+//        shadowView.layer.shadowOpacity = 0.3
     }
 }

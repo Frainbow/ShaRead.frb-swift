@@ -1,5 +1,5 @@
 //
-//  ListViewController.swift
+//  MailViewController.swift
 //  ShaRead
 //
 //  Created by martin on 2016/5/4.
@@ -8,17 +8,12 @@
 
 import UIKit
 
-class ListViewController: UIViewController {
+class MailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -29,6 +24,11 @@ class ListViewController: UIViewController {
         setTabBarVisible(false, animated: false)
     }
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     // MARK: - TabBar
     func setTabBarVisible(visible:Bool, animated:Bool) {
         

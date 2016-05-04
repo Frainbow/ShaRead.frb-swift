@@ -71,7 +71,7 @@ class MainViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Search", bundle: nil)
         let controller = storyboard.instantiateViewControllerWithIdentifier("SearchNavController")
 
-        presentViewController(controller, animated: true, completion: nil)
+        presentViewController(controller, animated: false, completion: nil)
     }
     
     // MARK: - TabBar

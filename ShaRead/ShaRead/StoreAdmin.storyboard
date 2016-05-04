@@ -21,7 +21,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="日曆" image="Calendar" id="HVX-0n-b6O"/>
+                    <tabBarItem key="tabBarItem" title="日曆" image="calendar-icon" id="HVX-0n-b6O"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mud-hN-mNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1955,16 +1955,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="會員" image="UserIcon" id="Rh3-ME-nc9"/>
+                    <tabBarItem key="tabBarItem" title="會員" image="icon-user" id="Rh3-ME-nc9"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nrc-HQ-3EK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-205.5" y="1020"/>
         </scene>
-        <!--清單-->
+        <!--收件箱-->
         <scene sceneID="3se-v5-pwm">
             <objects>
-                <viewController id="3JD-2q-Bvu" customClass="ListViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3JD-2q-Bvu" customClass="MailViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Z0G-tX-E3P"/>
                         <viewControllerLayoutGuide type="bottom" id="FUd-Rj-Q7m"/>
@@ -1974,7 +1974,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="清單" image="ListIcon" id="TyE-Aq-rMn"/>
+                    <tabBarItem key="tabBarItem" title="收件箱" image="icon-mail" id="TyE-Aq-rMn"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zK-Cd-5Do" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1984,7 +1984,7 @@
         <scene sceneID="V5S-uv-dro">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GyA-9y-I4l" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="書店" image="Shop" id="dmQ-U6-2ko"/>
+                    <tabBarItem key="tabBarItem" title="書店" image="store-icon" id="dmQ-U6-2ko"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Phq-Ha-6fQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2006,11 +2006,11 @@
     </scenes>
     <resources>
         <image name="Back" width="25" height="25"/>
-        <image name="Calendar" width="25" height="25"/>
         <image name="Forward" width="25" height="25"/>
         <image name="Left" width="25" height="25"/>
-        <image name="ListIcon" width="32" height="32"/>
-        <image name="Shop" width="25" height="25"/>
-        <image name="UserIcon" width="32" height="32"/>
+        <image name="calendar-icon" width="28" height="30"/>
+        <image name="icon-mail" width="30" height="22"/>
+        <image name="icon-user" width="23" height="30"/>
+        <image name="store-icon" width="30" height="30"/>
     </resources>
 </document>
