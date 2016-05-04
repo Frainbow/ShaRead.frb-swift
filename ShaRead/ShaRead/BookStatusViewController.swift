@@ -27,7 +27,14 @@ class BookStatusViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        inputLengthLabel.text = "(0 / \(maxInputLength))"
+        if let book = self.book {
+            if book.status.characters.count > 0 {
+                inputTextView.text = book.status
+                placeholder.hidden = true
+            }
+        }
+
+        inputLengthLabel.text = "(\(inputTextView.text.characters.count) / \(maxInputLength))"
     }
 
     override func didReceiveMemoryWarning() {

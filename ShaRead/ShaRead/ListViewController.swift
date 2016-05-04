@@ -1,39 +1,19 @@
 //
-//  StoreAdminMemberViewController.swift
+//  ListViewController.swift
 //  ShaRead
 //
-//  Created by martin on 2016/4/27.
+//  Created by martin on 2016/5/4.
 //  Copyright © 2016年 Frainbow. All rights reserved.
 //
 
 import UIKit
 
-class StoreAdminMemberViewController: UIViewController {
-    
+class ListViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-
-    override func viewWillAppear(animated: Bool) {
-
-        if let index = self.tabBarController?.selectedIndex {
-
-            dispatch_async(dispatch_get_main_queue()) {
-
-                let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-
-                // go to original tab
-                self.tabBarController?.selectedIndex = index
-
-                delegate.revealController?.enterPresentationModeAnimated(true, completion: nil)
-            }
-        }
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,6 +21,14 @@ class StoreAdminMemberViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(animated: Bool) {
+        setTabBarVisible(true, animated: false)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        setTabBarVisible(false, animated: false)
+    }
+
     // MARK: - TabBar
     func setTabBarVisible(visible:Bool, animated:Bool) {
         

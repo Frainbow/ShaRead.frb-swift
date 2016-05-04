@@ -36,7 +36,13 @@ class StoreAdminViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        setTabBarVisible(true, animated: false)
+
+        bookTableView.reloadData()
+
+        // deselect row on appear
+//        if let indexPath = bookTableView.indexPathForSelectedRow {
+//            bookTableView.deselectRowAtIndexPath(indexPath, animated: false)
+//        }
     }
 
     override func viewWillDisappear(animated: Bool) {
@@ -44,10 +50,13 @@ class StoreAdminViewController: UIViewController {
     }
 
     override func viewDidAppear(animated: Bool) {
+        setTabBarVisible(true, animated: false)
 
-        if store != nil && animated == false {
-            showBookAdminPage()
-        }
+        dispatch_async(dispatch_get_main_queue(), {
+            if self.store != nil && animated == false {
+                self.showBookAdminPage()
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -190,5 +199,14 @@ extension StoreAdminViewController: UITableViewDataSource, UITableViewDelegate {
         }
 
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let storyboard = UIStoryboard(name: "BookAdmin", bundle: nil)
+        let controller = storyboard.instantiateViewControllerWithIdentifier("BookAdminConfigController") as! BookConfigViewController
+
+        controller.book = books?[indexPath.row]
+
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }

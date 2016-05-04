@@ -59,6 +59,7 @@ enum ShaBookItem: Int {
     case ShaBookComment
     case ShaBookStatus
     case ShaBookCategory
+    case ShaBookStyle
 }
 
 class ShaAdminShelf {
@@ -101,6 +102,7 @@ class ShaBook: ShaBookBase {
     var comment: String = ""
     var status: String = ""
     var category: String = ""
+    var style: Int = 0
 
     override init(data: JSON) {
         super.init(data: data)
@@ -110,6 +112,7 @@ class ShaBook: ShaBookBase {
         self.comment = data["comment"].stringValue
         self.status = data["status"].stringValue
         self.category = data["category"].stringValue
+        self.style = data["style"].intValue
     }
 }
 
@@ -396,16 +399,14 @@ class ShaManager {
             switch item {
             case .ShaBookRent:
                 param["rent"] = book.rent
-                break
             case .ShaBookComment:
                 param["comment"] = book.comment
-                break
             case .ShaBookStatus:
                 param["status"] = book.status
-                break
             case .ShaBookCategory:
                 param["category"] = book.category
-                break
+            case .ShaBookStyle:
+                param["style"] = book.style
             }
         }
 

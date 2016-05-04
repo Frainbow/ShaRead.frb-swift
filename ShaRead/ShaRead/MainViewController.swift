@@ -52,7 +52,7 @@ class MainViewController: UIViewController {
         searchButton.layer.cornerRadius = searchButton.frame.width / 2
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewDidAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
         setTabBarVisible(true, animated: false)
     }

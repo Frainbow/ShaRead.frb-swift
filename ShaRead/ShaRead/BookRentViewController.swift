@@ -1,5 +1,5 @@
 //
-//  BookPriceViewController.swift
+//  BookRentViewController.swift
 //  ShaRead
 //
 //  Created by martin on 2016/4/26.
@@ -9,21 +9,23 @@
 import UIKit
 import PKHUD
 
-protocol BookPriceDelegate: class {
-    func priceSaved()
+protocol BookRentDelegate: class {
+    func rentSaved()
 }
 
-class BookPriceViewController: UIViewController {
+class BookRentViewController: UIViewController {
     
     @IBOutlet weak var priceTextField: UITextField!
     
-    weak var delegate: BookPriceDelegate?
+    weak var delegate: BookRentDelegate?
     weak var book: ShaBook?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if let book = self.book {
+            priceTextField.text = "\(book.rent)"
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,6 +51,13 @@ class BookPriceViewController: UIViewController {
                 return
             }
             
+            if Int(priceText) == 0 {
+                let controller = UIAlertController(title: "錯誤", message: "定價不可為 0", preferredStyle: .Alert)
+                controller.addAction(UIAlertAction(title: "確定", style: .Default, handler: nil))
+                presentViewController(controller, animated: true, completion: nil)
+                return
+            }
+
             if let book = self.book {
                 
                 let originRent = book.rent
@@ -59,7 +68,7 @@ class BookPriceViewController: UIViewController {
                 ShaManager.sharedInstance.updateAdminBook(book, column: [.ShaBookRent],
                     success: {
                         HUD.hide()
-                        self.delegate?.priceSaved()
+                        self.delegate?.rentSaved()
                         self.navigationController?.popViewControllerAnimated(true)
                     },
                     failure: {

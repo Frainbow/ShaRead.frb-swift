@@ -1488,7 +1488,7 @@
         <!--最愛-->
         <scene sceneID="LYa-Re-sog">
             <objects>
-                <viewController id="Eyf-B3-s2b" sceneMemberID="viewController">
+                <viewController id="Eyf-B3-s2b" customClass="FavoriteViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0dm-P5-vcE"/>
                         <viewControllerLayoutGuide type="bottom" id="Kb2-uc-gXk"/>
@@ -1532,7 +1532,7 @@
         <!--清單-->
         <scene sceneID="3TS-Ed-lOB">
             <objects>
-                <viewController id="3eA-1d-UwF" sceneMemberID="viewController">
+                <viewController id="3eA-1d-UwF" customClass="ListViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MRa-Ma-31n"/>
                         <viewControllerLayoutGuide type="bottom" id="Kcm-jy-313"/>

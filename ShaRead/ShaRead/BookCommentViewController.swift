@@ -22,12 +22,19 @@ class BookCommentViewController: UIViewController {
     weak var delegate: BookCommentDelegate?
     weak var book: ShaBook?
 
-    let maxInputLength: Int = 60
+    let maxInputLength: Int = 120
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        inputLengthLabel.text = "(0 / \(maxInputLength))"
+        if let book = self.book {
+            if book.comment.characters.count > 0 {
+                inputTextView.text = book.comment
+                placeholder.hidden = true
+            }
+        }
+
+        inputLengthLabel.text = "(\(inputTextView.text.characters.count) / \(maxInputLength))"
     }
 
     override func didReceiveMemoryWarning() {

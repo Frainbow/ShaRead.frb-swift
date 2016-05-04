@@ -11,7 +11,7 @@
         <!--日曆-->
         <scene sceneID="mSU-eC-D40">
             <objects>
-                <viewController id="br6-jQ-DXN" sceneMemberID="viewController">
+                <viewController id="br6-jQ-DXN" customClass="CalendarViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mHe-xE-Tja"/>
                         <viewControllerLayoutGuide type="bottom" id="un6-Vi-BsG"/>
@@ -55,7 +55,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AGY-m3-iEn">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AGY-m3-iEn">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="200" id="33j-1o-7YD">
@@ -1964,7 +1964,7 @@
         <!--清單-->
         <scene sceneID="3se-v5-pwm">
             <objects>
-                <viewController id="3JD-2q-Bvu" sceneMemberID="viewController">
+                <viewController id="3JD-2q-Bvu" customClass="ListViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Z0G-tX-E3P"/>
                         <viewControllerLayoutGuide type="bottom" id="FUd-Rj-Q7m"/>

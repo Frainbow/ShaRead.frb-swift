@@ -45,6 +45,13 @@ class BookConfigViewController: UIViewController {
             .ShaBookStatus: BookConfig(title: "填寫書況", description: "描述一下這本書的概況吧", identifier: "BookStatus"),
             .ShaBookCategory: BookConfig(title: "選擇書籍類別", description: "為您的書籍分類吧", identifier: "BookCatogory")
         ]
+        
+        
+        configItems![.ShaBookRent]?.saved = book?.rent > 0
+        configItems![.ShaBookComment]?.saved = book?.comment.characters.count > 0
+        configItems![.ShaBookStatus]?.saved = book?.status.characters.count > 0
+        configItems![.ShaBookCategory]?.saved = book?.category.characters.count > 0
+        checkIsFinished()
 
         // config table view height
 
@@ -125,6 +132,9 @@ class BookConfigViewController: UIViewController {
         self.navigationController?.popViewControllerAnimated(true)
     }
 
+    @IBAction func navRoot(sender: AnyObject) {
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
 }
 
 extension BookConfigViewController: UITableViewDataSource, UITableViewDelegate {
@@ -152,7 +162,7 @@ extension BookConfigViewController: UITableViewDataSource, UITableViewDelegate {
             
             if item == .ShaBookRent {
 
-                if let c = controller as? BookPriceViewController {
+                if let c = controller as? BookRentViewController {
                     c.delegate = self
                     c.book = self.book
                 }
@@ -184,9 +194,9 @@ extension BookConfigViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension BookConfigViewController: BookPriceDelegate {
+extension BookConfigViewController: BookRentDelegate {
 
-    func priceSaved() {
+    func rentSaved() {
         if let item = configItems?[.ShaBookRent] {
             item.saved = book?.rent > 0
             configTableView.reloadData()
