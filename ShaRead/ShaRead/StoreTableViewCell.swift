@@ -12,7 +12,7 @@ class StoreTableViewCell: UITableViewCell {
 
     @IBOutlet weak var storeCollectionView: UICollectionView!
     @IBOutlet weak var storeFlowLayout: UICollectionViewFlowLayout!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,6 +23,10 @@ class StoreTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func reloadCollectionViewData() {
+        storeCollectionView.reloadData()
     }
 
 }

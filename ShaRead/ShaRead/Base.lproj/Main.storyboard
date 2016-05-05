@@ -163,9 +163,6 @@
                                                             </view>
                                                         </collectionViewCell>
                                                     </cells>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="49.5"/>
-                                                    </variation>
                                                     <connections>
                                                         <outlet property="dataSource" destination="BYZ-38-t0r" id="nyO-kD-O1B"/>
                                                         <outlet property="delegate" destination="BYZ-38-t0r" id="NLS-Oo-wts"/>
@@ -233,9 +230,6 @@
                                                             </view>
                                                         </collectionViewCell>
                                                     </cells>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="49.5"/>
-                                                    </variation>
                                                     <connections>
                                                         <outlet property="dataSource" destination="BYZ-38-t0r" id="Z9K-N7-lxd"/>
                                                         <outlet property="delegate" destination="BYZ-38-t0r" id="yiM-7q-Ybc"/>

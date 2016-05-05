@@ -44,7 +44,7 @@ class BookCaseStyleViewController: UIViewController {
 
         let row = book!.style - 1
         
-        self.backButton.hidden = (row == 0)
+        self.backButton.hidden = (row <= 0)
         self.forwardButton.hidden = (row == self.styleItems.count - 1)
 
         if let template = BookCaseStyleTemplate(rawValue: row + 1) {

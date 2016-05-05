@@ -61,6 +61,20 @@ enum ShaBookItem: Int {
     case ShaBookStyle
 }
 
+class ShaStore {
+    var id: Int = 0
+    var name: String = ""
+    var image: NSURL?
+    var description: String = ""
+    
+    init (data: JSON) {
+        self.id = data["store_id"].intValue
+        self.name = data["store_name"].stringValue
+        self.image = NSURL(string: data["store_image"].stringValue)
+        self.description = data["description"].stringValue
+    }
+}
+
 class ShaAdminStore {
     var id: Int = 0
     var name: String = ""
@@ -113,7 +127,7 @@ class ShaUser {
     var firstName: String
     var lastName: String
     var picture: String
-    
+
     init(data: AnyObject) {
         self.firstName = data.valueForKey("first_name") as? String ?? ""
         self.lastName = data.valueForKey("last_name") as? String ?? ""
@@ -127,6 +141,10 @@ class ShaManager {
 
     var adminStores: [ShaAdminStore] = []
     var adminBooks: [ShaBook] = []
+    var recommendBooks: [ShaBook] = []
+    var historyStores: [ShaStore] = []
+    var popularStores: [ShaStore] = []
+    var latestStores: [ShaStore] = []
 
     var mrtStation: MRTStation?
     var user: ShaUser?
@@ -397,5 +415,43 @@ class ShaManager {
         }
 
         failure()
+    }
+
+    func getPopularStore(complete: () -> Void) {
+        
+        HttpManager.sharedInstance.request(
+            .HttpMethodGet,
+            path: "/stores",
+            param: ["order": "popular"],
+            success: { code, data in
+                self.popularStores.removeAll()
+
+                for store in data["data"].arrayValue {
+                    self.popularStores.append(ShaStore(data: store))
+                }
+            },
+            complete: {
+                complete()
+            }
+        )
+    }
+
+    func getLatestStore(complete: () -> Void) {
+
+        HttpManager.sharedInstance.request(
+            .HttpMethodGet,
+            path: "/stores",
+            param: ["order": "latest"],
+            success: { code, data in
+                self.latestStores.removeAll()
+
+                for store in data["data"].arrayValue {
+                    self.latestStores.append(ShaStore(data: store))
+                }
+            },
+            complete: {
+                complete()
+            }
+        )
     }
 }

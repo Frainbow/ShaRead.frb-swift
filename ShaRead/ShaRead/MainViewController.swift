@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 class MainViewController: UIViewController {
 
@@ -15,17 +16,38 @@ class MainViewController: UIViewController {
     
     var colWidth: CGFloat = 320
     var colHeight: CGFloat = 200
+    var reqCount: Int = 0
+    
+    enum SectionItem: Int {
+        case SectionRecommendBook = 0
+        case SectionHistory
+        case SectionPopularStore
+        case SectionLatestStore
+    }
 
-    let sectionTitleArray: [String] = [
-        "店長推薦書籍",
-        "最近瀏覽",
-        "熱門書店",
-        "最新書店"
+    let itemTitles: [SectionItem: String] = [
+        .SectionRecommendBook: "店長推薦書籍",
+        .SectionHistory: "最近瀏覽",
+        .SectionPopularStore: "熱門書店",
+        .SectionLatestStore: "最新書店"
     ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        dispatch_async(dispatch_get_main_queue(), {
+            let instance = ShaManager.sharedInstance
+            
+            if instance.popularStores.count == 0 {
+                self.getPopularStore()
+            }
+            
+            if instance.latestStores.count == 0 {
+                self.getLatestStore()
+            }
+        })
+
+        // config table view height
 
         let screenWidth: CGFloat = UIScreen.mainScreen().bounds.width
         let screenHeight: CGFloat = UIScreen.mainScreen().bounds.height
@@ -66,6 +88,40 @@ class MainViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Custom method
+
+    func getPopularStore() {
+
+        HUD.show(.Progress)
+        reqCount += 1
+        ShaManager.sharedInstance.getPopularStore({
+            self.requestComplete()
+        })
+    }
+
+    func getLatestStore() {
+
+        HUD.show(.Progress)
+        reqCount += 1
+        ShaManager.sharedInstance.getLatestStore({
+            self.requestComplete()
+        })
+    }
+
+    func requestComplete() {
+
+        dispatch_async(dispatch_get_main_queue(), {
+            self.reqCount -= 1
+
+            if self.reqCount <= 0 {
+                HUD.hide()
+                self.mainTableView.reloadData()
+            }
+        })
+    }
+    
+    // MARK: - IBAction
 
     @IBAction func searchBook(sender: AnyObject) {
         let storyboard = UIStoryboard(name: "Search", bundle: nil)
@@ -107,11 +163,16 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return sectionTitleArray.count
+        return itemTitles.count
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionTitleArray[section]
+        
+        if let item = SectionItem(rawValue: section) {
+            return itemTitles[item]
+        }
+        
+        return nil
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -123,12 +184,14 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let item = SectionItem(rawValue: indexPath.section)
 
-        if indexPath.section == 0 {
+        if item == .SectionRecommendBook {
             let cell = tableView.dequeueReusableCellWithIdentifier("BookTableViewCell", forIndexPath: indexPath) as! BookTableViewCell
 
             cell.bookFlowLayout.itemSize = CGSizeMake(colWidth, colHeight - 1)
             cell.bookCollectionView.tag = indexPath.section
+            //cell.reloadCollectionViewData()
 
             return cell
         } else {
@@ -136,6 +199,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 
             cell.storeFlowLayout.itemSize = CGSizeMake(colWidth, colHeight - 1)
             cell.storeCollectionView.tag = indexPath.section
+            //cell.reloadCollectionViewData()
 
             return cell
         }
@@ -145,15 +209,51 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let instance = ShaManager.sharedInstance
+        let item = SectionItem(rawValue: collectionView.tag)
+
+        if item == .SectionPopularStore {
+            return instance.popularStores.count
+        }
+        else if item == .SectionLatestStore {
+            return instance.latestStores.count
+        }
+
         return 5
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            collectionView.tag == 0 ? "BookCollectionViewCell" : "StoreCollectionViewCell",
-            forIndexPath: indexPath)
+        let instance = ShaManager.sharedInstance
+        let item = SectionItem(rawValue: collectionView.tag)
+        
+        if item == .SectionRecommendBook {
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+                "BookCollectionViewCell", forIndexPath: indexPath)
+            
+            return cell
+        }
 
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+            "StoreCollectionViewCell", forIndexPath: indexPath) as! StoreCollectionViewCell
+        
+        if item == .SectionPopularStore {
+            cell.mainLabel.text = instance.popularStores[indexPath.row].name
+            cell.descriptionLabel.text = instance.popularStores[indexPath.row].description
+            
+            if let url = instance.popularStores[indexPath.row].image {
+                cell.bannerImageView.sd_setImageWithURL(url)
+            }
+        }
+        else if item == .SectionLatestStore {
+            cell.mainLabel.text = instance.latestStores[indexPath.row].name
+            cell.descriptionLabel.text = instance.latestStores[indexPath.row].description
+
+            if let url = instance.latestStores[indexPath.row].image {
+                cell.bannerImageView.sd_setImageWithURL(url)
+            }
+        }
+        
         return cell
     }
     
