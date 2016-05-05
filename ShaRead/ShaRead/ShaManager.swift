@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyJSON
+import FBSDKCoreKit
 
 class MRTStationExit {
     var name: String
@@ -107,6 +108,20 @@ class ShaBook: ShaBookBase {
     }
 }
 
+class ShaUser {
+    var name: String
+    var firstName: String
+    var lastName: String
+    var picture: String
+    
+    init(data: AnyObject) {
+        self.firstName = data.valueForKey("first_name") as? String ?? ""
+        self.lastName = data.valueForKey("last_name") as? String ?? ""
+        self.name = data.valueForKey("name") as? String ?? ""
+        self.picture = data.valueForKey("picture")?.valueForKey("data")?.valueForKey("url") as? String ?? ""
+    }
+}
+
 class ShaManager {
     static let sharedInstance = ShaManager()
 
@@ -114,7 +129,9 @@ class ShaManager {
     var adminBooks: [ShaBook] = []
 
     var mrtStation: MRTStation?
+    var user: ShaUser?
     var authToken: String = ""
+
 
     func login(facebook_token: String, success: () -> Void, failure: () -> Void) {
 
@@ -124,13 +141,27 @@ class ShaManager {
             param: ["facebook_token": facebook_token],
             success: { code, data in
                 self.authToken = data["auth_token"].stringValue
-                success()
+                self.getFacebookUsername({
+                    success()
+                })
             },
             failure: { code, data in
                 self.authToken = ""
                 failure()
             }
         )
+    }
+
+    func getFacebookUsername(complete: () -> Void) {
+
+        FBSDKGraphRequest(graphPath: "me",
+            parameters: ["fields": "name, first_name, last_name, picture.type(large)"])
+        .startWithCompletionHandler({ (connection, result, error) -> Void in
+            if (error == nil) {
+                self.user = ShaUser(data: result)
+            }
+            complete()
+        })
     }
 
     func newAdminStore(store: ShaAdminStore, success: () -> Void, failure: () -> Void) {

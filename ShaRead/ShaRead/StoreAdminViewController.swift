@@ -24,8 +24,9 @@ class StoreAdminViewController: UIViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
-        bookTableView.rowHeight = UITableViewAutomaticDimension
-        bookTableView.estimatedRowHeight = 200
+        bookTableView.rowHeight = 100
+//        bookTableView.rowHeight = UITableViewAutomaticDimension
+//        bookTableView.estimatedRowHeight = 200
 
         if let footerView = bookTableView.tableFooterView {
             footerView.frame.size.height = 0

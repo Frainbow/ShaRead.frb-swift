@@ -11,14 +11,27 @@ import UIKit
 class StoreMemberViewController: UIViewController {
 
     @IBOutlet weak var sideContainerView: UIView!
-    
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+
     var previousTab: Int?
     var centerX: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let user = ShaManager.sharedInstance.user {
 
-        // Do any additional setup after loading the view.
+            if let url = NSURL(string: user.picture) {
+                avatarImageView.image = nil
+                avatarImageView.layer.cornerRadius = 50
+                avatarImageView.layer.masksToBounds = true
+                avatarImageView.layer.borderWidth = 2
+                avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
+                avatarImageView.sd_setImageWithURL(url)
+            }
+            nameLabel.text = user.name
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
