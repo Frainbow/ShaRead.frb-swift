@@ -15,28 +15,26 @@ protocol BookCategoryDelegate: class {
 
 enum BookCategoryTemplate: Int {
     case BookCategoryTemplateDefault = 1
+    case BookCategoryTemplateEnglish
+    case BookCategoryTemplateChinese
     case BookCategoryTemplateCustom
 }
 
 class BookCategoryViewController: UIViewController {
 
     @IBOutlet weak var categoryTableView: UITableView!
+    @IBOutlet weak var categoryPickerView: UIPickerView!
     @IBOutlet weak var pickerContainerView: UIView!
 
     weak var delegate: BookCategoryDelegate?
     weak var book: ShaBook?
     
     var customCategory: String = ""
-    
-    var template: BookCategoryTemplate = .BookCategoryTemplateDefault {
-        
-        didSet {
-            categoryTableView.reloadData()
-        }
-    }
-
+    var template: BookCategoryTemplate = .BookCategoryTemplateDefault
     var categoryItems: [BookCategoryTemplate: String] = [
         .BookCategoryTemplateDefault: "不分類",
+        .BookCategoryTemplateEnglish: "英文書",
+        .BookCategoryTemplateChinese: "中文書",
         .BookCategoryTemplateCustom: "自訂"
     ]
 
@@ -114,6 +112,11 @@ class BookCategoryViewController: UIViewController {
         }
     }
 
+    @IBAction func hidePicker(sender: AnyObject) {
+        categoryTableView.reloadData()
+        pickerContainerView.hidden = true
+    }
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -160,6 +163,9 @@ extension BookCategoryViewController: UITableViewDataSource, UITableViewDelegate
             c.delegate = self
             c.category = customCategory
         }
+        else if let c = cell as? BookCaseStyleTableViewCell {
+            c.styleLabel.text = book?.style
+        }
 
         return cell
     }
@@ -167,7 +173,16 @@ extension BookCategoryViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if indexPath.row == 0 {
+            self.view.endEditing(true)
+            categoryPickerView.selectRow(template.rawValue - 1, inComponent: 0, animated: false)
             pickerContainerView.hidden = false
+
+            // animation
+            let centerY = pickerContainerView.subviews[1].center.y
+            pickerContainerView.subviews[1].center.y += pickerContainerView.subviews[1].frame.height
+            UIView.animateWithDuration(0.3, animations: {
+                self.pickerContainerView.subviews[1].center.y = centerY
+            })
         }
     }
 }
@@ -194,6 +209,7 @@ extension BookCategoryViewController: UIPickerViewDataSource, UIPickerViewDelega
         
         if let template = BookCategoryTemplate(rawValue: row + 1) {
             self.template = template
+            self.categoryTableView.reloadData()
         }
         
         pickerContainerView.hidden = true
@@ -210,6 +226,6 @@ extension BookCategoryViewController: BookCustomCategoryDelegate {
 extension BookCategoryViewController: BookCaseStyleDelegate {
 
     func styleSaved() {
-
+        categoryTableView.reloadData()
     }
 }

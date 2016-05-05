@@ -9,10 +9,10 @@
 import UIKit
 import PKHUD
 
-enum BookCaseStyleTemplate: Int {
-    case BookCaseStyleGray = 1
-    case BookCaseStyleOrange
-    case BookCaseStyleGreen
+enum BookCaseStyleTemplate: String {
+    case BookCaseStyleGray = "灰色書櫃"
+    case BookCaseStyleOrange = "橘色書櫃"
+    case BookCaseStyleGreen = "綠色書櫃"
 }
 
 protocol BookCaseStyleDelegate: class {
@@ -40,31 +40,28 @@ class BookCaseStyleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // default value
+        let tplArray = Array(styleItems.keys)
+
+        styleLabel.text = tplArray[0].rawValue
         styleFlowLayout.itemSize = CGSizeMake(240, 240)
 
-        let row = book!.style - 1
-        
-        self.backButton.hidden = (row <= 0)
-        self.forwardButton.hidden = (row == self.styleItems.count - 1)
+        if let template = BookCaseStyleTemplate(rawValue: book!.style),
+            row = tplArray.indexOf({ $0 == template }) {
 
-        if let template = BookCaseStyleTemplate(rawValue: row + 1) {
-            switch template {
-            case .BookCaseStyleGray:
-                self.styleLabel.text = "灰色書櫃"
-            case .BookCaseStyleGreen:
-                self.styleLabel.text = "綠色書櫃"
-            case .BookCaseStyleOrange:
-                self.styleLabel.text = "橘色書櫃"
-            }
+            self.backButton.hidden = tplArray[0] == template
+            self.forwardButton.hidden = tplArray[tplArray.count - 1] == template
+            self.styleLabel.text = template.rawValue
+
+            dispatch_async(dispatch_get_main_queue(), {
+                var frame: CGRect = self.styleCollectionView.frame
+                
+                frame.origin.x = frame.size.width * (CGFloat(row))
+                frame.origin.y = 0
+
+                self.styleCollectionView.scrollRectToVisible(frame, animated: false)
+            })
         }
-
-        dispatch_async(dispatch_get_main_queue(), {
-            var frame: CGRect = self.styleCollectionView.frame
-            frame.origin.x = frame.size.width * (CGFloat(row))
-            frame.origin.y = 0
-
-            self.styleCollectionView.scrollRectToVisible(frame, animated: false)
-        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,14 +71,16 @@ class BookCaseStyleViewController: UIViewController {
     
     @IBAction func save(sender: AnyObject) {
 
+        let tplArray = Array(styleItems.keys)
+
         if let indexPath = getCurrentIndexPath(),
-            template = BookCaseStyleTemplate(rawValue: indexPath.row + 1),
             book = self.book {
-            
+
+            let template = tplArray[indexPath.row]
             let originalStyle = book.style
-            
+
             book.style = template.rawValue
-            
+
             HUD.show(.Progress)
             ShaManager.sharedInstance.updateAdminBook(book, column: [.ShaBookStyle],
                 success: {
@@ -119,9 +118,11 @@ extension BookCaseStyleViewController: UICollectionViewDataSource, UICollectionV
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StyleCell", forIndexPath: indexPath) as! BookCaseStyleCollectionViewCell
-        
-        if let template = BookCaseStyleTemplate(rawValue: indexPath.row + 1),
-            imageName = styleItems[template] {
+        let tplArray = Array(styleItems.keys)
+        let template = tplArray[indexPath.row]
+
+        if let imageName = styleItems[template] {
+
             cell.styleImageView.image = nil
             cell.styleImageView.image = UIImage(named: imageName)
         }
@@ -143,20 +144,14 @@ extension BookCaseStyleViewController: UICollectionViewDataSource, UICollectionV
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
 
         dispatch_async(dispatch_get_main_queue(), {
+
             if let indexPath = self.getCurrentIndexPath() {
+                let tplArray = Array(self.styleItems.keys)
+                let template = tplArray[indexPath.row]
+                
                 self.backButton.hidden = (indexPath.row == 0)
                 self.forwardButton.hidden = (indexPath.row == self.styleItems.count - 1)
-                
-                if let template = BookCaseStyleTemplate(rawValue: indexPath.row + 1) {
-                    switch template {
-                    case .BookCaseStyleGray:
-                        self.styleLabel.text = "灰色書櫃"
-                    case .BookCaseStyleGreen:
-                        self.styleLabel.text = "綠色書櫃"
-                    case .BookCaseStyleOrange:
-                        self.styleLabel.text = "橘色書櫃"
-                    }
-                }
+                self.styleLabel.text = template.rawValue
             }
         })
 

@@ -168,6 +168,11 @@ class StorePositionViewController: UIViewController {
         }
     }
 
+    @IBAction func hidePicker(sender: AnyObject) {
+        positionTableView.reloadData()
+        pickerContainerView.hidden = true
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -216,8 +221,36 @@ extension StorePositionViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        pickerContainerView.hidden = false
-        positionPickerView.reloadAllComponents()
+
+        if let station = ShaManager.sharedInstance.mrtStation?.station {
+
+            self.view.endEditing(true)
+
+            if let selectedStation = self.selectedStation,
+                selectedExit = self.selectedExit,
+                exitArray = station[selectedStation] {
+                let mtrArray = Array(station.keys)
+                let stationRow = mtrArray.indexOf({ $0 == selectedStation })
+                let exitRow = exitArray.indexOf({ $0.name == selectedExit.name })
+
+                if stationRow == nil || exitRow == nil {
+                    return
+                }
+
+                positionPickerView.selectRow(stationRow!, inComponent: 0, animated: false)
+                exitPickerView.reloadAllComponents()
+                exitPickerView.selectRow(exitRow!, inComponent: 0, animated: false)
+            }
+
+            pickerContainerView.hidden = false
+
+            // animation
+            let centerY = pickerContainerView.subviews[1].center.y
+            pickerContainerView.subviews[1].center.y += pickerContainerView.subviews[1].frame.height
+            UIView.animateWithDuration(0.3, animations: {
+                self.pickerContainerView.subviews[1].center.y = centerY
+            })
+        }
     }
 }
 
@@ -266,13 +299,13 @@ extension StorePositionViewController: UIPickerViewDataSource, UIPickerViewDeleg
             if pickerView.tag == 0 {
                 let arr = Array(station.keys)
                 selectedStation = arr[row]
-                selectedExit = nil
                 exitPickerView.reloadAllComponents()
+                exitPickerView.selectRow(0, inComponent: 0, animated: true)
+                selectedExit = station[selectedStation!]![0]
             } else if let s = selectedStation, exit = station[s] {
                 selectedExit = exit[row]
-                pickerContainerView.hidden = true
-                positionTableView.reloadData()
             }
+            positionTableView.reloadData()
         }
     }
 

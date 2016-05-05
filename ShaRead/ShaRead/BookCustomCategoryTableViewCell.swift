@@ -57,4 +57,7 @@ class BookCustomCategoryTableViewCell: UITableViewCell {
             delegate?.customCategoryChanged(textField.text!)
         }
     }
+    @IBAction func endOnExit(sender: AnyObject) {
+        self.resignFirstResponder()
+    }
 }

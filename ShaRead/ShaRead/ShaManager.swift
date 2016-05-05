@@ -109,7 +109,7 @@ class ShaBook: ShaBookBase {
     var comment: String = ""
     var status: String = ""
     var category: String = ""
-    var style: Int = 0
+    var style: String = ""
 
     override init(data: JSON) {
         super.init(data: data)
@@ -119,7 +119,7 @@ class ShaBook: ShaBookBase {
         self.comment = data["comment"].stringValue
         self.status = data["status"].stringValue
         self.category = data["category"].stringValue
-        self.style = data["style"].intValue
+        self.style = data["style"].stringValue
     }
 }
 
@@ -143,7 +143,15 @@ class ShaManager {
     var adminStores: [ShaAdminStore] = []
     var adminBooks: [ShaBook] = []
     var recommendBooks: [ShaBook] = []
-    var historyStores: [ShaStore] = []
+    var historyStores: [ShaStore] = [] {
+        didSet {
+            print(historyStores.count)
+            if historyStores.count > 10 {
+                historyStores.dropLast()
+            }
+            print(historyStores.count)
+        }
+    }
     var popularStores: [ShaStore] = []
     var latestStores: [ShaStore] = []
 
@@ -454,6 +462,10 @@ class ShaManager {
                 complete()
             }
         )
+    }
+    
+    func visitStore(store: ShaStore) {
+        // historyStores
     }
     
     func getStoreBooks(store: ShaStore, success: () -> Void, failure: () -> Void) {
