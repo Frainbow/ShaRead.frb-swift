@@ -258,7 +258,18 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        // TODO
-        self.performSegueWithIdentifier("ShowStoreDetail", sender: nil)
+
+        let instance = ShaManager.sharedInstance
+        let item = SectionItem(rawValue: collectionView.tag)
+        let controller = storyboard?.instantiateViewControllerWithIdentifier("StoreDetail") as! StoreViewController
+
+        if item == .SectionPopularStore {
+            controller.store = instance.popularStores[indexPath.row]
+        }
+        else if item == .SectionLatestStore {
+            controller.store = instance.latestStores[indexPath.row]
+        }
+
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }

@@ -14,43 +14,49 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="216" height="250"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shelf-wood" translatesAutoresizingMaskIntoConstraints="NO" id="TC7-pq-Srw">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TC7-pq-Srw">
                         <rect key="frame" x="0.0" y="0.0" width="216" height="250"/>
+                        <color key="backgroundColor" red="0.80392156862745101" green="0.80392156862745101" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Enr-HM-PGq">
-                        <rect key="frame" x="20" y="10" width="176" height="220"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Enr-HM-PGq">
+                        <rect key="frame" x="15" y="10" width="186" height="240"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Enr-HM-PGq" secondAttribute="height" multiplier="4:5" id="wBx-vH-rn7"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="wBx-vH-rn7"/>
+                            </mask>
+                        </variation>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gw8-Y8-fF5">
-                        <rect key="frame" x="20" y="190" width="176" height="40"/>
+                        <rect key="frame" x="15" y="220" width="186" height="30"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="書名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TyL-6P-mKg">
-                                <rect key="frame" x="0.0" y="0.0" width="176" height="20"/>
+                                <rect key="frame" x="0.0" y="0.0" width="186" height="15"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="NG2-x8-6Zj"/>
+                                    <constraint firstAttribute="height" constant="15" id="NG2-x8-6Zj"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 元" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MxF-jY-GTH">
-                                <rect key="frame" x="0.0" y="20" width="176" height="20"/>
+                                <rect key="frame" x="0.0" y="15" width="186" height="15"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="6nI-6Z-vM6"/>
+                                    <constraint firstAttribute="height" constant="15" id="6nI-6Z-vM6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.87843137250000003" green="0.050980392159999999" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.29019607843137257" green="0.29019607843137257" blue="0.29019607843137257" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="MxF-jY-GTH" secondAttribute="bottom" id="7qO-Gx-AX4"/>
                             <constraint firstAttribute="trailing" secondItem="MxF-jY-GTH" secondAttribute="trailing" id="ABg-P5-Qwv"/>
-                            <constraint firstAttribute="height" constant="40" id="OTe-qY-jK3"/>
+                            <constraint firstAttribute="height" constant="30" id="OTe-qY-jK3"/>
                             <constraint firstAttribute="trailing" secondItem="TyL-6P-mKg" secondAttribute="trailing" id="gR9-Cn-hXV"/>
                             <constraint firstAttribute="bottom" secondItem="TyL-6P-mKg" secondAttribute="bottom" id="iPf-uQ-Zrq"/>
                             <constraint firstItem="MxF-jY-GTH" firstAttribute="top" secondItem="TyL-6P-mKg" secondAttribute="bottom" id="s7I-8F-CZs"/>
@@ -68,25 +74,27 @@
             </view>
             <constraints>
                 <constraint firstItem="Gw8-Y8-fF5" firstAttribute="bottom" secondItem="Enr-HM-PGq" secondAttribute="bottom" id="0Uz-o6-KwU"/>
-                <constraint firstItem="Enr-HM-PGq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="0pZ-ah-Wlf"/>
+                <constraint firstItem="Enr-HM-PGq" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="0pZ-ah-Wlf"/>
                 <constraint firstItem="Gw8-Y8-fF5" firstAttribute="leading" secondItem="Enr-HM-PGq" secondAttribute="leading" id="8Vx-Eg-2v0"/>
                 <constraint firstAttribute="trailing" secondItem="TC7-pq-Srw" secondAttribute="trailing" id="ErN-9m-T5g"/>
                 <constraint firstItem="TC7-pq-Srw" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="F2e-FJ-zUe"/>
                 <constraint firstItem="TC7-pq-Srw" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Y7l-FG-wDq"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Enr-HM-PGq" secondAttribute="trailing" constant="10" id="ZuF-8d-56l"/>
-                <constraint firstItem="Enr-HM-PGq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="dKf-at-Tfa"/>
+                <constraint firstAttribute="trailing" secondItem="Enr-HM-PGq" secondAttribute="trailing" constant="15" id="ZuF-8d-56l"/>
+                <constraint firstItem="Enr-HM-PGq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="dKf-at-Tfa"/>
                 <constraint firstAttribute="bottom" secondItem="TC7-pq-Srw" secondAttribute="bottom" id="ijj-j1-zCD"/>
                 <constraint firstItem="Enr-HM-PGq" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" priority="750" id="oVF-MI-LZt"/>
                 <constraint firstItem="Gw8-Y8-fF5" firstAttribute="trailing" secondItem="Enr-HM-PGq" secondAttribute="trailing" id="qjx-nb-LTk"/>
                 <constraint firstItem="Enr-HM-PGq" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="tQ2-ie-v97"/>
-                <constraint firstAttribute="bottom" secondItem="Enr-HM-PGq" secondAttribute="bottom" constant="20" id="vb9-KI-VV1"/>
+                <constraint firstAttribute="bottom" secondItem="Enr-HM-PGq" secondAttribute="bottom" id="vb9-KI-VV1"/>
                 <constraint firstItem="Enr-HM-PGq" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" priority="750" id="y0u-2O-Pbe"/>
             </constraints>
             <size key="customSize" width="216" height="250"/>
+            <connections>
+                <outlet property="coverImageView" destination="Enr-HM-PGq" id="9GC-Yj-0aE"/>
+                <outlet property="nameLabel" destination="TyL-6P-mKg" id="9Sm-Ce-YaJ"/>
+                <outlet property="rentLabel" destination="MxF-jY-GTH" id="lsM-UH-v2b"/>
+            </connections>
             <point key="canvasLocation" x="216" y="312"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="Shelf-wood" width="11" height="189"/>
-    </resources>
 </document>

@@ -7,18 +7,36 @@
 //
 
 import UIKit
+import PKHUD
 
 class StoreViewController: UIViewController {
 
-    @IBOutlet weak var storeTableView: UITableView!
+    @IBOutlet weak var bannerImageView: UIImageView!
     @IBOutlet weak var avatarImageView: UIImageView!
-    
-    var shelfSize: CGFloat = 3
+    @IBOutlet weak var storeTableView: UITableView!
+
+    weak var store: ShaStore?
+
+    var shelfSize: CGSize?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let screenHeight = UIScreen.mainScreen().bounds.height
+        // init content
+        if let store = self.store {
+            bannerImageView.sd_setImageWithURL(store.image)
+        }
+
+        if store?.books.count == 0 {
+            getStoreBooks();
+        }
+
+        // config table view height
+
+        let screenWidth: CGFloat = UIScreen.mainScreen().bounds.width
+        let screenHeight: CGFloat = UIScreen.mainScreen().bounds.height
+
+        shelfSize = CGSizeMake(screenWidth / 3, 100)
 
         if let headerView = storeTableView.tableHeaderView {
             headerView.frame.size.height = screenHeight / 3
@@ -33,8 +51,8 @@ class StoreViewController: UIViewController {
 //        self.navigationController?.navigationBar.barTintColor = UIColor.orangeColor()
 //        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 
-        storeTableView.rowHeight = UITableViewAutomaticDimension
-        storeTableView.estimatedRowHeight = 200
+//        storeTableView.rowHeight = UITableViewAutomaticDimension
+//        storeTableView.estimatedRowHeight = 200
     }
     
     override func viewWillLayoutSubviews() {
@@ -46,6 +64,20 @@ class StoreViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Custom method
+    func getStoreBooks() {
+        
+        HUD.show(.Progress)
+        ShaManager.sharedInstance.getStoreBooks(store!,
+            success: {
+                HUD.hide()
+                self.storeTableView.reloadData()
+            },
+            failure: {
+                HUD.flash(.Error)
+            }
+        )
+    }
 
     /*
     // MARK: - Navigation
@@ -69,29 +101,49 @@ extension StoreViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 1 : 3 // TODO
+        return 1
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return section == 0 ? "" : "書籍清單"
     }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        if indexPath.section == 0 {
+            return 200
+        }
+
+        var count: Float = 0
+
+        if store != nil {
+            count = Float(store!.books.count)
+        }
+
+        return CGFloat(floor((count - 1) / 3) + 1) * shelfSize!.height
+    }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("StoreDescriptionCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier("StoreDescriptionCell", forIndexPath: indexPath) as! StoreDescriptionTableViewCell
+            
+            if let store = self.store {
+                cell.storeNameLabel.text = store.name
+                cell.descriptionLabel.text = store.description
+            }
 
             return cell
         }
         else {
             let cell = tableView.dequeueReusableCellWithIdentifier("ShelfTableViewCell", forIndexPath: indexPath) as! ShelfTableViewCell
-            
-            let screenWidth = UIScreen.mainScreen().bounds.width
-            let itemWidth: CGFloat = screenWidth / shelfSize
-            let itemHeight: CGFloat = cell.frame.height
+
+            let itemWidth: CGFloat = shelfSize!.width
+            let itemHeight: CGFloat = shelfSize!.height
 
             cell.shelfFlowLayout.itemSize = CGSizeMake(itemWidth, itemHeight)
-            
+            cell.shelfCollectionView.reloadData()
+
             return cell
         }
     }
@@ -100,11 +152,19 @@ extension StoreViewController: UITableViewDataSource, UITableViewDelegate {
 extension StoreViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Int(shelfSize)
+        return store?.books.count ?? 0
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ShelfCollectionViewCell", forIndexPath: indexPath) as! ShelfCollectionViewCell
+
+        if let book = self.store?.books[indexPath.row] {
+            if let url = NSURL(string: book.image) {
+                cell.coverImageView.sd_setImageWithURL(url)
+            }
+            cell.nameLabel.text = book.name
+            cell.rentLabel.text = String(book.rent)
+        }
 
         return cell
     }

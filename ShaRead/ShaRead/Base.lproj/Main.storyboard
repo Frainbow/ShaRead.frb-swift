@@ -324,7 +324,7 @@
         <!--書店-->
         <scene sceneID="yVm-eY-FjG">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="h1h-nG-wfs" customClass="StoreViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoreDetail" automaticallyAdjustsScrollViewInsets="NO" id="h1h-nG-wfs" customClass="StoreViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qRg-53-RAW"/>
                         <viewControllerLayoutGuide type="bottom" id="MVz-SY-NKD"/>
@@ -343,9 +343,6 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2ie-3a-J6t">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="0.0" y="0.0" width="240" height="103"/>
-                                            </variation>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserIcon" translatesAutoresizingMaskIntoConstraints="NO" id="t5d-X0-Pd0">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -414,7 +411,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoreDescriptionCell" rowHeight="159" id="asg-0f-tgE">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoreDescriptionCell" rowHeight="159" id="asg-0f-tgE" customClass="StoreDescriptionTableViewCell" customModule="ShaRead" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="asg-0f-tgE" id="dGF-2E-a4w">
@@ -432,36 +429,24 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="16" y="37" width="208" height="18"/>
-                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="關於書店" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPB-fA-v0n">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="16" y="63" width="208" height="21"/>
-                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="書店特色書店特色書店特色書店特色書店特色書店特色書店特色" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5M-Bk-NgU">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="16" y="92" width="208" height="21"/>
-                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wef-8q-cNL">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="171" y="7" width="24.5" height="21"/>
-                                                    </variation>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnX-mw-l6Q">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -477,8 +462,7 @@
                                                             <exclude reference="B1L-AR-e3Z"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="204" y="8" width="20" height="20"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="8YH-5b-i1i"/>
                                                             <include reference="B1L-AR-e3Z"/>
@@ -498,8 +482,7 @@
                                                             <exclude reference="C8v-J5-dGb"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="0.0" y="158" width="240" height="1"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="C8v-J5-dGb"/>
                                                         </mask>
@@ -610,6 +593,11 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="createDateLabel" destination="DsD-Tp-ere" id="UKd-hg-xe5"/>
+                                            <outlet property="descriptionLabel" destination="X5M-Bk-NgU" id="3rA-HW-wMu"/>
+                                            <outlet property="storeNameLabel" destination="3jJ-qM-o6R" id="YtC-sm-ves"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShelfTableViewCell" rowHeight="150" id="4a4-qp-QDZ" customClass="ShelfTableViewCell" customModule="ShaRead" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -631,8 +619,7 @@
                                                             <exclude reference="hL8-sY-nKT"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="150"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="hL8-sY-nKT"/>
                                                         </mask>
@@ -640,7 +627,8 @@
                                                 </view>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JJL-ex-CJo">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="f1D-gK-PBI">
+                                                    <color key="backgroundColor" red="0.81176470588235294" green="0.81176470588235294" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="f1D-gK-PBI">
                                                         <size key="itemSize" width="50" height="50"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -657,9 +645,6 @@
                                                             </view>
                                                         </collectionViewCell>
                                                     </cells>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="150"/>
-                                                    </variation>
                                                     <connections>
                                                         <outlet property="dataSource" destination="h1h-nG-wfs" id="f2Q-e8-g9M"/>
                                                         <outlet property="delegate" destination="h1h-nG-wfs" id="6Qa-Gf-y6u"/>
@@ -764,6 +749,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="avatarImageView" destination="t5d-X0-Pd0" id="l8e-oa-dKj"/>
+                        <outlet property="bannerImageView" destination="2ie-3a-J6t" id="SDv-sf-u5k"/>
                         <outlet property="storeTableView" destination="DFV-YS-6GG" id="QAf-hA-rus"/>
                         <segue destination="CI2-kR-H8g" kind="show" identifier="ShowBookDetail" id="6RC-dH-8ds"/>
                     </connections>
@@ -1497,7 +1483,7 @@
                                 <action selector="navBack:" destination="CI2-kR-H8g" id="eiX-3g-LTD"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="ListIcon" id="bCW-oZ-Gwe"/>
+                        <barButtonItem key="rightBarButtonItem" image="icon-cart" id="bCW-oZ-Gwe"/>
                     </navigationItem>
                     <connections>
                         <outlet property="bannerImageView" destination="w7z-7F-S0y" id="oqa-ky-cNN"/>
@@ -1628,9 +1614,6 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <nil key="highlightedColor"/>
-                                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="10" y="193.5" width="246.5" height="21"/>
-                                                        </variation>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.81176470590000005" green="0.81176470590000005" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -2018,7 +2001,6 @@
         <image name="Avatar" width="240" height="240"/>
         <image name="HeartsIcon" width="25" height="25"/>
         <image name="Left" width="25" height="25"/>
-        <image name="ListIcon" width="32" height="32"/>
         <image name="Star" width="25" height="25"/>
         <image name="UserIcon" width="32" height="32"/>
         <image name="exchange-icon" width="30" height="26"/>

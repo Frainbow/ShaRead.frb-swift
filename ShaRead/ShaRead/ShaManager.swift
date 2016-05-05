@@ -66,7 +66,8 @@ class ShaStore {
     var name: String = ""
     var image: NSURL?
     var description: String = ""
-    
+    var books: [ShaBook] = []
+
     init (data: JSON) {
         self.id = data["store_id"].intValue
         self.name = data["store_name"].stringValue
@@ -451,6 +452,27 @@ class ShaManager {
             },
             complete: {
                 complete()
+            }
+        )
+    }
+    
+    func getStoreBooks(store: ShaStore, success: () -> Void, failure: () -> Void) {
+
+        HttpManager.sharedInstance.request(
+            .HttpMethodGet,
+            path: "/stores/\(store.id)/books",
+            param: [:],
+            success: { code, data in
+                store.books.removeAll()
+
+                for book in data["data"].arrayValue {
+                    store.books.append(ShaBook(data: book))
+                }
+                
+                success()
+            },
+            failure: { code, data in
+                failure()
             }
         )
     }

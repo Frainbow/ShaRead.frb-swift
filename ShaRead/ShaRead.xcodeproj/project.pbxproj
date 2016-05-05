@@ -52,6 +52,7 @@
 		5BD1BB211CD9F474002031E6 /* MailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1BB201CD9F474002031E6 /* MailViewController.swift */; };
 		5BD1BB231CD9F6E3002031E6 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1BB221CD9F6E3002031E6 /* CartViewController.swift */; };
 		5BD1BB251CDA3E91002031E6 /* StoreMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1BB241CDA3E91002031E6 /* StoreMemberViewController.swift */; };
+		5BD1BB291CDB3A16002031E6 /* StoreDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1BB281CDB3A16002031E6 /* StoreDescriptionTableViewCell.swift */; };
 		5BED59AF1CBE18A0003D73AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59AE1CBE18A0003D73AD /* AppDelegate.swift */; };
 		5BED59B11CBE18A0003D73AD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED59B01CBE18A0003D73AD /* MainViewController.swift */; };
 		5BED59B41CBE18A0003D73AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BED59B21CBE18A0003D73AD /* Main.storyboard */; };
@@ -140,6 +141,7 @@
 		5BD1BB201CD9F474002031E6 /* MailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailViewController.swift; sourceTree = "<group>"; };
 		5BD1BB221CD9F6E3002031E6 /* CartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		5BD1BB241CDA3E91002031E6 /* StoreMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreMemberViewController.swift; sourceTree = "<group>"; };
+		5BD1BB281CDB3A16002031E6 /* StoreDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		5BED59AB1CBE18A0003D73AD /* ShaRead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShaRead.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BED59AE1CBE18A0003D73AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BED59B01CBE18A0003D73AD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				5B1350951CC77838004E1637 /* ShelfCollectionViewCell.swift */,
 				5B1350961CC77838004E1637 /* ShelfCollectionViewCell.xib */,
 				5BED5A281CC63138003D73AD /* ShelfTableViewCell.swift */,
+				5BD1BB281CDB3A16002031E6 /* StoreDescriptionTableViewCell.swift */,
 				5BED5A261CC6152F003D73AD /* StoreViewController.swift */,
 			);
 			name = Store;
@@ -709,6 +712,7 @@
 				5BD1BB1F1CD9C925002031E6 /* CalendarViewController.swift in Sources */,
 				5BD1BB231CD9F6E3002031E6 /* CartViewController.swift in Sources */,
 				5BD1BB111CD84F9F002031E6 /* BookCustomCategoryTableViewCell.swift in Sources */,
+				5BD1BB291CDB3A16002031E6 /* StoreDescriptionTableViewCell.swift in Sources */,
 				5BED59B71CBE18A0003D73AD /* ShaRead.xcdatamodeld in Sources */,
 				5BED5A271CC6152F003D73AD /* StoreViewController.swift in Sources */,
 				5BED59B11CBE18A0003D73AD /* MainViewController.swift in Sources */,

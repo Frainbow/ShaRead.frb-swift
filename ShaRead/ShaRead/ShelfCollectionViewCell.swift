@@ -9,6 +9,9 @@
 import UIKit
 
 class ShelfCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var coverImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var rentLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
