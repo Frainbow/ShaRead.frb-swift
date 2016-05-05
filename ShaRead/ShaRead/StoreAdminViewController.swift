@@ -215,4 +215,27 @@ extension StoreAdminViewController: UITableViewDataSource, UITableViewDelegate {
 
         self.navigationController?.pushViewController(controller, animated: true)
     }
+
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+
+        let instance = ShaManager.sharedInstance
+
+        if editingStyle == .Delete {
+
+            HUD.show(.Progress)
+            instance.deleteAdminBook(instance.adminBooks[indexPath.row],
+                success: {
+                    HUD.hide()
+                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                },
+                failure: {
+                    HUD.flash(.Error)
+                }
+            )
+        }
+    }
 }

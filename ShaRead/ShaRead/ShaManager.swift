@@ -344,4 +344,27 @@ class ShaManager {
             }
         )
     }
+
+    func deleteAdminBook(book: ShaBook, success: () -> Void, failure: () -> Void) {
+
+        if let index = self.adminBooks.indexOf({ $0.id == book.id }) {
+
+            HttpManager.sharedInstance.request(
+                .HttpMethodDelete,
+                path: "/books/\(book.id)?auth_token=\(authToken)",
+                param: [:],
+                success: { code, data in
+                    self.adminBooks.removeAtIndex(index)
+                    success()
+                },
+                failure: { code, data in
+                    failure()
+                }
+            )
+
+            return
+        }
+
+        failure()
+    }
 }
