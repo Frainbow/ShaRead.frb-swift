@@ -13,6 +13,8 @@ class StoreAdminViewController: UIViewController {
     
     @IBOutlet weak var bookTableView: UITableView!
     
+    var refreshControl: UIRefreshControl!
+
     var uploadBook: Bool = false
     
     override func viewDidLoad() {
@@ -23,6 +25,10 @@ class StoreAdminViewController: UIViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(StoreAdminViewController.refreshTable), forControlEvents: .ValueChanged)
+        bookTableView.addSubview(refreshControl)
 
         bookTableView.rowHeight = 100
 //        bookTableView.rowHeight = UITableViewAutomaticDimension
@@ -123,7 +129,9 @@ class StoreAdminViewController: UIViewController {
     func getAdminStore() {
         let instance = ShaManager.sharedInstance
 
-        HUD.show(.Progress)
+        if !refreshControl.refreshing {
+            HUD.show(.Progress)
+        }
 
         instance.getAdminStore(
             { // success
@@ -134,6 +142,7 @@ class StoreAdminViewController: UIViewController {
                         let controller = self.storyboard!
                             .instantiateViewControllerWithIdentifier("StoreNameConfig")
                         self.navigationController?.pushViewController(controller, animated: false)
+                        self.refreshControl.endRefreshing()
                         HUD.hide()
                         return
                     }
@@ -152,7 +161,9 @@ class StoreAdminViewController: UIViewController {
     func getAdminBook() {
         let instance = ShaManager.sharedInstance
 
-        HUD.show(.Progress)
+        if !refreshControl.refreshing {
+            HUD.show(.Progress)
+        }
         
         instance.getAdminBook(
             { // success
@@ -164,11 +175,13 @@ class StoreAdminViewController: UIViewController {
                         let controller = storyboard.instantiateViewControllerWithIdentifier("BookAdminController")
 
                         self.navigationController?.pushViewController(controller, animated: false)
+                        self.refreshControl.endRefreshing()
                         HUD.hide()
                         return
                     }
 
                     self.bookTableView.reloadData()
+                    self.refreshControl.endRefreshing()
                     HUD.hide()
                 }
             },
@@ -176,6 +189,10 @@ class StoreAdminViewController: UIViewController {
                 HUD.flash(.Error)
             }
         )
+    }
+
+    func refreshTable() {
+        getAdminStore()
     }
 }
 

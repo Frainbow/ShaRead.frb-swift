@@ -14,6 +14,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var searchButton: UIButton!
     
+    var refreshControl: UIRefreshControl!
+
     var colWidth: CGFloat = 320
     var colHeight: CGFloat = 200
     var reqCount: Int = 0
@@ -34,6 +36,10 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(MainViewController.refreshTable), forControlEvents: .ValueChanged)
+        mainTableView.addSubview(refreshControl)
 
         dispatch_async(dispatch_get_main_queue(), {
             let instance = ShaManager.sharedInstance
@@ -93,7 +99,10 @@ class MainViewController: UIViewController {
 
     func getPopularStore() {
 
-        HUD.show(.Progress)
+        if !refreshControl.refreshing {
+            HUD.show(.Progress)
+        }
+
         reqCount += 1
         ShaManager.sharedInstance.getPopularStore({
             self.requestComplete()
@@ -102,7 +111,10 @@ class MainViewController: UIViewController {
 
     func getLatestStore() {
 
-        HUD.show(.Progress)
+        if !refreshControl.refreshing {
+            HUD.show(.Progress)
+        }
+
         reqCount += 1
         ShaManager.sharedInstance.getLatestStore({
             self.requestComplete()
@@ -116,11 +128,17 @@ class MainViewController: UIViewController {
 
             if self.reqCount <= 0 {
                 HUD.hide()
+                self.refreshControl.endRefreshing()
                 self.mainTableView.reloadData()
             }
         })
     }
-    
+
+    func refreshTable() {
+        getPopularStore()
+        getLatestStore()
+    }
+
     // MARK: - IBAction
 
     @IBAction func searchBook(sender: AnyObject) {
