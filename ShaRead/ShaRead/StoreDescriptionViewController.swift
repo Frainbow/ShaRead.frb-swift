@@ -25,11 +25,16 @@ class StoreDescriptionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let stores = ShaManager.sharedInstance.adminStores
-        
+
         if stores.count != 0 {
             inputTextView.text = stores[0].description
+        }
+        
+        if inputTextView.text.characters.count == 0 {
+            // default text for demo
+            inputTextView.text = "閱讀共享，傳遞知識，讓家裡的書，不再只是書櫃上的裝飾品。"
         }
 
         inputTextView.becomeFirstResponder()

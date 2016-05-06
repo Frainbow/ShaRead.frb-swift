@@ -164,7 +164,9 @@ extension BookCategoryViewController: UITableViewDataSource, UITableViewDelegate
             c.category = customCategory
         }
         else if let c = cell as? BookCaseStyleTableViewCell {
-            c.styleLabel.text = book?.style
+            if book?.style.characters.count > 0 {
+                c.styleLabel.text = book?.style
+            }
         }
 
         return cell

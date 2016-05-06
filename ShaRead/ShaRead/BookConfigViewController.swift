@@ -135,6 +135,15 @@ class BookConfigViewController: UIViewController {
     @IBAction func navRoot(sender: AnyObject) {
         self.navigationController?.popToRootViewControllerAnimated(false)
     }
+
+    @IBAction func navBookAdmin(sender: AnyObject) {
+
+        if let controller = navigationController?.viewControllers[0] as? StoreAdminViewController {
+            controller.uploadBook = true
+        }
+
+        self.navigationController?.popToRootViewControllerAnimated(false)
+    }
 }
 
 extension BookConfigViewController: UITableViewDataSource, UITableViewDelegate {

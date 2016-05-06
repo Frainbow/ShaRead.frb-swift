@@ -320,7 +320,7 @@
                                                 </mask>
                                             </variation>
                                             <connections>
-                                                <action selector="navBack:" destination="Nmm-2H-nQC" eventType="touchUpInside" id="rjH-RW-yU9"/>
+                                                <action selector="navBookAdmin:" destination="Nmm-2H-nQC" eventType="touchUpInside" id="yYq-hf-zDL"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSM-1S-PwG">
