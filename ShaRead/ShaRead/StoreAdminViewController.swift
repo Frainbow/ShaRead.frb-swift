@@ -40,6 +40,8 @@ class StoreAdminViewController: UIViewController {
 
         if ShaManager.sharedInstance.adminStores.count == 0 {
             getAdminStore()
+        } else if ShaManager.sharedInstance.adminBooks.count == 0 {
+            getAdminBook()
         }
     }
     

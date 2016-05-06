@@ -209,7 +209,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 
             cell.bookFlowLayout.itemSize = CGSizeMake(colWidth, colHeight - 1)
             cell.bookCollectionView.tag = indexPath.section
-            //cell.reloadCollectionViewData()
+            cell.reloadCollectionViewData()
 
             return cell
         } else {
@@ -217,7 +217,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 
             cell.storeFlowLayout.itemSize = CGSizeMake(colWidth, colHeight - 1)
             cell.storeCollectionView.tag = indexPath.section
-            //cell.reloadCollectionViewData()
+            cell.reloadCollectionViewData()
 
             return cell
         }
