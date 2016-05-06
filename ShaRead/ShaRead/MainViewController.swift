@@ -22,14 +22,14 @@ class MainViewController: UIViewController {
     
     enum SectionItem: Int {
         case SectionRecommendBook = 0
-        case SectionHistory
+//        case SectionHistory
         case SectionPopularStore
         case SectionLatestStore
     }
 
     let itemTitles: [SectionItem: String] = [
         .SectionRecommendBook: "店長推薦書籍",
-        .SectionHistory: "最近瀏覽",
+//        .SectionHistory: "最近瀏覽",
         .SectionPopularStore: "熱門書店",
         .SectionLatestStore: "最新書店"
     ]
@@ -43,6 +43,10 @@ class MainViewController: UIViewController {
 
         dispatch_async(dispatch_get_main_queue(), {
             let instance = ShaManager.sharedInstance
+            
+            if instance.recommendBooks.count == 0 {
+                self.getRecommendBook()
+            }
             
             if instance.popularStores.count == 0 {
                 self.getPopularStore()
@@ -96,6 +100,18 @@ class MainViewController: UIViewController {
     }
     
     // MARK: - Custom method
+    
+    func getRecommendBook() {
+
+        if !refreshControl.refreshing {
+            HUD.show(.Progress)
+        }
+
+        reqCount += 1
+        ShaManager.sharedInstance.getRecommendBook({
+            self.requestComplete()
+        })
+    }
 
     func getPopularStore() {
 
@@ -135,6 +151,7 @@ class MainViewController: UIViewController {
     }
 
     func refreshTable() {
+        getRecommendBook()
         getPopularStore()
         getLatestStore()
     }
@@ -230,14 +247,20 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let instance = ShaManager.sharedInstance
         let item = SectionItem(rawValue: collectionView.tag)
 
-        if item == .SectionPopularStore {
+        if item == .SectionRecommendBook {
+            return instance.recommendBooks.count
+        }
+//        else if item == .SectionHistory {
+//            return instance.historyStores.count
+//        }
+        else if item == .SectionPopularStore {
             return instance.popularStores.count
         }
         else if item == .SectionLatestStore {
             return instance.latestStores.count
         }
 
-        return 5
+        return 0
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -247,7 +270,14 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         if item == .SectionRecommendBook {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-                "BookCollectionViewCell", forIndexPath: indexPath)
+                "BookCollectionViewCell", forIndexPath: indexPath) as! BookCollectionViewCell
+            
+            cell.mainLabel.text = instance.recommendBooks[indexPath.row].name
+            cell.descriptionLabel.text = instance.recommendBooks[indexPath.row].comment
+            
+            if let url = NSURL(string: instance.recommendBooks[indexPath.row].image) {
+                cell.bannerImageView.sd_setImageWithURL(url)
+            }
             
             return cell
         }
@@ -279,15 +309,25 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
 
         let instance = ShaManager.sharedInstance
         let item = SectionItem(rawValue: collectionView.tag)
-        let controller = storyboard?.instantiateViewControllerWithIdentifier("StoreDetail") as! StoreViewController
+        
 
-        if item == .SectionPopularStore {
-            controller.store = instance.popularStores[indexPath.row]
-        }
-        else if item == .SectionLatestStore {
-            controller.store = instance.latestStores[indexPath.row]
-        }
+        if item == .SectionRecommendBook {
+            let controller = storyboard?.instantiateViewControllerWithIdentifier("BookDetail") as! BookTableViewController
 
-        self.navigationController?.pushViewController(controller, animated: true)
+            controller.book = instance.recommendBooks[indexPath.row]            
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+        else {
+            let controller = storyboard?.instantiateViewControllerWithIdentifier("StoreDetail") as! StoreViewController
+
+            if item == .SectionPopularStore {
+                controller.store = instance.popularStores[indexPath.row]
+            }
+            else if item == .SectionLatestStore {
+                controller.store = instance.latestStores[indexPath.row]
+            }
+            
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }

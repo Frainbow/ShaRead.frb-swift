@@ -468,6 +468,25 @@ class ShaManager {
         // historyStores
     }
     
+    func getRecommendBook(complete: () -> Void) {
+
+        HttpManager.sharedInstance.request(
+            .HttpMethodGet,
+            path: "/books",
+            param: ["order": "recommend"],
+            success: { code, data in
+                self.recommendBooks.removeAll()
+                
+                for book in data["data"].arrayValue {
+                    self.recommendBooks.append(ShaBook(data: book))
+                }
+            },
+            complete: {
+                complete()
+            }
+        )
+    }
+    
     func getStoreBooks(store: ShaStore, success: () -> Void, failure: () -> Void) {
 
         HttpManager.sharedInstance.request(

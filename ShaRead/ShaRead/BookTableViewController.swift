@@ -12,6 +12,8 @@ class BookTableViewController: UITableViewController {
 
     @IBOutlet weak var bannerImageView: UIImageView!
 
+    weak var book: ShaBook?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

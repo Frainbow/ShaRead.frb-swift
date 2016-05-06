@@ -11,7 +11,7 @@ import UIKit
 class BookCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var shadowView: UIView!
-    @IBOutlet weak var bannerImageView: UIView!
+    @IBOutlet weak var bannerImageView: UIImageView!
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -19,6 +19,7 @@ class BookCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        bannerImageView.clipsToBounds = true
         avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
         
         shadowView.layer.masksToBounds = false
