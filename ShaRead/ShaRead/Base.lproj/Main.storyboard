@@ -1504,13 +1504,61 @@
                     <view key="view" contentMode="scaleToFill" id="YdQ-WI-TiC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="construction" translatesAutoresizingMaskIntoConstraints="NO" id="qQt-cA-gIF">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="qQt-cA-gIF" secondAttribute="trailing" constant="40" id="1qs-uQ-wrq"/>
+                            <constraint firstItem="Kb2-uc-gXk" firstAttribute="top" secondItem="qQt-cA-gIF" secondAttribute="bottom" constant="40" id="4VV-Oq-Pvd"/>
+                            <constraint firstItem="qQt-cA-gIF" firstAttribute="centerY" secondItem="YdQ-WI-TiC" secondAttribute="centerY" id="5Mu-15-Y4W"/>
+                            <constraint firstItem="qQt-cA-gIF" firstAttribute="leading" secondItem="YdQ-WI-TiC" secondAttribute="leading" constant="40" id="5Q8-fd-GKp"/>
+                            <constraint firstItem="qQt-cA-gIF" firstAttribute="height" secondItem="YdQ-WI-TiC" secondAttribute="height" multiplier="1:2" id="IhE-1f-dPn"/>
+                            <constraint firstItem="qQt-cA-gIF" firstAttribute="height" secondItem="YdQ-WI-TiC" secondAttribute="height" multiplier="1:2" id="SBd-P0-gHc"/>
+                            <constraint firstItem="qQt-cA-gIF" firstAttribute="centerX" secondItem="YdQ-WI-TiC" secondAttribute="centerX" id="Tcp-5j-V9m"/>
+                            <constraint firstItem="qQt-cA-gIF" firstAttribute="width" secondItem="YdQ-WI-TiC" secondAttribute="width" multiplier="2:3" id="lKG-mo-jSb"/>
+                            <constraint firstItem="qQt-cA-gIF" firstAttribute="top" secondItem="0dm-P5-vcE" secondAttribute="bottom" constant="40" id="mZH-Ec-wGF"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="qQt-cA-gIF"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="1qs-uQ-wrq"/>
+                                <exclude reference="5Mu-15-Y4W"/>
+                                <exclude reference="5Q8-fd-GKp"/>
+                                <exclude reference="IhE-1f-dPn"/>
+                                <exclude reference="SBd-P0-gHc"/>
+                                <exclude reference="Tcp-5j-V9m"/>
+                                <exclude reference="lKG-mo-jSb"/>
+                                <exclude reference="mZH-Ec-wGF"/>
+                                <exclude reference="4VV-Oq-Pvd"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="qQt-cA-gIF"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="1qs-uQ-wrq"/>
+                                <include reference="5Mu-15-Y4W"/>
+                                <exclude reference="5Q8-fd-GKp"/>
+                                <include reference="IhE-1f-dPn"/>
+                                <exclude reference="SBd-P0-gHc"/>
+                                <include reference="Tcp-5j-V9m"/>
+                                <include reference="lKG-mo-jSb"/>
+                                <exclude reference="mZH-Ec-wGF"/>
+                                <exclude reference="4VV-Oq-Pvd"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="最愛" image="icon-like" id="Jdg-Wl-Ux9"/>
+                    <navigationItem key="navigationItem" title="最愛" id="GzX-mK-gRe"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tph-en-etf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1078.5" y="-512.25"/>
+            <point key="canvasLocation" x="1996.5" y="-512.25"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="TJI-dB-Am2">
@@ -1528,9 +1576,9 @@
                     </tabBar>
                     <connections>
                         <segue destination="pwY-nq-Mlf" kind="relationship" relationship="viewControllers" id="ETd-hF-cBE"/>
-                        <segue destination="Eyf-B3-s2b" kind="relationship" relationship="viewControllers" id="Obx-me-u1i"/>
-                        <segue destination="3eA-1d-UwF" kind="relationship" relationship="viewControllers" id="pxr-di-zEU"/>
-                        <segue destination="CTZ-5x-F3v" kind="relationship" relationship="viewControllers" id="XQA-xY-oMB"/>
+                        <segue destination="MNO-6p-jCf" kind="relationship" relationship="viewControllers" id="Obx-me-u1i"/>
+                        <segue destination="lam-Bi-nPQ" kind="relationship" relationship="viewControllers" id="pxr-di-zEU"/>
+                        <segue destination="Pjm-MK-ov1" kind="relationship" relationship="viewControllers" id="XQA-xY-oMB"/>
                         <segue destination="4v6-0m-K9g" kind="relationship" relationship="viewControllers" id="PTB-3P-ARa"/>
                     </connections>
                 </tabBarController>
@@ -1549,13 +1597,46 @@
                     <view key="view" contentMode="scaleToFill" id="Rca-JE-Q4N">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="construction" translatesAutoresizingMaskIntoConstraints="NO" id="nyb-5z-61W">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="nyb-5z-61W" firstAttribute="height" secondItem="Rca-JE-Q4N" secondAttribute="height" multiplier="1:2" id="4cR-Ok-p42"/>
+                            <constraint firstItem="nyb-5z-61W" firstAttribute="centerY" secondItem="Rca-JE-Q4N" secondAttribute="centerY" id="BiX-dk-pw0"/>
+                            <constraint firstItem="nyb-5z-61W" firstAttribute="centerX" secondItem="Rca-JE-Q4N" secondAttribute="centerX" id="EyC-Xs-8H2"/>
+                            <constraint firstItem="nyb-5z-61W" firstAttribute="width" secondItem="Rca-JE-Q4N" secondAttribute="width" multiplier="2:3" id="Fyf-nu-3Dp"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="nyb-5z-61W"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="4cR-Ok-p42"/>
+                                <exclude reference="BiX-dk-pw0"/>
+                                <exclude reference="EyC-Xs-8H2"/>
+                                <exclude reference="Fyf-nu-3Dp"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="nyb-5z-61W"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="4cR-Ok-p42"/>
+                                <include reference="BiX-dk-pw0"/>
+                                <include reference="EyC-Xs-8H2"/>
+                                <include reference="Fyf-nu-3Dp"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="收件箱" image="icon-mail" id="tYf-Sf-SQL"/>
+                    <navigationItem key="navigationItem" title="收件箱" id="X6S-mz-omE"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="feJ-w1-Gxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1078.5" y="160.5"/>
+            <point key="canvasLocation" x="1996.5" y="160.5"/>
         </scene>
         <!--會員-->
         <scene sceneID="Fto-4p-jb3">
@@ -1964,13 +2045,46 @@
                     <view key="view" contentMode="scaleToFill" id="taK-MZ-lR8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="construction" translatesAutoresizingMaskIntoConstraints="NO" id="R2h-Xc-Wm1">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="R2h-Xc-Wm1" firstAttribute="height" secondItem="taK-MZ-lR8" secondAttribute="height" multiplier="1:2" id="4ib-ez-reU"/>
+                            <constraint firstItem="R2h-Xc-Wm1" firstAttribute="centerX" secondItem="taK-MZ-lR8" secondAttribute="centerX" id="KBl-Nd-tEs"/>
+                            <constraint firstItem="R2h-Xc-Wm1" firstAttribute="centerY" secondItem="taK-MZ-lR8" secondAttribute="centerY" id="bz2-sd-MdT"/>
+                            <constraint firstItem="R2h-Xc-Wm1" firstAttribute="width" secondItem="taK-MZ-lR8" secondAttribute="width" multiplier="2:3" id="peF-tw-2AI"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="R2h-Xc-Wm1"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="4ib-ez-reU"/>
+                                <exclude reference="KBl-Nd-tEs"/>
+                                <exclude reference="bz2-sd-MdT"/>
+                                <exclude reference="peF-tw-2AI"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="R2h-Xc-Wm1"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="4ib-ez-reU"/>
+                                <include reference="KBl-Nd-tEs"/>
+                                <include reference="bz2-sd-MdT"/>
+                                <include reference="peF-tw-2AI"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="購物車" image="icon-cart" id="chq-lv-rr4"/>
+                    <navigationItem key="navigationItem" title="購物車" id="wcF-cu-sXi"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0kD-hv-46R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="681" y="895.5"/>
+            <point key="canvasLocation" x="1599" y="895.5"/>
         </scene>
         <!--首頁-->
         <scene sceneID="VOb-84-DmL">
@@ -1996,6 +2110,75 @@
             </objects>
             <point key="canvasLocation" x="1078.5" y="-1176"/>
         </scene>
+        <!--最愛-->
+        <scene sceneID="Wm4-Bt-q1Z">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MNO-6p-jCf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="最愛" image="icon-like" id="Jdg-Wl-Ux9"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3yt-4H-te8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.98431372549019602" green="0.43529411764705883" blue="0.29019607843137257" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Eyf-B3-s2b" kind="relationship" relationship="rootViewController" id="85D-g9-365"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Am-9U-jkp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078.5" y="-512.25"/>
+        </scene>
+        <!--收件箱-->
+        <scene sceneID="jkZ-03-C4w">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lam-Bi-nPQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="收件箱" image="icon-mail" id="tYf-Sf-SQL"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qbB-UV-bI0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.97254901960784312" green="0.3843137254901961" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3eA-1d-UwF" kind="relationship" relationship="rootViewController" id="l90-jm-sp1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ww6-ls-09c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078.5" y="160.5"/>
+        </scene>
+        <!--購物車-->
+        <scene sceneID="sEJ-8C-1iq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pjm-MK-ov1" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="購物車" image="icon-cart" id="chq-lv-rr4"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dDd-jq-RmT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.95686274509803926" green="0.33725490196078434" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CTZ-5x-F3v" kind="relationship" relationship="rootViewController" id="6A1-tB-ltk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uxa-eu-uyb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="681" y="895.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Avatar" width="240" height="240"/>
@@ -2003,6 +2186,7 @@
         <image name="Left" width="25" height="25"/>
         <image name="Star" width="25" height="25"/>
         <image name="UserIcon" width="32" height="32"/>
+        <image name="construction" width="812" height="880"/>
         <image name="exchange-icon" width="30" height="26"/>
         <image name="icon-card" width="30" height="20"/>
         <image name="icon-cart" width="30" height="30"/>

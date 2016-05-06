@@ -49,7 +49,6 @@ class StoreAdminViewController: UIViewController {
         let instance = ShaManager.sharedInstance
 
         if instance.adminStores.count != 0 {
-            navigationItem.title = instance.adminStores[0].name
             bookTableView.reloadData()
         }
 
@@ -150,7 +149,6 @@ class StoreAdminViewController: UIViewController {
                     }
 
                     // Get store books
-                    self.navigationItem.title = instance.adminStores[0].name
                     self.getAdminBook()
                 }
             },
