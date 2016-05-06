@@ -62,7 +62,11 @@ class BookNameViewController: UIViewController {
                 dispatch_async(dispatch_get_main_queue(), {
                     HUD.hide()
                     self.book = instance.adminBooks[instance.adminBooks.count - 1]
-                    self.performSegueWithIdentifier("ShowBookConfig", sender: nil)
+
+                    // Change UI Flow
+                    //self.performSegueWithIdentifier("ShowBookConfig", sender: nil)
+
+                    self.navigationController?.popViewControllerAnimated(true)
                 })
             },
             failure: {
