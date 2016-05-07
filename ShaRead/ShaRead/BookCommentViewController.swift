@@ -32,6 +32,13 @@ class BookCommentViewController: UIViewController {
                 inputTextView.text = book.comment
                 placeholder.hidden = true
             }
+   
+            if book.comment.characters.count == 0 && ShaDemo == true {
+                // default text for demo
+                book.comment = "必讀好書"
+                inputTextView.text = book.comment
+                placeholder.hidden = true
+            }
         }
 
         inputLengthLabel.text = "(\(inputTextView.text.characters.count) / \(maxInputLength))"

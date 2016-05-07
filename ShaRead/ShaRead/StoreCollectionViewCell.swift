@@ -21,6 +21,7 @@ class StoreCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
         
+        bannerImageView.clipsToBounds = true
         shadowView.layer.masksToBounds = false
         shadowView.layer.borderWidth = 1
         shadowView.layer.borderColor = UIColor.lightGrayColor().CGColor

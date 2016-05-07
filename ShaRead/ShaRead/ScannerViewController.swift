@@ -55,6 +55,17 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             failed()
             return
         }
+        
+        // open flashlight for demo
+        if (ShaDemo == true && videoCaptureDevice.hasTorch) {
+            do {
+                try videoCaptureDevice.lockForConfiguration()
+                try videoCaptureDevice.setTorchModeOnWithLevel(0.8)
+                videoCaptureDevice.unlockForConfiguration()
+            } catch {
+                
+            }
+        }
 
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession);
         previewLayer.frame = view.layer.bounds;
@@ -81,6 +92,25 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        // close flashlight for demo
+        if ShaDemo == true {
+
+            let videoCaptureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+
+            do {
+                try videoCaptureDevice.lockForConfiguration()
+
+                if (videoCaptureDevice.torchMode == AVCaptureTorchMode.On) {
+                    videoCaptureDevice.torchMode = AVCaptureTorchMode.Off
+                }
+                
+                videoCaptureDevice.unlockForConfiguration()
+
+            } catch {
+                
+            }
+        }
 
         if (captureSession?.running == true) {
             captureSession.stopRunning();
@@ -116,6 +146,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 
     /*
     // MARK: - Navigation

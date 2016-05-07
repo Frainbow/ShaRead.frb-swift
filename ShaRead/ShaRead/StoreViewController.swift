@@ -160,7 +160,7 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
 
         if let book = self.store?.books[indexPath.row] {
             if let url = NSURL(string: book.image) {
-                cell.coverImageView.sd_setImageWithURL(url)
+                cell.coverImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "default-cover"))
             }
             cell.nameLabel.text = book.name
             cell.rentLabel.text = String(book.rent)
