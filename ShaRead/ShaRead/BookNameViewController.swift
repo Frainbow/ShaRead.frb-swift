@@ -39,8 +39,10 @@ class BookNameViewController: UIViewController {
 
     @IBAction func endOnExit(sender: AnyObject) {
         self.resignFirstResponder()
-        
-        newShaBook("9789864340729")
+
+        if ShaDemo == true {
+            newShaBook("9789862168370")
+        }
     }
 
     @IBAction func showScanner(sender: AnyObject) {

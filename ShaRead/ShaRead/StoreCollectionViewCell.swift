@@ -19,9 +19,13 @@ class StoreCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
-        
         bannerImageView.clipsToBounds = true
+
+        avatarImageView.clipsToBounds = true
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
+        avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
+        avatarImageView.layer.borderWidth = 2
+
         shadowView.layer.masksToBounds = false
         shadowView.layer.borderWidth = 1
         shadowView.layer.borderColor = UIColor.lightGrayColor().CGColor

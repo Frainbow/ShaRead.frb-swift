@@ -68,6 +68,7 @@ class ShaStore {
     var name: String = ""
     var image: NSURL?
     var description: String = ""
+    var avatar: NSURL?
     var position = ShaStorePosition()
     var books: [ShaBook] = []
 
@@ -76,6 +77,7 @@ class ShaStore {
         self.name = data["store_name"].stringValue
         self.image = NSURL(string: data["store_image"].stringValue)
         self.description = data["description"].stringValue
+        self.avatar = NSURL(string: data["avatar"].stringValue)
     }
 }
 
@@ -113,6 +115,7 @@ class ShaBook: ShaBookBase {
     var status: String = ""
     var category: String = ""
     var style: String = ""
+    var avatar: NSURL?
 
     override init(data: JSON) {
         super.init(data: data)
@@ -123,6 +126,7 @@ class ShaBook: ShaBookBase {
         self.status = data["status"].stringValue
         self.category = data["category"].stringValue
         self.style = data["style"].stringValue
+        self.avatar = NSURL(string: data["avatar"].stringValue)
     }
 }
 

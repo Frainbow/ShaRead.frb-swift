@@ -20,7 +20,11 @@ class BookCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         bannerImageView.clipsToBounds = true
+
+        avatarImageView.clipsToBounds = true
         avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
+        avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
+        avatarImageView.layer.borderWidth = 2
         
         shadowView.layer.masksToBounds = false
         shadowView.layer.borderWidth = 1

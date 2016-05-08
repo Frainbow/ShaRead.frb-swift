@@ -278,7 +278,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             if let url = NSURL(string: instance.recommendBooks[indexPath.row].image) {
                 cell.bannerImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "shaRead-banner"))
             }
-            
+
+            if let url = instance.recommendBooks[indexPath.row].avatar {
+                cell.avatarImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "Avatar"))
+            }
+
             return cell
         }
 
@@ -292,6 +296,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             if let url = instance.popularStores[indexPath.row].image {
                 cell.bannerImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "shaRead-banner"))
             }
+
+            if let url = instance.popularStores[indexPath.row].avatar {
+                cell.avatarImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "Avatar"))
+            }
         }
         else if item == .SectionLatestStore {
             cell.mainLabel.text = instance.latestStores[indexPath.row].name
@@ -299,6 +307,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
 
             if let url = instance.latestStores[indexPath.row].image {
                 cell.bannerImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "shaRead-banner"))
+            }
+
+            if let url = instance.latestStores[indexPath.row].avatar {
+                cell.avatarImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "Avatar"))
             }
         }
         
