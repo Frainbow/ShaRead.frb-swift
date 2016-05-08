@@ -1,17 +1,18 @@
 //
-//  StoreDescriptionTableViewCell.swift
+//  BookDescriptionTableViewCell.swift
 //  ShaRead
 //
-//  Created by martin on 2016/5/5.
+//  Created by martin on 2016/5/8.
 //  Copyright © 2016年 Frainbow. All rights reserved.
 //
 
 import UIKit
 
-class StoreDescriptionTableViewCell: UITableViewCell {
+class BookDescriptionTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var rentLabel: UILabel!
+    @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -16,6 +16,7 @@ class ShelfCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        coverImageView.clipsToBounds = true
     }
 
 }

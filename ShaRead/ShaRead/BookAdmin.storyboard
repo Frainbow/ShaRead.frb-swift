@@ -1239,15 +1239,15 @@
                                         <exclude reference="Zjo-Nx-HE6"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <exclude reference="1Qq-5m-0SU"/>
-                                        <exclude reference="EZZ-Pf-VXT"/>
-                                        <exclude reference="ePh-QZ-Dpw"/>
-                                        <exclude reference="nGK-Xp-dpg"/>
                                         <exclude reference="08w-hS-5gI"/>
                                         <exclude reference="SLv-FU-MMG"/>
                                         <exclude reference="duX-ts-C5H"/>
                                         <exclude reference="g0D-9o-arD"/>
                                         <exclude reference="j3l-gX-3hc"/>
+                                        <exclude reference="1Qq-5m-0SU"/>
+                                        <exclude reference="EZZ-Pf-VXT"/>
+                                        <exclude reference="ePh-QZ-Dpw"/>
+                                        <exclude reference="nGK-Xp-dpg"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
@@ -1256,15 +1256,15 @@
                                         <include reference="Zjo-Nx-HE6"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <include reference="1Qq-5m-0SU"/>
-                                        <include reference="EZZ-Pf-VXT"/>
-                                        <include reference="ePh-QZ-Dpw"/>
-                                        <include reference="nGK-Xp-dpg"/>
                                         <include reference="08w-hS-5gI"/>
                                         <include reference="SLv-FU-MMG"/>
                                         <include reference="duX-ts-C5H"/>
                                         <exclude reference="g0D-9o-arD"/>
                                         <include reference="j3l-gX-3hc"/>
+                                        <include reference="1Qq-5m-0SU"/>
+                                        <include reference="EZZ-Pf-VXT"/>
+                                        <include reference="ePh-QZ-Dpw"/>
+                                        <include reference="nGK-Xp-dpg"/>
                                     </mask>
                                 </variation>
                             </view>

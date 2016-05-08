@@ -1,18 +1,18 @@
 //
-//  StoreDescriptionTableViewCell.swift
+//  ShelfCategoryTableViewCell.swift
 //  ShaRead
 //
-//  Created by martin on 2016/5/5.
+//  Created by martin on 2016/5/8.
 //  Copyright © 2016年 Frainbow. All rights reserved.
 //
 
 import UIKit
 
-class StoreDescriptionTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+class ShelfCategoryTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

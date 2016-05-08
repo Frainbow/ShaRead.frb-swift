@@ -10,7 +10,7 @@ import UIKit
 
 class BookTableViewController: UITableViewController {
 
-    @IBOutlet weak var bannerImageView: UIImageView!
+    @IBOutlet var bookTableHeaderView: BookTableHeaderView!
 
     weak var book: ShaBook?
     
@@ -22,52 +22,103 @@ class BookTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        // config table view height
+        
+        let screenWidth: CGFloat = UIScreen.mainScreen().bounds.width
+        let screenHeight: CGFloat = UIScreen.mainScreen().bounds.height
 
+        bookTableHeaderView.frame.size.width = screenWidth
+        tableView.tableHeaderView?.addSubview(bookTableHeaderView)
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
+
+        if let headerView = tableView.tableHeaderView {
+            headerView.frame.size.height = 380
+        }
+        
         if let footerView = tableView.tableFooterView {
             footerView.frame.size.height = 0
         }
-
+        
+        // init content
+        bookTableHeaderView.nameLabel.text = book?.name ?? ""
+        bookTableHeaderView.authorLabel.text = book?.author ?? ""
+        bookTableHeaderView.publisherLabel.text = book?.publisher ?? ""
+        bookTableHeaderView.publishDateLabel.text = ""
+        bookTableHeaderView.priceLabel.text = book?.price > 0 ? "\((book?.price)!) 元" : "? 元"
+        bookTableHeaderView.addListButton.layer.cornerRadius = 5
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            // workaround for ios8
+            self.tableView.reloadData()
+        })
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        sizeHeaderToFit()
-    }
-    
-    func sizeHeaderToFit() {
-
-        if let header = tableView.tableHeaderView {
-//            header.setNeedsLayout()
-//            header.layoutIfNeeded()
-            
-            let height: CGFloat = header.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
-            
-            if header.frame.size.height != height {
-                header.frame.size.height = height
-                tableView.tableHeaderView = header
-            }
-        }
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillLayoutSubviews() {
+
+        let screenHeight: CGFloat = UIScreen.mainScreen().bounds.height
+        
+        if let tabBar = tabBarController?.tabBar {
+            // workaround for expanding to tabbar item
+            tableView.frame.size.height = screenHeight + tabBar.frame.height
+        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 3
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell", forIndexPath: indexPath)
 
-        return cell
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("BookDescription", forIndexPath: indexPath) as! BookDescriptionTableViewCell
+
+            cell.rentLabel.text = book?.rent > 0 ? "\((book?.rent)!) 元" : "? 元"
+            cell.commentLabel.text = book?.comment ?? ""
+            cell.statusLabel.text = book?.status ?? ""
+
+            return cell
+        }
+        else if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("BookStoreDescription", forIndexPath: indexPath) as! BookStoreDescriptionTableViewCell
+            
+            return cell
+        }
+        else if indexPath.section == 2 {
+            
+            if indexPath.row == 0 {
+
+                let cell = tableView.dequeueReusableCellWithIdentifier("BookCommentForm", forIndexPath: indexPath) as! BookCommentFormTableViewCell
+                
+                return cell
+            } else {
+
+                let cell = tableView.dequeueReusableCellWithIdentifier("BookComment", forIndexPath: indexPath) as! BookCommentTableViewCell
+                
+                return cell
+            }
+        }
+        else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("", forIndexPath: indexPath)
+
+            return cell
+        }
     }
 
     /*

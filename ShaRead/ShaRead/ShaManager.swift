@@ -68,6 +68,7 @@ class ShaStore {
     var name: String = ""
     var image: NSURL?
     var description: String = ""
+    var position = ShaStorePosition()
     var books: [ShaBook] = []
 
     init (data: JSON) {

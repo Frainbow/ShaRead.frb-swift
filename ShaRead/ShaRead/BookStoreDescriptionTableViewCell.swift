@@ -1,21 +1,22 @@
 //
-//  StoreDescriptionTableViewCell.swift
+//  BookStoreDescriptionTableViewCell.swift
 //  ShaRead
 //
-//  Created by martin on 2016/5/5.
+//  Created by martin on 2016/5/8.
 //  Copyright © 2016年 Frainbow. All rights reserved.
 //
 
 import UIKit
 
-class StoreDescriptionTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+class BookStoreDescriptionTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var avatarImageView: UIImageView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        avatarImageView.layer.cornerRadius = 32
+        avatarImageView.clipsToBounds = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
