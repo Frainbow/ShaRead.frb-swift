@@ -136,9 +136,18 @@ class ShaBookBase {
     }
 }
 
+class ShaImage {
+    var id: Int
+    var image: NSURL?
+    
+    init(data: JSON) {
+        self.id = data["image_id"].intValue
+        self.image = NSURL(string: data["image_path"].stringValue)
+    }
+}
+
 class ShaBook: ShaBookBase {
     var id: Int = 0
-    var status_image: [String] = []
     var rent: Int = 0
     var comment: String = ""
     var status: String = ""
@@ -146,6 +155,7 @@ class ShaBook: ShaBookBase {
     var style: String = ""
     var avatar: NSURL?
     var store: ShaStore?
+    var images: [ShaImage] = []
 
     override init(data: JSON) {
         super.init(data: data)
@@ -157,9 +167,13 @@ class ShaBook: ShaBookBase {
         self.category = data["category"].stringValue
         self.style = data["style"].stringValue
         self.avatar = NSURL(string: data["avatar"].stringValue)
-        
+
         if data["store"].error == nil {
             self.store = ShaStore(data: data["store"])
+        }
+
+        for image in data["images"].arrayValue {
+            images.append(ShaImage(data: image))
         }
     }
 }
@@ -186,15 +200,6 @@ class ShaManager {
     var stores: [Int: ShaStore] = [:]
     var books: [Int: ShaBook] = [:]
     var recommendBooks: [ShaBook] = []
-    var historyStores: [ShaStore] = [] {
-        didSet {
-            print(historyStores.count)
-            if historyStores.count > 10 {
-                historyStores.dropLast()
-            }
-            print(historyStores.count)
-        }
-    }
     var popularStores: [ShaStore] = []
     var latestStores: [ShaStore] = []
 
@@ -334,6 +339,28 @@ class ShaManager {
                     } else {
                         failure()
                     }
+                },
+                failure: { (code, data) in
+                    failure()
+                }
+            )
+        } else {
+            failure()
+        }
+    }
+    
+    func uploadBookImage(book: ShaBook, image: UIImage, success: () -> Void, failure: () -> Void) {
+        let resizedImage = resizeImage(image, newWidth: 200)
+        
+        if let data = UIImageJPEGRepresentation(resizedImage, 0.1) {
+
+            HttpManager.sharedInstance.uploadData(
+                "/books/\(book.id)/images?auth_token=\(authToken)",
+                name: "book_image",
+                data: data,
+                success: { (code, data) in
+                    book.images.append(ShaImage(data: data["data"]))
+                    success()
                 },
                 failure: { (code, data) in
                     failure()
@@ -505,10 +532,6 @@ class ShaManager {
                 complete()
             }
         )
-    }
-    
-    func visitStore(store: ShaStore) {
-        // historyStores
     }
     
     func getRecommendBook(complete: () -> Void) {

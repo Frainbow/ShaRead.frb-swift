@@ -24,6 +24,7 @@ class BookConfig {
 class BookConfigViewController: UIViewController {
 
     @IBOutlet weak var configTableView: UITableView!
+    @IBOutlet weak var bannerImageView: UIImageView!
 
     var book: ShaBook?
     var configItems: [ShaBookItem: BookConfig]?
@@ -37,6 +38,8 @@ class BookConfigViewController: UIViewController {
         let rowHeight: CGFloat = 70
         var bodyHeight: CGFloat = 0
         var footerHeight: CGFloat = 0
+        
+        bannerImageView.clipsToBounds = true
 
         // init config items
         configItems = [
@@ -83,6 +86,12 @@ class BookConfigViewController: UIViewController {
         if let indexPath = configTableView.indexPathForSelectedRow {
             configTableView.deselectRowAtIndexPath(indexPath, animated: false)
         }
+
+        if book!.images.count > 0 {
+            if let url = book!.images[0].image {
+                bannerImageView.sd_setImageWithURL(url)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -123,7 +132,8 @@ class BookConfigViewController: UIViewController {
 
     @IBAction func adminBookPhoto(sender: AnyObject) {
 
-        if let controller = self.storyboard?.instantiateViewControllerWithIdentifier("BookPhoto") {
+        if let controller = self.storyboard?.instantiateViewControllerWithIdentifier("BookPhoto") as? BookPhotoViewController {
+            controller.book = book
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }
