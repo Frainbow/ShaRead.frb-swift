@@ -13,8 +13,8 @@ class StoreViewController: UIViewController {
 
     @IBOutlet weak var storeTableView: UITableView!
     @IBOutlet var storeTableHeaderView: StoreTableHeaderView!
-    
-    weak var store: ShaStore?
+
+    var store_id: Int = 0
 
     var shelfSize: CGSize?
 
@@ -32,16 +32,6 @@ class StoreViewController: UIViewController {
         storeTableView.rowHeight = UITableViewAutomaticDimension
         storeTableView.estimatedRowHeight = 200
 
-        // init content
-        if let store = self.store {
-            storeTableHeaderView.bannerImageView.sd_setImageWithURL(store.image)
-            storeTableHeaderView.storeNameLabel.text = store.name
-        }
-
-        if store?.books.count == 0 {
-            getStoreBooks();
-        }
-
         if let headerView = storeTableView.tableHeaderView {
             headerView.frame.size.height = screenHeight / 2
         }
@@ -55,6 +45,8 @@ class StoreViewController: UIViewController {
 //        self.navigationController?.navigationBar.barTintColor = UIColor.orangeColor()
 //        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
+        getStoreByID()
+
         dispatch_async(dispatch_get_main_queue(), {
             // workaround for ios8
             self.storeTableView.reloadData()
@@ -65,20 +57,36 @@ class StoreViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     // MARK: - Custom method
-    func getStoreBooks() {
+    func getStoreByID() {
         
         HUD.show(.Progress)
-        ShaManager.sharedInstance.getStoreBooks(store!,
+        ShaManager.sharedInstance.getStoreByID(store_id,
             success: {
-                HUD.hide()
-                self.storeTableView.reloadData()
+                dispatch_async(dispatch_get_main_queue(), {
+                    HUD.hide()
+                    self.reloadHeaderData()
+                    self.storeTableView.reloadData()
+                })
             },
             failure: {
                 HUD.flash(.Error)
             }
         )
+    }
+
+    func reloadHeaderData() {
+
+        if let store = ShaManager.sharedInstance.stores[store_id] {
+
+            storeTableHeaderView.bannerImageView.sd_setImageWithURL(store.image)
+            storeTableHeaderView.storeNameLabel.text = store.name
+
+            if let url = store.avatar {
+                storeTableHeaderView.avatarImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named:"Avatar"))
+            }
+        }
     }
 
     /*
@@ -120,8 +128,8 @@ extension StoreViewController: UITableViewDataSource, UITableViewDelegate {
 
             var count: Float = 0
 
-            if store != nil {
-                count = Float(store!.books.count)
+            if let store = ShaManager.sharedInstance.stores[store_id] {
+                count = Float(store.books.count)
             }
 
             return CGFloat(floor((count - 1) / 3) + 1) * shelfSize!.height
@@ -134,7 +142,8 @@ extension StoreViewController: UITableViewDataSource, UITableViewDelegate {
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("StoreDescriptionCell", forIndexPath: indexPath) as! StoreDescriptionTableViewCell
-            
+            let store = ShaManager.sharedInstance.stores[store_id]
+
             if indexPath.row == 0 {
                 cell.titleLabel?.text = "關於書店"
                 cell.descriptionLabel?.text = store?.description ?? ""
@@ -149,7 +158,8 @@ extension StoreViewController: UITableViewDataSource, UITableViewDelegate {
 
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("ShelfCategoryTableViewCell", forIndexPath: indexPath) as! ShelfCategoryTableViewCell
-
+            let store = ShaManager.sharedInstance.stores[store_id]
+            
             cell.amountLabel.text = "共 \(store?.books.count ?? 0) 本書"
 
             return cell
@@ -171,13 +181,15 @@ extension StoreViewController: UITableViewDataSource, UITableViewDelegate {
 extension StoreViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let store = ShaManager.sharedInstance.stores[store_id]
         return store?.books.count ?? 0
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ShelfCollectionViewCell", forIndexPath: indexPath) as! ShelfCollectionViewCell
-
-        if let book = self.store?.books[indexPath.row] {
+        let store = ShaManager.sharedInstance.stores[store_id]
+        
+        if let book = store?.books[indexPath.row] {
             if let url = NSURL(string: book.image) {
                 cell.coverImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "default-cover"))
             }

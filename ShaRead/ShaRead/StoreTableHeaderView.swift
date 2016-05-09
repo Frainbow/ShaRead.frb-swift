@@ -16,8 +16,12 @@ class StoreTableHeaderView: UIView {
     @IBOutlet weak var shopDateLabel: UILabel!
     
     override func awakeFromNib() {
+        bannerImageView.clipsToBounds = true
+
         avatarImageView.clipsToBounds = true
         avatarImageView.layer.cornerRadius = 70 / 2
+        avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
+        avatarImageView.layer.borderWidth = 2
     }
     
     /*

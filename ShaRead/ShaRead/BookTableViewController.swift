@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import PKHUD
 
 class BookTableViewController: UITableViewController {
 
     @IBOutlet var bookTableHeaderView: BookTableHeaderView!
 
-    weak var book: ShaBook?
+    var book_id: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,27 +29,24 @@ class BookTableViewController: UITableViewController {
         let screenWidth: CGFloat = UIScreen.mainScreen().bounds.width
         let screenHeight: CGFloat = UIScreen.mainScreen().bounds.height
 
+        bookTableHeaderView.bannerCollectionView.dataSource = self
+        bookTableHeaderView.bannerCollectionView.delegate = self
+        bookTableHeaderView.bannerFlowLayout.itemSize = CGSizeMake(screenWidth, 200)
         bookTableHeaderView.frame.size.width = screenWidth
         tableView.tableHeaderView?.addSubview(bookTableHeaderView)
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
 
         if let headerView = tableView.tableHeaderView {
-            headerView.frame.size.height = 380
+            headerView.frame.size.height = 200
         }
         
         if let footerView = tableView.tableFooterView {
             footerView.frame.size.height = 0
         }
-        
-        // init content
-        bookTableHeaderView.nameLabel.text = book?.name ?? ""
-        bookTableHeaderView.authorLabel.text = book?.author ?? ""
-        bookTableHeaderView.publisherLabel.text = book?.publisher ?? ""
-        bookTableHeaderView.publishDateLabel.text = ""
-        bookTableHeaderView.priceLabel.text = book?.price > 0 ? "\((book?.price)!) 元" : "? 元"
-        bookTableHeaderView.addListButton.layer.cornerRadius = 5
-        
+
+        getBookByID()
+
         dispatch_async(dispatch_get_main_queue(), {
             // workaround for ios8
             self.tableView.reloadData()
@@ -69,25 +67,59 @@ class BookTableViewController: UITableViewController {
             tableView.frame.size.height = screenHeight + tabBar.frame.height
         }
     }
+    
+    func getBookByID() {
+
+        HUD.show(.Progress)
+        ShaManager.sharedInstance.getBookByID(book_id,
+            success: {
+                dispatch_async(dispatch_get_main_queue(), {
+                    HUD.hide()
+                    self.reloadHeaderData()
+                    self.tableView.reloadData()
+                })
+            },
+            failure: {
+                HUD.flash(.Error)
+            }
+        )
+    }
+    
+    func reloadHeaderData() {
+
+    }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-    
+
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return section == 0 ? 0 : 10
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("BookBasic", forIndexPath: indexPath) as! BookBasicTableViewCell
+            let book = ShaManager.sharedInstance.books[book_id]
+
+            cell.nameLabel.text = book?.name ?? ""
+            cell.authorLabel.text = book?.author ?? ""
+            cell.publisherLabel.text = book?.publisher ?? ""
+            cell.publishDateLabel.text = book?.publish_date ?? ""
+            cell.priceLabel.text = book?.price > 0 ? "\((book?.price)!) 元" : "? 元"
+
+            return cell
+        }
+        else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier("BookDescription", forIndexPath: indexPath) as! BookDescriptionTableViewCell
+            let book = ShaManager.sharedInstance.books[book_id]
 
             cell.rentLabel.text = book?.rent > 0 ? "\((book?.rent)!) 元" : "? 元"
             cell.commentLabel.text = book?.comment ?? ""
@@ -95,17 +127,30 @@ class BookTableViewController: UITableViewController {
 
             return cell
         }
-        else if indexPath.section == 1 {
+        else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCellWithIdentifier("BookStoreDescription", forIndexPath: indexPath) as! BookStoreDescriptionTableViewCell
-            
+            let book = ShaManager.sharedInstance.books[book_id]
+
+            if let url = book?.store?.avatar {
+                cell.avatarImageView.sd_setImageWithURL(url)
+            }
+
+            cell.storeNameLabel.text = book?.store?.name ?? ""
+            cell.storeDescriptionLabel.text = book?.store?.description ?? ""
+
             return cell
         }
-        else if indexPath.section == 2 {
-            
+        else if indexPath.section == 3 {
+
             if indexPath.row == 0 {
 
                 let cell = tableView.dequeueReusableCellWithIdentifier("BookCommentForm", forIndexPath: indexPath) as! BookCommentFormTableViewCell
-                
+
+                if let avatar = ShaManager.sharedInstance.user?.picture,
+                    url = NSURL(string: avatar) {
+                    cell.avatarImageView.sd_setImageWithURL(url)
+                }
+
                 return cell
             } else {
 
@@ -170,3 +215,22 @@ class BookTableViewController: UITableViewController {
         self.navigationController?.popViewControllerAnimated(true)
     }
 }
+
+
+extension BookTableViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("BannerImageCell", forIndexPath: indexPath) as! BookImageCollectionViewCell
+        
+        cell.bookImageView.clipsToBounds = true
+        
+        return cell
+    }
+
+}
+

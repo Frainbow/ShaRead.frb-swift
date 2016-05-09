@@ -75,9 +75,20 @@ class ShaStore {
     init (data: JSON) {
         self.id = data["store_id"].intValue
         self.name = data["store_name"].stringValue
-        self.image = NSURL(string: data["store_image"].stringValue)
         self.description = data["description"].stringValue
-        self.avatar = NSURL(string: data["avatar"].stringValue)
+        self.position.address = data["position"]["address"].stringValue
+        
+        if data["store_image"].error == nil {
+            self.image = NSURL(string: data["store_image"].stringValue)
+        }
+        
+        if data["avatar"].error == nil {
+            self.avatar = NSURL(string: data["avatar"].stringValue)
+        }
+        
+        for book in data["books"].arrayValue {
+            self.books.append(ShaBook(data: book))
+        }
     }
 }
 
@@ -94,6 +105,7 @@ class ShaBookBase {
     var name: String
     var author: String
     var publisher: String
+    var publish_date: String
     var price: Int
     var image: String
     
@@ -102,8 +114,25 @@ class ShaBookBase {
         self.name = data["name"].stringValue
         self.author = data["author"].stringValue
         self.publisher = data["publisher"].stringValue
+        self.publish_date = ""
         self.price = data["price"].intValue
         self.image = data["image_path"].stringValue
+
+        self.publish_date = formatDate(data["publish_date"].stringValue)
+    }
+    
+    func formatDate(date: String) -> String {
+        let formattor = NSDateFormatter()
+
+        formattor.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formattor.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+
+        if let date = formattor.dateFromString(date) {
+            formattor.dateFormat = "yyyy/MM/dd"
+            return formattor.stringFromDate(date)
+        }
+
+        return ""
     }
 }
 
@@ -116,6 +145,7 @@ class ShaBook: ShaBookBase {
     var category: String = ""
     var style: String = ""
     var avatar: NSURL?
+    var store: ShaStore?
 
     override init(data: JSON) {
         super.init(data: data)
@@ -127,6 +157,10 @@ class ShaBook: ShaBookBase {
         self.category = data["category"].stringValue
         self.style = data["style"].stringValue
         self.avatar = NSURL(string: data["avatar"].stringValue)
+        
+        if data["store"].error == nil {
+            self.store = ShaStore(data: data["store"])
+        }
     }
 }
 
@@ -149,6 +183,8 @@ class ShaManager {
 
     var adminStores: [ShaAdminStore] = []
     var adminBooks: [ShaBook] = []
+    var stores: [Int: ShaStore] = [:]
+    var books: [Int: ShaBook] = [:]
     var recommendBooks: [ShaBook] = []
     var historyStores: [ShaStore] = [] {
         didSet {
@@ -494,6 +530,38 @@ class ShaManager {
         )
     }
     
+    func getStoreByID(id: Int, success: () -> Void, failure: () -> Void) {
+
+        HttpManager.sharedInstance.request(
+            .HttpMethodGet,
+            path: "/stores/\(id)",
+            param: [:],
+            success: { code, data in
+                self.stores[id] = ShaStore(data: data["data"])
+                success()
+            },
+            failure: { code, data in
+                failure()
+            }
+        )
+    }
+    
+    func getBookByID(id: Int, success: () -> Void, failure: () -> Void) {
+
+        HttpManager.sharedInstance.request(
+            .HttpMethodGet,
+            path: "/books/\(id)",
+            param: [:],
+            success: { code, data in
+                self.books[id] = ShaBook(data: data["data"])
+                success()
+            },
+            failure: { code, data in
+                failure()
+            }
+        )
+    }
+
     func getStoreBooks(store: ShaStore, success: () -> Void, failure: () -> Void) {
 
         HttpManager.sharedInstance.request(

@@ -9,14 +9,10 @@
 import UIKit
 
 class BookTableHeaderView: UIView {
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var publisherLabel: UILabel!
-    @IBOutlet weak var publishDateLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var addListButton: UIButton!
-    
+
+    @IBOutlet weak var bannerCollectionView: UICollectionView!
+    @IBOutlet weak var bannerFlowLayout: UICollectionViewFlowLayout!
+
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

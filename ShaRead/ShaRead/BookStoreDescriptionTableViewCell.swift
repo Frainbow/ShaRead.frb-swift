@@ -10,6 +10,8 @@ import UIKit
 
 class BookStoreDescriptionTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var storeNameLabel: UILabel!
+    @IBOutlet weak var storeDescriptionLabel: UILabel!
     @IBOutlet weak var avatarImageView: UIImageView!
 
     override func awakeFromNib() {

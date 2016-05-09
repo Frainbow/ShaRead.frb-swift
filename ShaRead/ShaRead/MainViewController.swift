@@ -326,19 +326,19 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         if item == .SectionRecommendBook {
             let controller = storyboard?.instantiateViewControllerWithIdentifier("BookDetail") as! BookTableViewController
 
-            controller.book = instance.recommendBooks[indexPath.row]            
+            controller.book_id = instance.recommendBooks[indexPath.row].id
             self.navigationController?.pushViewController(controller, animated: true)
         }
         else {
             let controller = storyboard?.instantiateViewControllerWithIdentifier("StoreDetail") as! StoreViewController
 
             if item == .SectionPopularStore {
-                controller.store = instance.popularStores[indexPath.row]
+                controller.store_id = instance.popularStores[indexPath.row].id
             }
             else if item == .SectionLatestStore {
-                controller.store = instance.latestStores[indexPath.row]
+                controller.store_id = instance.latestStores[indexPath.row].id
             }
-            
+
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }
