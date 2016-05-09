@@ -41,19 +41,33 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30 元" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="6ZD-og-BsZ">
+                                <rect key="frame" x="0.0" y="167" width="60" height="25"/>
+                                <color key="backgroundColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="RNP-UF-dxL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="chl-eA-qir" secondAttribute="bottom" constant="10" id="1ct-2F-SiO"/>
                             <constraint firstAttribute="trailing" secondItem="2cQ-JW-CRO" secondAttribute="trailing" id="8mx-QU-3bh"/>
                             <constraint firstItem="PpF-3a-cwj" firstAttribute="bottom" secondItem="2cQ-JW-CRO" secondAttribute="bottom" constant="25" id="9i5-BB-87I"/>
+                            <constraint firstItem="chl-eA-qir" firstAttribute="leading" secondItem="6ZD-og-BsZ" secondAttribute="trailing" constant="10" id="DIM-RF-DE5"/>
                             <constraint firstItem="HTU-Ic-Deq" firstAttribute="leading" secondItem="PpF-3a-cwj" secondAttribute="trailing" constant="10" id="JlP-vB-LcJ"/>
+                            <constraint firstItem="6ZD-og-BsZ" firstAttribute="leading" secondItem="9cs-hk-8YG" secondAttribute="leading" id="ZZG-2f-r0c"/>
                             <constraint firstItem="chl-eA-qir" firstAttribute="trailing" secondItem="HTU-Ic-Deq" secondAttribute="trailing" id="aEH-Hi-tkg"/>
                             <constraint firstItem="2cQ-JW-CRO" firstAttribute="leading" secondItem="9cs-hk-8YG" secondAttribute="leading" id="byX-vR-JNg"/>
                             <constraint firstItem="2cQ-JW-CRO" firstAttribute="height" secondItem="9cs-hk-8YG" secondAttribute="height" multiplier="3:5" id="eoH-Mx-mb1"/>
                             <constraint firstItem="PpF-3a-cwj" firstAttribute="leading" secondItem="9cs-hk-8YG" secondAttribute="leading" constant="10" id="h4z-Sw-dfH"/>
+                            <constraint firstItem="6ZD-og-BsZ" firstAttribute="top" secondItem="PpF-3a-cwj" secondAttribute="bottom" constant="10" id="hLJ-O9-9uo"/>
                             <constraint firstAttribute="trailing" secondItem="HTU-Ic-Deq" secondAttribute="trailing" constant="10" id="lgX-kX-Mfv"/>
                             <constraint firstItem="HTU-Ic-Deq" firstAttribute="top" secondItem="2cQ-JW-CRO" secondAttribute="bottom" constant="5" id="oBn-a2-4EA"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6ZD-og-BsZ" secondAttribute="bottom" constant="10" id="pWV-xT-4G0"/>
                             <constraint firstItem="2cQ-JW-CRO" firstAttribute="top" secondItem="9cs-hk-8YG" secondAttribute="top" id="vPZ-ZT-HxK"/>
                             <constraint firstItem="chl-eA-qir" firstAttribute="leading" secondItem="HTU-Ic-Deq" secondAttribute="leading" id="xVu-Uv-hpj"/>
                             <constraint firstItem="chl-eA-qir" firstAttribute="top" secondItem="HTU-Ic-Deq" secondAttribute="bottom" constant="5" id="yIi-iM-4iy"/>
@@ -74,6 +88,7 @@
                 <outlet property="bannerImageView" destination="2cQ-JW-CRO" id="ocs-dx-sNH"/>
                 <outlet property="descriptionLabel" destination="chl-eA-qir" id="Wwa-Bt-pHT"/>
                 <outlet property="mainLabel" destination="HTU-Ic-Deq" id="aHe-61-z5g"/>
+                <outlet property="rentLabel" destination="6ZD-og-BsZ" id="KKi-Ye-JHo"/>
                 <outlet property="shadowView" destination="9cs-hk-8YG" id="F74-Bs-Yx1"/>
             </connections>
             <point key="canvasLocation" x="334.5" y="421.5"/>

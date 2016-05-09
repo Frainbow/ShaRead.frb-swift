@@ -29,10 +29,8 @@ class StoreAdminViewController: UIViewController {
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(StoreAdminViewController.refreshTable), forControlEvents: .ValueChanged)
         bookTableView.addSubview(refreshControl)
-
-        bookTableView.rowHeight = 100
-//        bookTableView.rowHeight = UITableViewAutomaticDimension
-//        bookTableView.estimatedRowHeight = 200
+        bookTableView.rowHeight = UITableViewAutomaticDimension
+        bookTableView.estimatedRowHeight = 200
 
         if let footerView = bookTableView.tableFooterView {
             footerView.frame.size.height = 0
@@ -42,9 +40,14 @@ class StoreAdminViewController: UIViewController {
             getAdminStore()
         } else if ShaManager.sharedInstance.adminBooks.count == 0 {
             getAdminBook()
+        } else {
+            dispatch_async(dispatch_get_main_queue(), {
+                // workaround for ios8
+                self.bookTableView.reloadData()
+            })
         }
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         let instance = ShaManager.sharedInstance
 
@@ -183,6 +186,11 @@ class StoreAdminViewController: UIViewController {
                     self.bookTableView.reloadData()
                     self.refreshControl.endRefreshing()
                     HUD.hide()
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        // workaround for ios8
+                        self.bookTableView.reloadData()
+                    })
                 }
             },
             failure: {

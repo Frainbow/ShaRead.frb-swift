@@ -274,7 +274,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             
             cell.mainLabel.text = instance.recommendBooks[indexPath.row].name
             cell.descriptionLabel.text = instance.recommendBooks[indexPath.row].comment
-            
+
+            let rent = instance.recommendBooks[indexPath.row].rent
+            cell.rentLabel.text = rent > 0 ? "\(rent) 元" : "? 元"
+
             if let url = NSURL(string: instance.recommendBooks[indexPath.row].image) {
                 cell.bannerImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "shaRead-banner"))
             }
