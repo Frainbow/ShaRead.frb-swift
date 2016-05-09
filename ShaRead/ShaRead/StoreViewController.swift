@@ -84,7 +84,7 @@ class StoreViewController: UIViewController {
             storeTableHeaderView.storeNameLabel.text = store.name
 
             if let url = store.avatar {
-                storeTableHeaderView.avatarImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named:"Avatar"))
+                storeTableHeaderView.avatarImageView.sd_setImageWithURL(url)
             }
         }
     }
@@ -191,7 +191,7 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
         
         if let book = store?.books[indexPath.row] {
             if let url = NSURL(string: book.image) {
-                cell.coverImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "default-cover"))
+                cell.coverImageView.sd_setImageWithURL(url)
             }
             cell.nameLabel.text = book.name
             cell.rentLabel.text = book.rent == 0 ? "? 元" : "\(book.rent) 元"
