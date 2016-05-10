@@ -105,7 +105,7 @@
             </objects>
             <point key="canvasLocation" x="1260" y="346.5"/>
         </scene>
-        <!--Scanner View Controller-->
+        <!--掃描-->
         <scene sceneID="m4P-LV-txN">
             <objects>
                 <viewController storyboardIdentifier="SearchScannerController" id="YTa-lJ-mAF" customClass="ScannerViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
@@ -118,6 +118,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="掃描" id="zSd-4y-CvU">
+                        <barButtonItem key="leftBarButtonItem" image="Left" id="wqC-Qg-gTl">
+                            <connections>
+                                <action selector="navBack:" destination="YTa-lJ-mAF" id="TpE-zt-gWh"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="FlashLight" id="a75-3X-CjA">
+                            <connections>
+                                <action selector="toggleFlashLight:" destination="YTa-lJ-mAF" id="uR7-bV-A3h"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="c3q-RZ-cTI" kind="show" identifier="ShowScanResult" id="ZFy-AS-JmJ"/>
                     </connections>
@@ -240,6 +252,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="FlashLight" width="25" height="25"/>
         <image name="Left" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>

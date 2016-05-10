@@ -21,6 +21,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var previewLayer: AVCaptureVideoPreviewLayer!
     
     weak var delegate: ScannerDelegate?
+    
+    var flashLightOn: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,17 +57,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             failed()
             return
         }
-        
-        // open flashlight for demo
-        if (ShaDemo == true && videoCaptureDevice.hasTorch) {
-            do {
-                try videoCaptureDevice.lockForConfiguration()
-                try videoCaptureDevice.setTorchModeOnWithLevel(0.8)
-                videoCaptureDevice.unlockForConfiguration()
-            } catch {
-                
-            }
-        }
 
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession);
         previewLayer.frame = view.layer.bounds;
@@ -92,24 +83,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        // close flashlight for demo
-        if ShaDemo == true {
 
-            let videoCaptureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
-
-            do {
-                try videoCaptureDevice.lockForConfiguration()
-
-                if (videoCaptureDevice.torchMode == AVCaptureTorchMode.On) {
-                    videoCaptureDevice.torchMode = AVCaptureTorchMode.Off
-                }
-                
-                videoCaptureDevice.unlockForConfiguration()
-
-            } catch {
-                
-            }
+        if (flashLightOn) {
+            toggleFlashLight()
         }
 
         if (captureSession?.running == true) {
@@ -147,6 +123,35 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func toggleFlashLight(sender: AnyObject) {
+        toggleFlashLight()
+    }
+    
+    func toggleFlashLight() {
+        
+        let videoCaptureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        
+        if (videoCaptureDevice.hasTorch) {
+            
+            do {
+                try videoCaptureDevice.lockForConfiguration()
+                
+                if (videoCaptureDevice.torchMode == AVCaptureTorchMode.On) {
+                    videoCaptureDevice.torchMode = AVCaptureTorchMode.Off
+                    flashLightOn = false
+                }
+                else {
+                    try videoCaptureDevice.setTorchModeOnWithLevel(0.8)
+                    flashLightOn = true
+                }
+                
+                videoCaptureDevice.unlockForConfiguration()
+                
+            } catch {
+                
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -157,5 +162,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         // Pass the selected object to the new view controller.
     }
     */
+
+    @IBAction func navBack(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
 
 }
