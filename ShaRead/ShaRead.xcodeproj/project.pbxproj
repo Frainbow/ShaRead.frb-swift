@@ -39,6 +39,11 @@
 		5B1351091CD0C601004E1637 /* StoreAdminMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1351081CD0C601004E1637 /* StoreAdminMemberViewController.swift */; };
 		5BAF1C511CE02FC7008B9B4D /* BookImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF1C501CE02FC7008B9B4D /* BookImageCollectionViewCell.swift */; };
 		5BAF1C531CE060B3008B9B4D /* BookBasicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF1C521CE060B3008B9B4D /* BookBasicTableViewCell.swift */; };
+		5BAF1C551CE18F8F008B9B4D /* MessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF1C541CE18F8F008B9B4D /* MessageTableViewController.swift */; };
+		5BAF1C571CE19B49008B9B4D /* MessageFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF1C561CE19B49008B9B4D /* MessageFooterView.swift */; };
+		5BAF1C591CE19F99008B9B4D /* MessageSendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF1C581CE19F99008B9B4D /* MessageSendTableViewCell.swift */; };
+		5BAF1C5B1CE19FAD008B9B4D /* MessageReceiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF1C5A1CE19FAD008B9B4D /* MessageReceiveTableViewCell.swift */; };
+		5BAF1C5D1CE1A3F0008B9B4D /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF1C5C1CE1A3F0008B9B4D /* MessageTableViewCell.swift */; };
 		5BC0F8FA1CD24CB400B7A839 /* ShaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC0F8F91CD24CB400B7A839 /* ShaManager.swift */; };
 		5BD1BB091CD78FF7002031E6 /* StorePositionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1BB081CD78FF7002031E6 /* StorePositionTableViewCell.swift */; };
 		5BD1BB0B1CD79007002031E6 /* StoreExitPositionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1BB0A1CD79007002031E6 /* StoreExitPositionTableViewCell.swift */; };
@@ -137,6 +142,11 @@
 		5B1351081CD0C601004E1637 /* StoreAdminMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreAdminMemberViewController.swift; sourceTree = "<group>"; };
 		5BAF1C501CE02FC7008B9B4D /* BookImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		5BAF1C521CE060B3008B9B4D /* BookBasicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookBasicTableViewCell.swift; sourceTree = "<group>"; };
+		5BAF1C541CE18F8F008B9B4D /* MessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewController.swift; sourceTree = "<group>"; };
+		5BAF1C561CE19B49008B9B4D /* MessageFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageFooterView.swift; sourceTree = "<group>"; };
+		5BAF1C581CE19F99008B9B4D /* MessageSendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSendTableViewCell.swift; sourceTree = "<group>"; };
+		5BAF1C5A1CE19FAD008B9B4D /* MessageReceiveTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageReceiveTableViewCell.swift; sourceTree = "<group>"; };
+		5BAF1C5C1CE1A3F0008B9B4D /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		5BC0F8F91CD24CB400B7A839 /* ShaManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShaManager.swift; sourceTree = "<group>"; };
 		5BD1BB081CD78FF7002031E6 /* StorePositionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorePositionTableViewCell.swift; sourceTree = "<group>"; };
 		5BD1BB0A1CD79007002031E6 /* StoreExitPositionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreExitPositionTableViewCell.swift; sourceTree = "<group>"; };
@@ -381,6 +391,11 @@
 			isa = PBXGroup;
 			children = (
 				5BD1BB241CDA3E91002031E6 /* StoreMemberViewController.swift */,
+				5BAF1C561CE19B49008B9B4D /* MessageFooterView.swift */,
+				5BAF1C5A1CE19FAD008B9B4D /* MessageReceiveTableViewCell.swift */,
+				5BAF1C581CE19F99008B9B4D /* MessageSendTableViewCell.swift */,
+				5BAF1C5C1CE1A3F0008B9B4D /* MessageTableViewCell.swift */,
+				5BAF1C541CE18F8F008B9B4D /* MessageTableViewController.swift */,
 				5BED5A0C1CC4E75C003D73AD /* BookCollectionViewCell.swift */,
 				5BED5A0D1CC4E75C003D73AD /* BookCollectionViewCell.xib */,
 				5BED5A141CC5446A003D73AD /* BookTableViewCell.swift */,
@@ -723,8 +738,10 @@
 				5B1350941CC711F2004E1637 /* StoreTableViewCell.swift in Sources */,
 				5B1350971CC77838004E1637 /* ShelfCollectionViewCell.swift in Sources */,
 				5B1350EF1CCF3C64004E1637 /* BookStatusViewController.swift in Sources */,
+				5BAF1C571CE19B49008B9B4D /* MessageFooterView.swift in Sources */,
 				5BC0F8FA1CD24CB400B7A839 /* ShaManager.swift in Sources */,
 				5B1350FA1CCF8F56004E1637 /* HttpManager.swift in Sources */,
+				5BAF1C551CE18F8F008B9B4D /* MessageTableViewController.swift in Sources */,
 				5B1350A61CC8BBED004E1637 /* StoreItemView.swift in Sources */,
 				5B1350F51CCF3CEF004E1637 /* BookPhotoViewController.swift in Sources */,
 				5B13509E1CC8B0CB004E1637 /* BookItemView.swift in Sources */,
@@ -736,12 +753,14 @@
 				5BD1BB171CD98843002031E6 /* BookCaseStyleViewController.swift in Sources */,
 				5B1350B51CCD30B2004E1637 /* StoreConfigTableViewCell.swift in Sources */,
 				5B1350911CC6709B004E1637 /* StoreCollectionViewCell.swift in Sources */,
+				5BAF1C5D1CE1A3F0008B9B4D /* MessageTableViewCell.swift in Sources */,
 				5BD1BB0B1CD79007002031E6 /* StoreExitPositionTableViewCell.swift in Sources */,
 				5B1350D81CCDEB7C004E1637 /* StoreDescriptionViewController.swift in Sources */,
 				5B13509A1CC7DE68004E1637 /* SearchResultViewController.swift in Sources */,
 				5BD1BB211CD9F474002031E6 /* MailViewController.swift in Sources */,
 				5B1350DA1CCDEB90004E1637 /* StorePositionViewController.swift in Sources */,
 				5BD1BB1F1CD9C925002031E6 /* CalendarViewController.swift in Sources */,
+				5BAF1C591CE19F99008B9B4D /* MessageSendTableViewCell.swift in Sources */,
 				5BD1BB231CD9F6E3002031E6 /* CartViewController.swift in Sources */,
 				5BD1BB111CD84F9F002031E6 /* BookCustomCategoryTableViewCell.swift in Sources */,
 				5BD1BB291CDB3A16002031E6 /* StoreDescriptionTableViewCell.swift in Sources */,
@@ -752,6 +771,7 @@
 				5BAF1C511CE02FC7008B9B4D /* BookImageCollectionViewCell.swift in Sources */,
 				5BD1BB351CDF0F2D002031E6 /* BookCommentTableViewCell.swift in Sources */,
 				5BD1BB091CD78FF7002031E6 /* StorePositionTableViewCell.swift in Sources */,
+				5BAF1C5B1CE19FAD008B9B4D /* MessageReceiveTableViewCell.swift in Sources */,
 				5BED59AF1CBE18A0003D73AD /* AppDelegate.swift in Sources */,
 				5BD1BB311CDF0C88002031E6 /* BookDescriptionTableViewCell.swift in Sources */,
 				5B1350B21CCCF5B1004E1637 /* StoreConfigViewController.swift in Sources */,

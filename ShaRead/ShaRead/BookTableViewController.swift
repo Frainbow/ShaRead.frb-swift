@@ -214,6 +214,13 @@ class BookTableViewController: UITableViewController {
     @IBAction func navBack(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
+
+    @IBAction func showMessage(sender: AnyObject) {
+
+        if let controller = storyboard?.instantiateViewControllerWithIdentifier("MessageController") {
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
 }
 
 
