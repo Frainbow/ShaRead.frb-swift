@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol BookBasicDelegate: class {
+    func addItem()
+}
+
 class BookBasicTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
@@ -16,6 +20,8 @@ class BookBasicTableViewCell: UITableViewCell {
     @IBOutlet weak var publishDateLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var addListButton: UIButton!
+    
+    weak var delegate: BookBasicDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,4 +35,7 @@ class BookBasicTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func addItem(sender: AnyObject) {
+        delegate?.addItem()
+    }
 }

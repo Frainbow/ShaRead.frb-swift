@@ -612,7 +612,11 @@
                                 <action selector="navBack:" destination="h1h-nG-wfs" id="3i7-2g-M6I"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="HeartsIcon" id="sNB-1s-47w"/>
+                        <barButtonItem key="rightBarButtonItem" image="HeartsIcon" id="sNB-1s-47w">
+                            <connections>
+                                <action selector="addFavorite:" destination="h1h-nG-wfs" id="z8F-LD-5Sy"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="storeTableHeaderView" destination="eYr-Xt-2fz" id="2aO-ew-Qpj"/>
@@ -950,6 +954,9 @@
                                                     <include reference="tQQ-ns-5dl"/>
                                                 </mask>
                                             </variation>
+                                            <connections>
+                                                <action selector="addItem:" destination="cUC-Wv-evo" eventType="touchUpInside" id="G1l-el-hXC"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>

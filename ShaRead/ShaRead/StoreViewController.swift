@@ -103,6 +103,12 @@ class StoreViewController: UIViewController {
     @IBAction func navBack(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
+
+    @IBAction func addFavorite(sender: AnyObject) {
+        let controller = UIAlertController(title: "已將此書店\n加入我的最愛", message: "", preferredStyle: .Alert)
+        controller.addAction(UIAlertAction(title: "關閉", style: .Default, handler: nil))
+        presentViewController(controller, animated: true, completion: nil)
+    }
 }
 
 extension StoreViewController: UITableViewDataSource, UITableViewDelegate {

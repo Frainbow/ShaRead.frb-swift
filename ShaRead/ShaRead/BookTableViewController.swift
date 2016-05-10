@@ -114,6 +114,7 @@ class BookTableViewController: UITableViewController {
             cell.publisherLabel.text = book?.publisher ?? ""
             cell.publishDateLabel.text = book?.publish_date ?? ""
             cell.priceLabel.text = book?.price > 0 ? "\((book?.price)!) 元" : "? 元"
+            cell.delegate = self
 
             return cell
         }
@@ -255,3 +256,11 @@ extension BookTableViewController: UICollectionViewDataSource, UICollectionViewD
 
 }
 
+extension BookTableViewController: BookBasicDelegate {
+
+    func addItem() {
+        let controller = UIAlertController(title: "已將此書籍\n加入租借清單", message: "", preferredStyle: .Alert)
+        controller.addAction(UIAlertAction(title: "關閉", style: .Default, handler: nil))
+        presentViewController(controller, animated: true, completion: nil)
+    }
+}
