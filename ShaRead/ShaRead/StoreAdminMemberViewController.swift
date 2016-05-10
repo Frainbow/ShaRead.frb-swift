@@ -28,7 +28,7 @@ class StoreAdminMemberViewController: UIViewController {
                 avatarImageView.layer.masksToBounds = true
                 avatarImageView.layer.borderWidth = 2
                 avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
-                avatarImageView.sd_setImageWithURL(url)
+                avatarImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultAvatar)
             }
             nameLabel.text = user.name
         }

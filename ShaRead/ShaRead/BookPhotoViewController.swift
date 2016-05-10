@@ -33,8 +33,8 @@ class BookPhotoViewController: UIViewController {
         bannerLabel.text = "( \(book!.images.count) / \(maxImage) )"
 
         if book!.images.count > 0 {
-            if let url = book!.images[0].image {
-                bannerImageView.sd_setImageWithURL(url)
+            if let url = book!.images[0].url {
+                bannerImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultBanner)
             }
         }
     }
@@ -45,8 +45,9 @@ class BookPhotoViewController: UIViewController {
     }
     
     func reloadBanner() {
-        bannerImageView.sd_setImageWithURL(book!.images[book!.images.count - 1].image)
         bannerLabel.text = "( \(book!.images.count) / \(maxImage) )"
+
+        bannerImageView.sd_setImageWithURL(book!.images[book!.images.count - 1].url, placeholderImage: ShaImage.defaultBanner)
     }
 
     /*
@@ -80,7 +81,7 @@ extension BookPhotoViewController: UICollectionViewDataSource, UICollectionViewD
         if indexPath.row < book!.images.count {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("BookPhotoCell", forIndexPath: indexPath) as! BookPhotoCollectionViewCell
             
-            cell.bookImageView.sd_setImageWithURL(book!.images[indexPath.row].image)
+            cell.bookImageView.sd_setImageWithURL(book!.images[indexPath.row].url, placeholderImage: ShaImage.defaultBanner)
 
             return cell
         }
@@ -94,7 +95,7 @@ extension BookPhotoViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 
         if indexPath.row < book!.images.count {
-            bannerImageView.sd_setImageWithURL(book!.images[indexPath.row].image)
+            bannerImageView.sd_setImageWithURL(book!.images[indexPath.row].url, placeholderImage: ShaImage.defaultBanner)
         }
         else {
             let imagePickerController = UIImagePickerController()

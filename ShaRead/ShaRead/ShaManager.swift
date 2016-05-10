@@ -137,12 +137,16 @@ class ShaBookBase {
 }
 
 class ShaImage {
+    static let defaultBanner = UIImage(named: "shaRead-banner")
+    static let defaultCover = UIImage(named: "default-cover")
+    static let defaultAvatar = UIImage(named: "Avatar")
+
     var id: Int
-    var image: NSURL?
+    var url: NSURL?
     
     init(data: JSON) {
         self.id = data["image_id"].intValue
-        self.image = NSURL(string: data["image_path"].stringValue)
+        self.url = NSURL(string: data["image_path"].stringValue)
     }
 }
 

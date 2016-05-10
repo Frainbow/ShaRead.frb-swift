@@ -215,7 +215,7 @@ extension StoreAdminViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("StoreAdminBookCell", forIndexPath: indexPath) as! StoreAdminTableViewCell
 
         if let url = NSURL(string: books[indexPath.row].image) {
-            cell.bookImageView.sd_setImageWithURL(url)
+            cell.bookImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultCover)
         }
 
         let name = books[indexPath.row].name

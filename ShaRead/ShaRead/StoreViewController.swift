@@ -15,6 +15,7 @@ class StoreViewController: UIViewController {
     @IBOutlet var storeTableHeaderView: StoreTableHeaderView!
 
     var store_id: Int = 0
+    var selected_book: Int = 0
 
     var shelfSize: CGSize?
 
@@ -80,24 +81,24 @@ class StoreViewController: UIViewController {
 
         if let store = ShaManager.sharedInstance.stores[store_id] {
 
-            storeTableHeaderView.bannerImageView.sd_setImageWithURL(store.image)
+            storeTableHeaderView.bannerImageView.sd_setImageWithURL(store.image, placeholderImage: ShaImage.defaultBanner)
             storeTableHeaderView.storeNameLabel.text = store.name
 
             if let url = store.avatar {
-                storeTableHeaderView.avatarImageView.sd_setImageWithURL(url)
+                storeTableHeaderView.avatarImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultAvatar)
             }
         }
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if let controller = segue.destinationViewController as? BookTableViewController {
+            controller.book_id = selected_book
+        }
     }
-    */
 
     @IBAction func navBack(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -191,7 +192,7 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
         
         if let book = store?.books[indexPath.row] {
             if let url = NSURL(string: book.image) {
-                cell.coverImageView.sd_setImageWithURL(url)
+                cell.coverImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultCover)
             }
             cell.nameLabel.text = book.name
             cell.rentLabel.text = book.rent == 0 ? "? 元" : "\(book.rent) 元"
@@ -202,6 +203,11 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let sender = collectionView.cellForItemAtIndexPath(indexPath) {
+
+            if let store = ShaManager.sharedInstance.stores[store_id] {
+                selected_book = store.books[indexPath.row].id
+            }
+
             performSegueWithIdentifier("ShowBookDetail", sender: sender)
         }
     }

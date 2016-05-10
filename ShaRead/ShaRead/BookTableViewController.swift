@@ -86,7 +86,7 @@ class BookTableViewController: UITableViewController {
     }
     
     func reloadHeaderData() {
-
+        bookTableHeaderView.bannerCollectionView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -132,7 +132,7 @@ class BookTableViewController: UITableViewController {
             let book = ShaManager.sharedInstance.books[book_id]
 
             if let url = book?.store?.avatar {
-                cell.avatarImageView.sd_setImageWithURL(url)
+                cell.avatarImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultAvatar)
             }
 
             cell.storeNameLabel.text = book?.store?.name ?? ""
@@ -148,7 +148,7 @@ class BookTableViewController: UITableViewController {
 
                 if let avatar = ShaManager.sharedInstance.user?.picture,
                     url = NSURL(string: avatar) {
-                    cell.avatarImageView.sd_setImageWithURL(url)
+                    cell.avatarImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultAvatar)
                 }
 
                 return cell
@@ -220,6 +220,11 @@ class BookTableViewController: UITableViewController {
 extension BookTableViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+        if let book = ShaManager.sharedInstance.books[book_id] {
+            return book.images.count > 0 ? book.images.count : 1
+        }
+        
         return 1
     }
     
@@ -229,6 +234,15 @@ extension BookTableViewController: UICollectionViewDataSource, UICollectionViewD
         
         cell.bookImageView.clipsToBounds = true
         
+        if let book = ShaManager.sharedInstance.books[book_id] {
+
+            if book.images.count > 0 {
+                cell.bookImageView.sd_setImageWithURL(book.images[indexPath.row].url, placeholderImage: ShaImage.defaultBanner)
+            } else if let url = NSURL(string: book.image) {
+                cell.bookImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultBanner)
+            }
+        }
+
         return cell
     }
 

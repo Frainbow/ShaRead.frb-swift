@@ -277,13 +277,16 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
 
             let rent = instance.recommendBooks[indexPath.row].rent
             cell.rentLabel.text = rent > 0 ? "\(rent) 元" : "? 元"
-
-            if let url = NSURL(string: instance.recommendBooks[indexPath.row].image) {
-                cell.bannerImageView.sd_setImageWithURL(url)
+            
+            if instance.recommendBooks[indexPath.row].images.count > 0 {
+                cell.bannerImageView.sd_setImageWithURL(instance.recommendBooks[indexPath.row].images[0].url, placeholderImage: ShaImage.defaultBanner)
+            }
+            else if let url = NSURL(string: instance.recommendBooks[indexPath.row].image) {
+                cell.bannerImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultBanner)
             }
 
             if let url = instance.recommendBooks[indexPath.row].avatar {
-                cell.avatarImageView.sd_setImageWithURL(url)
+                cell.avatarImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultAvatar)
             }
 
             return cell
@@ -297,11 +300,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             cell.descriptionLabel.text = instance.popularStores[indexPath.row].description
             
             if let url = instance.popularStores[indexPath.row].image {
-                cell.bannerImageView.sd_setImageWithURL(url)
+                cell.bannerImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultBanner)
             }
 
             if let url = instance.popularStores[indexPath.row].avatar {
-                cell.avatarImageView.sd_setImageWithURL(url)
+                cell.avatarImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultAvatar)
             }
         }
         else if item == .SectionLatestStore {
@@ -309,11 +312,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             cell.descriptionLabel.text = instance.latestStores[indexPath.row].description
 
             if let url = instance.latestStores[indexPath.row].image {
-                cell.bannerImageView.sd_setImageWithURL(url)
+                cell.bannerImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultBanner)
             }
 
             if let url = instance.latestStores[indexPath.row].avatar {
-                cell.avatarImageView.sd_setImageWithURL(url)
+                cell.avatarImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultAvatar)
             }
         }
         

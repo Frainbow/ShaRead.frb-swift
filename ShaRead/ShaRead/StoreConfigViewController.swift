@@ -52,7 +52,7 @@ class StoreConfigViewController: UIViewController {
         if stores.count != 0 {
         
             if let url = stores[0].image {
-                storeImageView.sd_setImageWithURL(url)
+                storeImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultBanner)
             }
 
             configItems![.ShaAdminStoreDescription]?.saved = stores[0].description.characters.count > 0
@@ -215,7 +215,7 @@ extension StoreConfigViewController: UIImagePickerControllerDelegate, UINavigati
                         dispatch_async(dispatch_get_main_queue(), {
                             HUD.hide()
                             store.image = url
-                            self.storeImageView.sd_setImageWithURL(url)
+                            self.storeImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultBanner)
                             self.checkIsFinished()
                         })
                     },
