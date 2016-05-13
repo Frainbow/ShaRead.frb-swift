@@ -10,8 +10,6 @@ import Foundation
 import SwiftyJSON
 import FBSDKCoreKit
 
-let ShaDemo: Bool = true
-
 class MRTStationExit {
     var name: String
     var longitude: Float

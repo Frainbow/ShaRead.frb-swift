@@ -32,13 +32,6 @@ class BookStatusViewController: UIViewController {
                 inputTextView.text = book.status
                 placeholder.hidden = true
             }
-
-            if book.status.characters.count == 0 && ShaDemo == true {
-                // default text for demo
-                book.status = "九成新"
-                inputTextView.text = book.status
-                placeholder.hidden = true
-            }
         }
 
         inputLengthLabel.text = "(\(inputTextView.text.characters.count) / \(maxInputLength))"

@@ -31,11 +31,6 @@ class StoreDescriptionViewController: UIViewController {
         if stores.count != 0 {
             inputTextView.text = stores[0].description
         }
-        
-        if inputTextView.text.characters.count == 0 && ShaDemo == true {
-            // default text for demo
-            inputTextView.text = "閱讀共享，傳遞知識，讓家裡的書，不再只是書櫃上的裝飾品。"
-        }
 
         inputTextView.becomeFirstResponder()
         inputLengthLabel.text = "(\(inputTextView.text.characters.count ?? 0) / \(maxInputLength))"

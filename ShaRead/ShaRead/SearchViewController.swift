@@ -52,7 +52,8 @@ class SearchViewController: UIViewController {
     @IBAction func endOnExit(sender: AnyObject) {
         self.resignFirstResponder()
 
-        performSegueWithIdentifier("ShowSearchResult", sender: sender)
+        // TODO: Get search result from backend
+        // performSegueWithIdentifier("ShowSearchResult", sender: sender)
     }
 
     /*
