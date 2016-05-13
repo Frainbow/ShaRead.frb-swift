@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ShaMessage {
     var send: Bool
@@ -23,10 +24,11 @@ class MessageTableViewController: UITableViewController {
     @IBOutlet var tableHeaderView: UIView!
     @IBOutlet var tableFooterView: MessageFooterView!
 
-    var messages: [ShaMessage] = [
-        ShaMessage(send: true, message: "可以跟你約5/11星期三晚上 三創11樓拿書嗎？"),
-        ShaMessage(send: false, message: "可以！")
-    ]
+    var messages: [ShaMessage] = []
+    var roomID: String?
+    var isAdmin: Bool = false
+
+    weak var targetUser: ShaUser?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +68,8 @@ class MessageTableViewController: UITableViewController {
         tableView.tableHeaderView?.addSubview(tableHeaderView)
         tableView.tableFooterView?.addSubview(tableFooterView)
         tableView.rowHeight = screenHeight - navHeight - footerHeight
+        
+        initFirebase()
     }
     
     override func viewWillLayoutSubviews() {
@@ -84,6 +88,91 @@ class MessageTableViewController: UITableViewController {
 
     @IBAction func navBack(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
+    }
+
+    // MARK: - Custom method
+    func initFirebase() {
+        getRoomID()
+    }
+    
+    func getRoomID() {
+
+        guard let targetUser = self.targetUser else {
+            return
+        }
+
+        let rootRef = Firebase(url: ShaManager.sharedInstance.firebaseUrl)
+
+        rootRef
+        .childByAppendingPath("rooms")
+        .queryOrderedByChild("key")
+        .queryEqualToValue("\(targetUser.uid) - \(rootRef.authData.uid)")
+        .observeEventType(.Value, withBlock: { snapshot in
+
+            if snapshot.value is NSNull {
+                self.createRoom()
+            }
+            else {
+                let dic = snapshot.value as! NSDictionary
+                self.roomID = (dic.allKeys as! [String])[0]
+                self.observeMessage()
+            }
+        })
+    }
+
+    func createRoom() {
+
+        guard let targetUser = self.targetUser else {
+            return
+        }
+
+        let rootRef = Firebase(url: ShaManager.sharedInstance.firebaseUrl)
+
+        rootRef
+        .childByAppendingPath("rooms")
+        .childByAutoId()
+        .setValue(["key" : "\(targetUser.uid) - \(rootRef.authData.uid)"])
+    }
+
+    func observeMessage() {
+        
+        guard let roomID = self.roomID else {
+            return
+        }
+        
+        let rootRef = Firebase(url: ShaManager.sharedInstance.firebaseUrl)
+
+        rootRef
+        .childByAppendingPath("messages/\(roomID)")
+        .queryOrderedByChild("timestamp")
+        .observeEventType(.ChildAdded, withBlock: { snapshot in
+
+            let dic = snapshot.value as! NSDictionary
+            
+            self.messages.append(ShaMessage(
+                send: dic["admin"] as! Bool == self.isAdmin,
+                message: dic["message"] as! String))
+
+            self.tableView.reloadData()
+        })
+    }
+
+    func sendMessage(message: String) {
+
+        guard let roomID = self.roomID else {
+            return
+        }
+
+        let rootRef = Firebase(url: ShaManager.sharedInstance.firebaseUrl)
+
+        rootRef
+        .childByAppendingPath("messages/\(roomID)")
+        .childByAutoId()
+        .setValue([
+            "message": message,
+            "timestamp": NSDate().timeIntervalSince1970 * 1000,
+            "admin": isAdmin
+        ])
     }
 
     // MARK: - Table view data source
@@ -206,7 +295,6 @@ extension MessageTableViewController: MessageFooterDelegate {
     }
 
     func submitMessage(message: String) {
-        messages.append(ShaMessage(send: true, message: message.characters.count > 0 ? message : " "))
-        tableView.reloadData()
+        sendMessage(message.characters.count > 0 ? message : " ")
     }
 }

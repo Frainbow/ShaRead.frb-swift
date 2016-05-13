@@ -12,6 +12,7 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.11.0):
     - FBSDKCoreKit
+  - Firebase (2.5.1)
   - PKHUD (3.1.0)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
@@ -23,6 +24,7 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
+  - Firebase
   - PKHUD
   - SDWebImage
   - SwiftyJSON
@@ -33,10 +35,11 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
   FBSDKLoginKit: bade9fc78277764149ccc5bfaadbf13c83175c6a
   FBSDKShareKit: 2d1746144cfc8a9dbbd24997c34ee0471be51b6a
+  Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
   PKHUD: 4167eccdb1b3a892fd80ce2b51cb6ba412a889ab
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: a31183b1c90f6e2df9c0a05b092297bfe835fb4b
+PODFILE CHECKSUM: 0c6980038bb9a6d4e977d16790ccfbc8fc2f1d91
 
 COCOAPODS: 1.0.0.beta.6

@@ -69,6 +69,7 @@ class ShaStore {
     var image: NSURL?
     var description: String = ""
     var avatar: NSURL?
+    var owner: ShaUser?
     var position = ShaStorePosition()
     var books: [ShaBook] = []
 
@@ -80,6 +81,10 @@ class ShaStore {
         
         if data["store_image"].error == nil {
             self.image = NSURL(string: data["store_image"].stringValue)
+        }
+        
+        if data["owner"].error == nil {
+            self.owner = ShaUser(jsonData: data["owner"])
         }
         
         if data["avatar"].error == nil {
@@ -158,6 +163,7 @@ class ShaBook: ShaBookBase {
     var category: String = ""
     var style: String = ""
     var avatar: NSURL?
+    var owner: ShaUser?
     var store: ShaStore?
     var images: [ShaImage] = []
 
@@ -175,6 +181,10 @@ class ShaBook: ShaBookBase {
         if data["store"].error == nil {
             self.store = ShaStore(data: data["store"])
         }
+        
+        if data["owner"].error == nil {
+            self.owner = ShaUser(jsonData: data["owner"])
+        }
 
         for image in data["images"].arrayValue {
             images.append(ShaImage(data: image))
@@ -183,21 +193,33 @@ class ShaBook: ShaBookBase {
 }
 
 class ShaUser {
+    var uid: String
     var name: String
     var firstName: String
     var lastName: String
     var picture: String
 
     init(data: AnyObject) {
+        self.uid = ""
         self.firstName = data.valueForKey("first_name") as? String ?? ""
         self.lastName = data.valueForKey("last_name") as? String ?? ""
         self.name = data.valueForKey("name") as? String ?? ""
         self.picture = data.valueForKey("picture")?.valueForKey("data")?.valueForKey("url") as? String ?? ""
     }
+    
+    init(jsonData: JSON) {
+        self.uid = jsonData["firebase_uid"].stringValue
+        self.name = ""
+        self.firstName = ""
+        self.lastName = ""
+        self.picture = ""
+    }
 }
 
 class ShaManager {
     static let sharedInstance = ShaManager()
+
+    let firebaseUrl: String = "https://sharead.firebaseio.com"
 
     var adminStores: [ShaAdminStore] = []
     var adminBooks: [ShaBook] = []
@@ -212,12 +234,12 @@ class ShaManager {
     var authToken: String = ""
 
 
-    func login(facebook_token: String, success: () -> Void, failure: () -> Void) {
+    func login(facebook_token: String, firebase_uid: String, success: () -> Void, failure: () -> Void) {
 
         HttpManager.sharedInstance.request(
             .HttpMethodPost,
             path: "/login",
-            param: ["facebook_token": facebook_token],
+            param: ["facebook_token": facebook_token, "firebase_uid": firebase_uid],
             success: { code, data in
                 self.authToken = data["auth_token"].stringValue
                 self.getFacebookUsername({

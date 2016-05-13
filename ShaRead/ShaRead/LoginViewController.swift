@@ -8,6 +8,7 @@
 
 import UIKit
 import FBSDKLoginKit
+import Firebase
 import PKHUD
 
 class LoginViewController: UIViewController {
@@ -25,7 +26,7 @@ class LoginViewController: UIViewController {
             let token = FBSDKAccessToken.currentAccessToken()
 
             if token != nil {
-                self.login(token.tokenString)
+                self.loginFireBase(token.tokenString)
             }
         }
     }
@@ -60,7 +61,11 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
 
         if !result.isCancelled {
-            login(FBSDKAccessToken.currentAccessToken().tokenString)
+            let token = FBSDKAccessToken.currentAccessToken()
+            
+            if token != nil {
+                loginFireBase(token.tokenString)
+            }
         }
     }
 
@@ -68,11 +73,11 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
 
     }
 
-    func login(facebook_token: String) {
+    func loginShaRead(facebook_token: String, firebase_uid: String) {
 
         HUD.show(.Progress)
 
-        ShaManager.sharedInstance.login(facebook_token,
+        ShaManager.sharedInstance.login(facebook_token, firebase_uid: firebase_uid,
             success: {
                 HUD.hide()
                 (UIApplication.sharedApplication().delegate as! AppDelegate).toggleUserMode()
@@ -82,5 +87,24 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
                 FBSDKLoginManager().logOut()
             }
         )
+    }
+
+    func loginFireBase(facebook_token: String) {
+        
+        HUD.show(.Progress)
+
+        let ref = Firebase(url: ShaManager.sharedInstance.firebaseUrl)
+
+        ref.authWithOAuthProvider("facebook", token: facebook_token, withCompletionBlock: {
+            (error, authData) -> Void in
+
+            if error != nil {
+                print("login firebase failed. \(error)")
+                HUD.flash(.Error)
+                return
+            }
+
+            self.loginShaRead(facebook_token, firebase_uid: authData.uid)
+        })
     }
 }

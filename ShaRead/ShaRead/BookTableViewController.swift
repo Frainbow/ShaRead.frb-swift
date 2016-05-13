@@ -218,7 +218,9 @@ class BookTableViewController: UITableViewController {
 
     @IBAction func showMessage(sender: AnyObject) {
 
-        if let controller = storyboard?.instantiateViewControllerWithIdentifier("MessageController") {
+        if let controller = storyboard?.instantiateViewControllerWithIdentifier("MessageController") as? MessageTableViewController {
+            let book = ShaManager.sharedInstance.books[book_id]
+            controller.targetUser = book?.owner
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }
