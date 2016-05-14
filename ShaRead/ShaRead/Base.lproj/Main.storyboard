@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6yQ-DI-8Yw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6yQ-DI-8Yw">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -367,12 +368,18 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.42352941176470588" green="0.42352941176470588" blue="0.42352941176470588" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="20" y="10" width="200" height="21"/>
+                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofT-vo-28c">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="20" y="41" width="200" height="21"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -796,15 +803,16 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="nyg-Tk-dwS">
-                            <rect key="frame" x="0.0" y="840" width="600" height="128"/>
+                            <rect key="frame" x="0.0" y="1016" width="600" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookBasic" rowHeight="176" id="cUC-Wv-evo" customClass="BookBasicTableViewCell" customModule="ShaRead" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="220" width="600" height="176"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cUC-Wv-evo" id="50A-ep-aha">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="175.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="書名：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8w-CR-5dE">
@@ -1026,44 +1034,44 @@
                                             <exclude reference="LRr-QQ-zqz"/>
                                         </mask>
                                         <mask key="constraints">
+                                            <exclude reference="1sZ-4S-SFW"/>
+                                            <exclude reference="MPk-mR-8Z2"/>
+                                            <exclude reference="PLo-wN-eG1"/>
+                                            <exclude reference="pJO-rx-IFu"/>
+                                            <exclude reference="vm3-S1-9R8"/>
+                                            <exclude reference="12v-jE-Jne"/>
+                                            <exclude reference="eGD-ab-AT5"/>
+                                            <exclude reference="mEu-8g-Qvf"/>
+                                            <exclude reference="e4S-Cj-8N3"/>
+                                            <exclude reference="lfS-ui-AW2"/>
+                                            <exclude reference="njS-ve-RlH"/>
+                                            <exclude reference="PR2-U7-HAw"/>
+                                            <exclude reference="qHs-WR-ix7"/>
+                                            <exclude reference="2mw-YZ-pS8"/>
+                                            <exclude reference="EyC-VP-9Sb"/>
+                                            <exclude reference="Si4-Ie-ZmT"/>
+                                            <exclude reference="UNz-Dg-oR2"/>
+                                            <exclude reference="S94-NB-ws9"/>
+                                            <exclude reference="al4-9f-Fit"/>
+                                            <exclude reference="alb-gg-IAB"/>
+                                            <exclude reference="dmF-9S-1Vu"/>
+                                            <exclude reference="D5j-vK-G85"/>
+                                            <exclude reference="Onv-St-C29"/>
+                                            <exclude reference="Rjd-bv-Pi3"/>
                                             <exclude reference="U8O-gX-czS"/>
                                             <exclude reference="cRG-zQ-2mu"/>
                                             <exclude reference="MkM-6V-N84"/>
                                             <exclude reference="NQn-7e-4Vb"/>
                                             <exclude reference="STJ-2A-B8C"/>
                                             <exclude reference="jqK-te-5SR"/>
-                                            <exclude reference="2mw-YZ-pS8"/>
-                                            <exclude reference="EyC-VP-9Sb"/>
-                                            <exclude reference="Si4-Ie-ZmT"/>
-                                            <exclude reference="UNz-Dg-oR2"/>
-                                            <exclude reference="PR2-U7-HAw"/>
-                                            <exclude reference="qHs-WR-ix7"/>
-                                            <exclude reference="D5j-vK-G85"/>
-                                            <exclude reference="Onv-St-C29"/>
-                                            <exclude reference="Rjd-bv-Pi3"/>
-                                            <exclude reference="e4S-Cj-8N3"/>
-                                            <exclude reference="lfS-ui-AW2"/>
-                                            <exclude reference="njS-ve-RlH"/>
-                                            <exclude reference="Qcb-Nb-o73"/>
-                                            <exclude reference="YKv-zK-wnK"/>
-                                            <exclude reference="wTy-kz-9uK"/>
-                                            <exclude reference="xyK-Hm-nI5"/>
-                                            <exclude reference="S94-NB-ws9"/>
-                                            <exclude reference="al4-9f-Fit"/>
-                                            <exclude reference="alb-gg-IAB"/>
-                                            <exclude reference="dmF-9S-1Vu"/>
-                                            <exclude reference="12v-jE-Jne"/>
-                                            <exclude reference="eGD-ab-AT5"/>
-                                            <exclude reference="mEu-8g-Qvf"/>
                                             <exclude reference="DJm-tq-wrc"/>
                                             <exclude reference="M0c-EI-Kq0"/>
                                             <exclude reference="WjX-Zy-hDd"/>
                                             <exclude reference="y2c-pS-NHz"/>
-                                            <exclude reference="1sZ-4S-SFW"/>
-                                            <exclude reference="MPk-mR-8Z2"/>
-                                            <exclude reference="PLo-wN-eG1"/>
-                                            <exclude reference="pJO-rx-IFu"/>
-                                            <exclude reference="vm3-S1-9R8"/>
+                                            <exclude reference="Qcb-Nb-o73"/>
+                                            <exclude reference="YKv-zK-wnK"/>
+                                            <exclude reference="wTy-kz-9uK"/>
+                                            <exclude reference="xyK-Hm-nI5"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
@@ -1081,44 +1089,44 @@
                                             <include reference="LRr-QQ-zqz"/>
                                         </mask>
                                         <mask key="constraints">
+                                            <include reference="1sZ-4S-SFW"/>
+                                            <include reference="MPk-mR-8Z2"/>
+                                            <include reference="PLo-wN-eG1"/>
+                                            <include reference="pJO-rx-IFu"/>
+                                            <include reference="vm3-S1-9R8"/>
+                                            <include reference="12v-jE-Jne"/>
+                                            <include reference="eGD-ab-AT5"/>
+                                            <exclude reference="mEu-8g-Qvf"/>
+                                            <include reference="e4S-Cj-8N3"/>
+                                            <include reference="lfS-ui-AW2"/>
+                                            <include reference="njS-ve-RlH"/>
+                                            <include reference="PR2-U7-HAw"/>
+                                            <include reference="qHs-WR-ix7"/>
+                                            <include reference="2mw-YZ-pS8"/>
+                                            <include reference="EyC-VP-9Sb"/>
+                                            <include reference="Si4-Ie-ZmT"/>
+                                            <include reference="UNz-Dg-oR2"/>
+                                            <include reference="S94-NB-ws9"/>
+                                            <include reference="al4-9f-Fit"/>
+                                            <include reference="alb-gg-IAB"/>
+                                            <include reference="dmF-9S-1Vu"/>
+                                            <include reference="D5j-vK-G85"/>
+                                            <include reference="Onv-St-C29"/>
+                                            <include reference="Rjd-bv-Pi3"/>
                                             <include reference="U8O-gX-czS"/>
                                             <exclude reference="cRG-zQ-2mu"/>
                                             <include reference="MkM-6V-N84"/>
                                             <include reference="NQn-7e-4Vb"/>
                                             <include reference="STJ-2A-B8C"/>
                                             <exclude reference="jqK-te-5SR"/>
-                                            <include reference="2mw-YZ-pS8"/>
-                                            <include reference="EyC-VP-9Sb"/>
-                                            <include reference="Si4-Ie-ZmT"/>
-                                            <include reference="UNz-Dg-oR2"/>
-                                            <include reference="PR2-U7-HAw"/>
-                                            <include reference="qHs-WR-ix7"/>
-                                            <include reference="D5j-vK-G85"/>
-                                            <include reference="Onv-St-C29"/>
-                                            <include reference="Rjd-bv-Pi3"/>
-                                            <include reference="e4S-Cj-8N3"/>
-                                            <include reference="lfS-ui-AW2"/>
-                                            <include reference="njS-ve-RlH"/>
-                                            <include reference="Qcb-Nb-o73"/>
-                                            <include reference="YKv-zK-wnK"/>
-                                            <include reference="wTy-kz-9uK"/>
-                                            <include reference="xyK-Hm-nI5"/>
-                                            <include reference="S94-NB-ws9"/>
-                                            <include reference="al4-9f-Fit"/>
-                                            <include reference="alb-gg-IAB"/>
-                                            <include reference="dmF-9S-1Vu"/>
-                                            <include reference="12v-jE-Jne"/>
-                                            <include reference="eGD-ab-AT5"/>
-                                            <exclude reference="mEu-8g-Qvf"/>
                                             <include reference="DJm-tq-wrc"/>
                                             <include reference="M0c-EI-Kq0"/>
                                             <include reference="WjX-Zy-hDd"/>
                                             <exclude reference="y2c-pS-NHz"/>
-                                            <include reference="1sZ-4S-SFW"/>
-                                            <include reference="MPk-mR-8Z2"/>
-                                            <include reference="PLo-wN-eG1"/>
-                                            <include reference="pJO-rx-IFu"/>
-                                            <include reference="vm3-S1-9R8"/>
+                                            <include reference="Qcb-Nb-o73"/>
+                                            <include reference="YKv-zK-wnK"/>
+                                            <include reference="wTy-kz-9uK"/>
+                                            <include reference="xyK-Hm-nI5"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -1132,7 +1140,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookDescription" rowHeight="126" id="j2X-dQ-3Rk" customClass="BookDescriptionTableViewCell" customModule="ShaRead" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="220" width="600" height="126"/>
+                                <rect key="frame" x="0.0" y="396" width="600" height="126"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j2X-dQ-3Rk" id="TjQ-0l-qWN">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="125.5"/>
@@ -1162,18 +1170,12 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <color key="textColor" red="0.97647058823529409" green="0.39215686274509803" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="54" y="7" width="50" height="24"/>
-                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/ 週" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3i-E3-79H">
                                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="109" y="11.5" width="24" height="18"/>
-                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="書評" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ww1-3w-sq4">
                                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -1324,7 +1326,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookStoreDescription" rowHeight="145" id="EK9-sY-kTX" customClass="BookStoreDescriptionTableViewCell" customModule="ShaRead" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="346" width="600" height="145"/>
+                                <rect key="frame" x="0.0" y="522" width="600" height="145"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EK9-sY-kTX" id="hDC-LE-Apb">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="144.5"/>
@@ -1398,9 +1400,6 @@
                                             <exclude reference="VW5-aS-eBa"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <exclude reference="A5p-Rf-cxc"/>
-                                            <exclude reference="hlJ-Cu-FGD"/>
-                                            <exclude reference="w1C-2L-1ee"/>
                                             <exclude reference="6dH-Yc-EGK"/>
                                             <exclude reference="IRf-oi-fEd"/>
                                             <exclude reference="Onb-pJ-5dK"/>
@@ -1408,6 +1407,9 @@
                                             <exclude reference="BpT-wD-FLZ"/>
                                             <exclude reference="gpa-Q8-BQw"/>
                                             <exclude reference="wCx-hM-Q6g"/>
+                                            <exclude reference="A5p-Rf-cxc"/>
+                                            <exclude reference="hlJ-Cu-FGD"/>
+                                            <exclude reference="w1C-2L-1ee"/>
                                             <exclude reference="5MC-qM-Hxa"/>
                                             <exclude reference="Fka-eU-8Er"/>
                                             <exclude reference="cgf-yy-Bbn"/>
@@ -1424,9 +1426,6 @@
                                             <include reference="VW5-aS-eBa"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <exclude reference="A5p-Rf-cxc"/>
-                                            <include reference="hlJ-Cu-FGD"/>
-                                            <include reference="w1C-2L-1ee"/>
                                             <include reference="6dH-Yc-EGK"/>
                                             <include reference="IRf-oi-fEd"/>
                                             <exclude reference="Onb-pJ-5dK"/>
@@ -1434,6 +1433,9 @@
                                             <include reference="BpT-wD-FLZ"/>
                                             <include reference="gpa-Q8-BQw"/>
                                             <exclude reference="wCx-hM-Q6g"/>
+                                            <exclude reference="A5p-Rf-cxc"/>
+                                            <include reference="hlJ-Cu-FGD"/>
+                                            <include reference="w1C-2L-1ee"/>
                                             <include reference="5MC-qM-Hxa"/>
                                             <include reference="Fka-eU-8Er"/>
                                             <exclude reference="cgf-yy-Bbn"/>
@@ -1450,7 +1452,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookCommentForm" rowHeight="180" id="6xl-Qf-bbh" customClass="BookCommentFormTableViewCell" customModule="ShaRead" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="491" width="600" height="180"/>
+                                <rect key="frame" x="0.0" y="667" width="600" height="180"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6xl-Qf-bbh" id="XyM-ew-fI5">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="179.5"/>
@@ -1594,18 +1596,18 @@
                                             <exclude reference="LGH-vV-BFb"/>
                                         </mask>
                                         <mask key="constraints">
+                                            <exclude reference="DTu-N3-wmf"/>
+                                            <exclude reference="O4U-Rl-6ig"/>
+                                            <exclude reference="zsz-Sk-0u6"/>
                                             <exclude reference="OKm-gw-ngC"/>
                                             <exclude reference="cr3-7P-UD1"/>
-                                            <exclude reference="AT3-rq-8lg"/>
-                                            <exclude reference="LH4-Oc-jiV"/>
-                                            <exclude reference="rph-QO-PTK"/>
                                             <exclude reference="6gP-QU-gjy"/>
                                             <exclude reference="6k8-MF-ozR"/>
                                             <exclude reference="QTv-Is-GGi"/>
                                             <exclude reference="nel-vA-HIy"/>
-                                            <exclude reference="DTu-N3-wmf"/>
-                                            <exclude reference="O4U-Rl-6ig"/>
-                                            <exclude reference="zsz-Sk-0u6"/>
+                                            <exclude reference="AT3-rq-8lg"/>
+                                            <exclude reference="LH4-Oc-jiV"/>
+                                            <exclude reference="rph-QO-PTK"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
@@ -1616,18 +1618,18 @@
                                             <include reference="LGH-vV-BFb"/>
                                         </mask>
                                         <mask key="constraints">
+                                            <include reference="DTu-N3-wmf"/>
+                                            <include reference="O4U-Rl-6ig"/>
+                                            <include reference="zsz-Sk-0u6"/>
                                             <include reference="OKm-gw-ngC"/>
                                             <include reference="cr3-7P-UD1"/>
-                                            <include reference="AT3-rq-8lg"/>
-                                            <include reference="LH4-Oc-jiV"/>
-                                            <exclude reference="rph-QO-PTK"/>
                                             <include reference="6gP-QU-gjy"/>
                                             <include reference="6k8-MF-ozR"/>
                                             <include reference="QTv-Is-GGi"/>
                                             <exclude reference="nel-vA-HIy"/>
-                                            <include reference="DTu-N3-wmf"/>
-                                            <include reference="O4U-Rl-6ig"/>
-                                            <include reference="zsz-Sk-0u6"/>
+                                            <include reference="AT3-rq-8lg"/>
+                                            <include reference="LH4-Oc-jiV"/>
+                                            <exclude reference="rph-QO-PTK"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -1639,7 +1641,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookComment" rowHeight="169" id="Z8G-5w-xUa" customClass="BookCommentTableViewCell" customModule="ShaRead" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="671" width="600" height="169"/>
+                                <rect key="frame" x="0.0" y="847" width="600" height="169"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z8G-5w-xUa" id="krN-bp-dI0">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="168.5"/>
@@ -1711,8 +1713,7 @@
                                                                 <exclude reference="iz5-sS-bJq"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="0.0" width="375.5" height="201.5"/>
+                                                        <variation key="heightClass=regular-widthClass=compact">
                                                             <mask key="constraints">
                                                                 <exclude reference="Z0c-Q1-jKo"/>
                                                                 <exclude reference="iz5-sS-bJq"/>
@@ -1738,8 +1739,7 @@
                                                         <exclude reference="p7n-Ux-qu7"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375.5" height="201.5"/>
+                                                <variation key="heightClass=regular-widthClass=compact">
                                                     <mask key="subviews">
                                                         <include reference="G3S-Pe-TjM"/>
                                                     </mask>
@@ -1841,23 +1841,23 @@
             <objects>
                 <tableViewController storyboardIdentifier="MessageController" id="XDa-sX-IhG" customClass="MessageTableViewController" customModule="ShaRead" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="146" sectionHeaderHeight="28" sectionFooterHeight="28" id="a8H-3e-OAn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="PhQ-qg-WFT">
-                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="Cq9-sc-Wle">
-                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <rect key="frame" x="0.0" y="302" width="600" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Message" id="L6j-wW-z9M" customClass="MessageTableViewCell" customModule="ShaRead" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="156" width="600" height="146"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L6j-wW-z9M" id="6zo-RV-ZeU">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="145.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EFn-CZ-xpg">
@@ -1868,6 +1868,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oOS-G0-uKq" id="wlp-oC-Lb4">
+                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="53"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FAi-3T-Sl7">
@@ -1964,6 +1965,7 @@
                                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageSend" rowHeight="61" id="DZv-dS-36k" customClass="MessageSendTableViewCell" customModule="ShaRead" customModuleProvider="target">
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DZv-dS-36k" id="rkQ-Hi-hC4">
+                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="61"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6z3-Sv-bXa">

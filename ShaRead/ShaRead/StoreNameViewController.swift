@@ -60,7 +60,7 @@ class StoreNameViewController: UIViewController {
         if inputTextField.text?.characters.count > 0 {
             
             if instance.adminStores.count == 0 {
-                let store = ShaAdminStore()
+                let store = ShaStore()
 
                 store.name = inputTextField.text ?? ""
 

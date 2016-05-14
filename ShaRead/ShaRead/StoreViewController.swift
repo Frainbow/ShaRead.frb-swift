@@ -81,11 +81,11 @@ class StoreViewController: UIViewController {
 
         if let store = ShaManager.sharedInstance.stores[store_id] {
 
-            storeTableHeaderView.bannerImageView.sd_setImageWithURL(store.image, placeholderImage: ShaImage.defaultBanner)
+            storeTableHeaderView.bannerImageView.sd_setImageWithURL(store.image, placeholderImage: ShaDefault.defaultBanner)
             storeTableHeaderView.storeNameLabel.text = store.name
 
             if let url = store.avatar {
-                storeTableHeaderView.avatarImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultAvatar)
+                storeTableHeaderView.avatarImageView.sd_setImageWithURL(url, placeholderImage: ShaDefault.defaultAvatar)
             }
         }
     }
@@ -198,7 +198,7 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
         
         if let book = store?.books[indexPath.row] {
             if let url = NSURL(string: book.image) {
-                cell.coverImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultCover)
+                cell.coverImageView.sd_setImageWithURL(url, placeholderImage: ShaDefault.defaultCover)
             }
             cell.nameLabel.text = book.name
             cell.rentLabel.text = book.rent == 0 ? "? 元" : "\(book.rent) 元"

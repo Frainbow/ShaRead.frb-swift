@@ -133,7 +133,7 @@ class BookTableViewController: UITableViewController {
             let book = ShaManager.sharedInstance.books[book_id]
 
             if let url = book?.store?.avatar {
-                cell.avatarImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultAvatar)
+                cell.avatarImageView.sd_setImageWithURL(url, placeholderImage: ShaDefault.defaultAvatar)
             }
 
             cell.storeNameLabel.text = book?.store?.name ?? ""
@@ -149,7 +149,7 @@ class BookTableViewController: UITableViewController {
 
                 if let avatar = ShaManager.sharedInstance.user?.picture,
                     url = NSURL(string: avatar) {
-                    cell.avatarImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultAvatar)
+                    cell.avatarImageView.sd_setImageWithURL(url, placeholderImage: ShaDefault.defaultAvatar)
                 }
 
                 return cell
@@ -247,9 +247,9 @@ extension BookTableViewController: UICollectionViewDataSource, UICollectionViewD
         if let book = ShaManager.sharedInstance.books[book_id] {
 
             if book.images.count > 0 {
-                cell.bookImageView.sd_setImageWithURL(book.images[indexPath.row].url, placeholderImage: ShaImage.defaultBanner)
+                cell.bookImageView.sd_setImageWithURL(book.images[indexPath.row].url, placeholderImage: ShaDefault.defaultBanner)
             } else if let url = NSURL(string: book.image) {
-                cell.bookImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultBanner)
+                cell.bookImageView.sd_setImageWithURL(url, placeholderImage: ShaDefault.defaultBanner)
             }
         }
 

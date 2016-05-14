@@ -89,7 +89,7 @@ class BookConfigViewController: UIViewController {
 
         if book!.images.count > 0 {
             if let url = book!.images[0].url {
-                bannerImageView.sd_setImageWithURL(url, placeholderImage: ShaImage.defaultBanner)
+                bannerImageView.sd_setImageWithURL(url, placeholderImage: ShaDefault.defaultBanner)
             }
         }
     }
