@@ -22,7 +22,7 @@ class StoreMemberViewController: UIViewController {
         
         if let user = ShaManager.sharedInstance.user {
 
-            if let url = NSURL(string: user.picture) {
+            if let url = NSURL(string: user.avatar) {
                 avatarImageView.image = nil
                 avatarImageView.layer.cornerRadius = 50
                 avatarImageView.layer.masksToBounds = true

@@ -103,10 +103,12 @@ class MessageTableViewController: UITableViewController {
 
         let rootRef = Firebase(url: ShaManager.sharedInstance.firebaseUrl)
 
+        let roomKey = isAdmin ? "\(rootRef.authData.uid) - \(targetUser.uid)" : "\(targetUser.uid) - \(rootRef.authData.uid)"
+
         rootRef
         .childByAppendingPath("rooms")
         .queryOrderedByChild("key")
-        .queryEqualToValue("\(targetUser.uid) - \(rootRef.authData.uid)")
+        .queryEqualToValue(roomKey)
         .observeEventType(.Value, withBlock: { snapshot in
 
             if snapshot.value is NSNull {
@@ -122,7 +124,7 @@ class MessageTableViewController: UITableViewController {
 
     func createRoom() {
 
-        guard let targetUser = self.targetUser else {
+        guard let targetUser = self.targetUser where !isAdmin else {
             return
         }
 
@@ -131,7 +133,11 @@ class MessageTableViewController: UITableViewController {
         rootRef
         .childByAppendingPath("rooms")
         .childByAutoId()
-        .setValue(["key" : "\(targetUser.uid) - \(rootRef.authData.uid)"])
+        .setValue([
+            "key" : "\(targetUser.uid) - \(rootRef.authData.uid)",
+            "admin-uid": "\(targetUser.uid)",
+            "uid": "\(rootRef.authData.uid)"
+        ])
     }
 
     func observeMessage() {

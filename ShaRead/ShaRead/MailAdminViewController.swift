@@ -1,18 +1,18 @@
 //
-//  MailViewController.swift
+//  MailAdminViewController.swift
 //  ShaRead
 //
-//  Created by martin on 2016/5/4.
+//  Created by martin on 2016/5/14.
 //  Copyright © 2016年 Frainbow. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class MailViewController: UIViewController {
-
-    @IBOutlet weak var userTableView: UITableView!
+class MailAdminViewController: UIViewController {
     
+    @IBOutlet weak var userTableView: UITableView!
+
     var users: [ShaUser] = []
 
     override func viewDidLoad() {
@@ -28,11 +28,11 @@ class MailViewController: UIViewController {
             userTableView.deselectRowAtIndexPath(indexPath, animated: false)
         }
     }
-    
+
     override func viewDidAppear(animated: Bool) {
         setTabBarVisible(true, animated: false)
     }
-    
+
     override func viewWillDisappear(animated: Bool) {
         setTabBarVisible(false, animated: false)
     }
@@ -53,24 +53,24 @@ class MailViewController: UIViewController {
         
         rootRef
         .childByAppendingPath("rooms")
-        .queryOrderedByChild("uid")
+        .queryOrderedByChild("admin-uid")
         .queryEqualToValue("\(rootRef.authData.uid)")
         .observeEventType(.ChildAdded, withBlock: { snapshot in
-            
+
             let instance = ShaManager.sharedInstance
             let dic = snapshot.value as! NSDictionary
             let key = dic["key"] as! String
-            let uid = key.componentsSeparatedByString(" - ")[0]
-            
+            let uid = key.componentsSeparatedByString(" - ")[1]
+
             if instance.users[uid] == nil {
-                
+
                 instance.getUserByUid(uid,
                     success: {
                         self.users.append(instance.users[uid]!)
                         self.userTableView.reloadData()
                     },
                     failure: {
-                        
+
                     }
                 )
             }
@@ -80,7 +80,7 @@ class MailViewController: UIViewController {
             }
         })
     }
-    
+
     // MARK: - TabBar
     func setTabBarVisible(visible:Bool, animated:Bool) {
         
@@ -122,14 +122,14 @@ class MailViewController: UIViewController {
 
 }
 
-extension MailViewController: UITableViewDataSource, UITableViewDelegate {
+extension MailAdminViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count > 0 ? users.count : 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("userCell", forIndexPath: indexPath) as! MailTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("userCell", forIndexPath: indexPath) as! MailAdminTableViewCell
         
         if users.count == 0 {
             cell.nameLabel.text = "系統管理員：無信件"
@@ -153,12 +153,12 @@ extension MailViewController: UITableViewDataSource, UITableViewDelegate {
             return
         }
 
-        if let controller = self.storyboard?.instantiateViewControllerWithIdentifier("MessageController") as? MessageTableViewController {
-
-            controller.isAdmin = false
-            controller.targetUser = users[indexPath.row]
-
-            self.navigationController?.pushViewController(controller, animated: true)
-        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewControllerWithIdentifier("MessageController") as! MessageTableViewController
+        
+        controller.isAdmin = true
+        controller.targetUser = users[indexPath.row]
+        
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }

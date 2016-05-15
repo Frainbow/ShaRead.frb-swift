@@ -21,6 +21,7 @@ class ShaManager {
     var recommendBooks: [ShaBook] = []
     var popularStores: [ShaStore] = []
     var latestStores: [ShaStore] = []
+    var users: [String: ShaUser] = [:]
 
     var mrtStation: MRTStation?
     var user: ShaUser?

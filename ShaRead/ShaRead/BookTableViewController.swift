@@ -147,7 +147,7 @@ class BookTableViewController: UITableViewController {
 
                 let cell = tableView.dequeueReusableCellWithIdentifier("BookCommentForm", forIndexPath: indexPath) as! BookCommentFormTableViewCell
 
-                if let avatar = ShaManager.sharedInstance.user?.picture,
+                if let avatar = ShaManager.sharedInstance.user?.avatar,
                     url = NSURL(string: avatar) {
                     cell.avatarImageView.sd_setImageWithURL(url, placeholderImage: ShaDefault.defaultAvatar)
                 }

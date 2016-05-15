@@ -42,6 +42,9 @@
 		5BAB238A1CE6DF200077A761 /* ShaBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB23891CE6DF200077A761 /* ShaBook.swift */; };
 		5BAB238C1CE6E0050077A761 /* ShaDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB238B1CE6E0050077A761 /* ShaDefault.swift */; };
 		5BAB238E1CE6E1570077A761 /* ShaUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB238D1CE6E1570077A761 /* ShaUser.swift */; };
+		5BAB23901CE710560077A761 /* MailAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB238F1CE710560077A761 /* MailAdminViewController.swift */; };
+		5BAB23921CE711FA0077A761 /* MailAdminTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB23911CE711FA0077A761 /* MailAdminTableViewCell.swift */; };
+		5BAB23941CE857F80077A761 /* MailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB23931CE857F80077A761 /* MailTableViewCell.swift */; };
 		5BAF1C511CE02FC7008B9B4D /* BookImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF1C501CE02FC7008B9B4D /* BookImageCollectionViewCell.swift */; };
 		5BAF1C531CE060B3008B9B4D /* BookBasicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF1C521CE060B3008B9B4D /* BookBasicTableViewCell.swift */; };
 		5BAF1C551CE18F8F008B9B4D /* MessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF1C541CE18F8F008B9B4D /* MessageTableViewController.swift */; };
@@ -150,6 +153,9 @@
 		5BAB23891CE6DF200077A761 /* ShaBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShaBook.swift; sourceTree = "<group>"; };
 		5BAB238B1CE6E0050077A761 /* ShaDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShaDefault.swift; sourceTree = "<group>"; };
 		5BAB238D1CE6E1570077A761 /* ShaUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShaUser.swift; sourceTree = "<group>"; };
+		5BAB238F1CE710560077A761 /* MailAdminViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailAdminViewController.swift; sourceTree = "<group>"; };
+		5BAB23911CE711FA0077A761 /* MailAdminTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailAdminTableViewCell.swift; sourceTree = "<group>"; };
+		5BAB23931CE857F80077A761 /* MailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailTableViewCell.swift; sourceTree = "<group>"; };
 		5BAF1C501CE02FC7008B9B4D /* BookImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		5BAF1C521CE060B3008B9B4D /* BookBasicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookBasicTableViewCell.swift; sourceTree = "<group>"; };
 		5BAF1C541CE18F8F008B9B4D /* MessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewController.swift; sourceTree = "<group>"; };
@@ -269,7 +275,8 @@
 				5BD1BB141CD90A83002031E6 /* StoreAdminTableViewCell.swift */,
 				5B1351061CD0B43D004E1637 /* StoreAdminViewController.swift */,
 				5BD1BB1E1CD9C925002031E6 /* CalendarViewController.swift */,
-				5BD1BB201CD9F474002031E6 /* MailViewController.swift */,
+				5BAB23911CE711FA0077A761 /* MailAdminTableViewCell.swift */,
+				5BAB238F1CE710560077A761 /* MailAdminViewController.swift */,
 				5B1350AD1CCCDFE5004E1637 /* StoreAdmin.storyboard */,
 			);
 			name = StoreAdmin;
@@ -411,6 +418,8 @@
 				5BAF1C581CE19F99008B9B4D /* MessageSendTableViewCell.swift */,
 				5BAF1C5C1CE1A3F0008B9B4D /* MessageTableViewCell.swift */,
 				5BAF1C541CE18F8F008B9B4D /* MessageTableViewController.swift */,
+				5BAB23931CE857F80077A761 /* MailTableViewCell.swift */,
+				5BD1BB201CD9F474002031E6 /* MailViewController.swift */,
 				5BED5A0C1CC4E75C003D73AD /* BookCollectionViewCell.swift */,
 				5BED5A0D1CC4E75C003D73AD /* BookCollectionViewCell.xib */,
 				5BED5A141CC5446A003D73AD /* BookTableViewCell.swift */,
@@ -738,10 +747,12 @@
 				5BED5A2A1CC63138003D73AD /* ShelfTableViewCell.swift in Sources */,
 				5B1350E71CCE7AE6004E1637 /* BookNameViewController.swift in Sources */,
 				5B1350F31CCF3CA9004E1637 /* BookCommentViewController.swift in Sources */,
+				5BAB23901CE710560077A761 /* MailAdminViewController.swift in Sources */,
 				5BD1BB2B1CDE473D002031E6 /* StoreTableHeaderView.swift in Sources */,
 				5BAB238C1CE6E0050077A761 /* ShaDefault.swift in Sources */,
 				5BD1BB2D1CDE622E002031E6 /* ShelfCategoryTableViewCell.swift in Sources */,
 				5B1350AB1CC9D6A3004E1637 /* BookTableViewController.swift in Sources */,
+				5BAB23921CE711FA0077A761 /* MailAdminTableViewCell.swift in Sources */,
 				5BED5A0E1CC4E75C003D73AD /* BookCollectionViewCell.swift in Sources */,
 				5BED5A151CC5446A003D73AD /* BookTableViewCell.swift in Sources */,
 				5BD1BB191CD988AC002031E6 /* BookCaseStyleCollectionViewCell.swift in Sources */,
@@ -755,6 +766,7 @@
 				5B1350971CC77838004E1637 /* ShelfCollectionViewCell.swift in Sources */,
 				5B1350EF1CCF3C64004E1637 /* BookStatusViewController.swift in Sources */,
 				5BAB23881CE6DECC0077A761 /* ShaStore.swift in Sources */,
+				5BAB23941CE857F80077A761 /* MailTableViewCell.swift in Sources */,
 				5BAF1C571CE19B49008B9B4D /* MessageFooterView.swift in Sources */,
 				5BC0F8FA1CD24CB400B7A839 /* ShaManager.swift in Sources */,
 				5B1350FA1CCF8F56004E1637 /* HttpManager.swift in Sources */,

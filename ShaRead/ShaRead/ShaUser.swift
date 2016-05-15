@@ -15,22 +15,22 @@ class ShaUser {
     var name: String
     var firstName: String
     var lastName: String
-    var picture: String
+    var avatar: String
     
     init(data: AnyObject) {
         self.uid = ""
         self.firstName = data.valueForKey("first_name") as? String ?? ""
         self.lastName = data.valueForKey("last_name") as? String ?? ""
         self.name = data.valueForKey("name") as? String ?? ""
-        self.picture = data.valueForKey("picture")?.valueForKey("data")?.valueForKey("url") as? String ?? ""
+        self.avatar = data.valueForKey("picture")?.valueForKey("data")?.valueForKey("url") as? String ?? ""
     }
     
     init(jsonData: JSON) {
         self.uid = jsonData["firebase_uid"].stringValue
-        self.name = ""
+        self.name = jsonData["name"].stringValue
         self.firstName = ""
         self.lastName = ""
-        self.picture = ""
+        self.avatar = jsonData["avatar"].stringValue
     }
 }
 
@@ -65,5 +65,21 @@ extension ShaManager {
                 }
                 complete()
             })
+    }
+    
+    func getUserByUid(uid: String, success: () -> Void, failure: () -> Void) {
+
+        HttpManager.sharedInstance.request(
+            .HttpMethodGet,
+            path: "/users/\(uid)?auth_token=\(authToken)",
+            param: [:],
+            success: { code, data in
+                self.users[uid] = ShaUser(jsonData: data["data"])
+                success()
+            },
+            failure: { code, data in
+                failure()
+            }
+        )
     }
 }
