@@ -224,6 +224,12 @@ class BookTableViewController: UITableViewController {
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }
+
+    @IBAction func showAlert(sender: AnyObject) {
+        let controller = UIAlertController(title: "施工中", message: "造成不便敬請見諒！", preferredStyle: .Alert)
+        controller.addAction(UIAlertAction(title: "關閉", style: .Default, handler: nil))
+        presentViewController(controller, animated: true, completion: nil)
+    }
 }
 
 

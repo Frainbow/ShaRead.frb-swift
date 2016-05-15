@@ -16,6 +16,7 @@ class MailAdminTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        avatarImageView.clipsToBounds = true
         avatarImageView.layer.cornerRadius = 30
     }
 
