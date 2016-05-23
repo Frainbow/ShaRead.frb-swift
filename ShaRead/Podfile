@@ -11,7 +11,12 @@ target 'ShaRead' do
     pod 'SwiftyJSON'
     pod 'SDWebImage'
     pod 'PKHUD'
-    pod 'Firebase'
+    pod 'Firebase/Core'
+    pod 'Firebase/AdMob'
+    pod 'Firebase/Messaging'
+    pod 'Firebase/Database'
+    pod 'Firebase/Crash'
+    pod 'Firebase/Auth'
 end
 
 target 'ShaReadTests' do

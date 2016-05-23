@@ -14,6 +14,16 @@ class MailAdminViewController: UIViewController {
     @IBOutlet weak var userTableView: UITableView!
 
     var users: [ShaUser] = []
+    var uid: String?
+    var authHandler: FIRAuthStateDidChangeListenerHandle?
+    
+    deinit {
+
+        if let authHandler = authHandler {
+            FIRAuth.auth()?.removeAuthStateDidChangeListener(authHandler)
+            self.uid = nil
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,17 +54,31 @@ class MailAdminViewController: UIViewController {
     
     // MARK: - Custom method
     func initFirebase() {
-        getRoomList()
+        
+        self.authHandler = FIRAuth.auth()?.addAuthStateDidChangeListener({ (auth, user) in
+            if let user = user {
+                self.uid = user.uid
+                self.getRoomList()
+            }
+            else {
+                // redirect to login page
+                self.uid = nil
+            }
+        })
     }
     
     func getRoomList() {
         
-        let rootRef = Firebase(url: ShaManager.sharedInstance.firebaseUrl)
-        
+        guard let currentUID = self.uid else {
+            return
+        }
+
+        let rootRef = FIRDatabase.database().reference()
+
         rootRef
-        .childByAppendingPath("rooms")
+        .child("rooms")
         .queryOrderedByChild("admin-uid")
-        .queryEqualToValue("\(rootRef.authData.uid)")
+        .queryEqualToValue("\(currentUID)")
         .observeEventType(.ChildAdded, withBlock: { snapshot in
 
             let instance = ShaManager.sharedInstance

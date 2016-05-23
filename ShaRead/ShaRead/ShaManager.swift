@@ -12,8 +12,6 @@ import SwiftyJSON
 class ShaManager {
     static let sharedInstance = ShaManager()
 
-    let firebaseUrl: String = "https://sharead.firebaseio.com"
-
     var adminStores: [ShaStore] = []
     var adminBooks: [ShaBook] = []
     var stores: [Int: ShaStore] = [:]

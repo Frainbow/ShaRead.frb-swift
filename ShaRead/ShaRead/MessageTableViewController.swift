@@ -25,10 +25,19 @@ class MessageTableViewController: UITableViewController {
     @IBOutlet var tableFooterView: MessageFooterView!
 
     var messages: [ShaMessage] = []
+    var uid: String?
+    var authHandler: FIRAuthStateDidChangeListenerHandle?
     var roomID: String?
     var isAdmin: Bool = false
 
     weak var targetUser: ShaUser?
+    
+    deinit {
+        if let authHandler = authHandler {
+            FIRAuth.auth()?.removeAuthStateDidChangeListener(authHandler)
+            self.uid = nil
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,21 +101,35 @@ class MessageTableViewController: UITableViewController {
 
     // MARK: - Custom method
     func initFirebase() {
-        getRoomID()
+
+        self.authHandler = FIRAuth.auth()?.addAuthStateDidChangeListener({ (auth, user) in
+            if let user = user {
+                self.uid = user.uid
+                self.getRoomID()
+            }
+            else {
+                // redirect to login page
+                self.uid = nil
+            }
+        })
     }
     
     func getRoomID() {
+
+        guard let currentUID = self.uid else {
+            return
+        }
 
         guard let targetUser = self.targetUser else {
             return
         }
 
-        let rootRef = Firebase(url: ShaManager.sharedInstance.firebaseUrl)
+        let rootRef = FIRDatabase.database().reference()
 
-        let roomKey = isAdmin ? "\(rootRef.authData.uid) - \(targetUser.uid)" : "\(targetUser.uid) - \(rootRef.authData.uid)"
+        let roomKey = isAdmin ? "\(currentUID) - \(targetUser.uid)" : "\(targetUser.uid) - \(currentUID)"
 
         rootRef
-        .childByAppendingPath("rooms")
+        .child("rooms")
         .queryOrderedByChild("key")
         .queryEqualToValue(roomKey)
         .observeEventType(.Value, withBlock: { snapshot in
@@ -124,19 +147,23 @@ class MessageTableViewController: UITableViewController {
 
     func createRoom() {
 
+        guard let currentUID = self.uid else {
+            return
+        }
+
         guard let targetUser = self.targetUser where !isAdmin else {
             return
         }
 
-        let rootRef = Firebase(url: ShaManager.sharedInstance.firebaseUrl)
+        let rootRef = FIRDatabase.database().reference()
 
         rootRef
-        .childByAppendingPath("rooms")
+        .child("rooms")
         .childByAutoId()
         .setValue([
-            "key" : "\(targetUser.uid) - \(rootRef.authData.uid)",
+            "key" : "\(targetUser.uid) - \(currentUID)",
             "admin-uid": "\(targetUser.uid)",
-            "uid": "\(rootRef.authData.uid)"
+            "uid": "\(currentUID)"
         ])
     }
 
@@ -146,10 +173,10 @@ class MessageTableViewController: UITableViewController {
             return
         }
         
-        let rootRef = Firebase(url: ShaManager.sharedInstance.firebaseUrl)
+        let rootRef = FIRDatabase.database().reference()
 
         rootRef
-        .childByAppendingPath("messages/\(roomID)")
+        .child("messages/\(roomID)")
         .queryOrderedByChild("timestamp")
         .observeEventType(.ChildAdded, withBlock: { snapshot in
 
@@ -169,10 +196,10 @@ class MessageTableViewController: UITableViewController {
             return
         }
 
-        let rootRef = Firebase(url: ShaManager.sharedInstance.firebaseUrl)
+        let rootRef = FIRDatabase.database().reference()
 
         rootRef
-        .childByAppendingPath("messages/\(roomID)")
+        .child("messages/\(roomID)")
         .childByAutoId()
         .setValue([
             "message": message,

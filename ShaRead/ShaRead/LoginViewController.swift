@@ -93,18 +93,23 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
         
         HUD.show(.Progress)
 
-        let ref = Firebase(url: ShaManager.sharedInstance.firebaseUrl)
+        let credential = FIRFacebookAuthProvider.credentialWithAccessToken(facebook_token)
+        
+        FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
 
-        ref.authWithOAuthProvider("facebook", token: facebook_token, withCompletionBlock: {
-            (error, authData) -> Void in
-
-            if error != nil {
+            guard error == nil else {
                 print("login firebase failed. \(error)")
                 HUD.flash(.Error)
                 return
             }
+            
+            guard let user = user else {
+                print("login firebase failed. user is nil")
+                HUD.flash(.Error)
+                return
+            }
 
-            self.loginShaRead(facebook_token, firebase_uid: authData.uid)
-        })
+            self.loginShaRead(facebook_token, firebase_uid: user.uid)
+        }
     }
 }

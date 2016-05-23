@@ -37,6 +37,7 @@
 		5B1350FA1CCF8F56004E1637 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1350F91CCF8F56004E1637 /* HttpManager.swift */; };
 		5B1351071CD0B43D004E1637 /* StoreAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1351061CD0B43D004E1637 /* StoreAdminViewController.swift */; };
 		5B1351091CD0C601004E1637 /* StoreAdminMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1351081CD0C601004E1637 /* StoreAdminMemberViewController.swift */; };
+		5B73EF501CF2D44200C388DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B73EF4F1CF2D44200C388DA /* GoogleService-Info.plist */; };
 		5BAB23861CE6DBCC0077A761 /* MRT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB23851CE6DBCC0077A761 /* MRT.swift */; };
 		5BAB23881CE6DECC0077A761 /* ShaStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB23871CE6DECC0077A761 /* ShaStore.swift */; };
 		5BAB238A1CE6DF200077A761 /* ShaBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB23891CE6DF200077A761 /* ShaBook.swift */; };
@@ -148,6 +149,7 @@
 		5B1350F91CCF8F56004E1637 /* HttpManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
 		5B1351061CD0B43D004E1637 /* StoreAdminViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreAdminViewController.swift; sourceTree = "<group>"; };
 		5B1351081CD0C601004E1637 /* StoreAdminMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreAdminMemberViewController.swift; sourceTree = "<group>"; };
+		5B73EF4F1CF2D44200C388DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BAB23851CE6DBCC0077A761 /* MRT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRT.swift; sourceTree = "<group>"; };
 		5BAB23871CE6DECC0077A761 /* ShaStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShaStore.swift; sourceTree = "<group>"; };
 		5BAB23891CE6DF200077A761 /* ShaBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShaBook.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 				5BED59B81CBE18A0003D73AD /* Assets.xcassets */,
 				5BED59BA1CBE18A0003D73AD /* LaunchScreen.storyboard */,
 				5BED59BD1CBE18A0003D73AD /* Info.plist */,
+				5B73EF4F1CF2D44200C388DA /* GoogleService-Info.plist */,
 				5BED59B51CBE18A0003D73AD /* ShaRead.xcdatamodeld */,
 			);
 			path = ShaRead;
@@ -548,6 +551,11 @@
 					5BED59AA1CBE18A0003D73AD = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = VVXY4GH26U;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					5BED59C11CBE18A0003D73AD = {
 						CreatedOnToolsVersion = 7.3;
@@ -597,6 +605,7 @@
 				5B1350AE1CCCDFE6004E1637 /* StoreAdmin.storyboard in Resources */,
 				5B13509C1CC8ACBE004E1637 /* BookItemView.xib in Resources */,
 				5B1350981CC77838004E1637 /* ShelfCollectionViewCell.xib in Resources */,
+				5B73EF501CF2D44200C388DA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
