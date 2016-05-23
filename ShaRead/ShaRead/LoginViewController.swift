@@ -18,7 +18,14 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // nav bar transparent
+        let bar = self.navigationController?.navigationBar
+        
+        bar?.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        bar?.shadowImage = UIImage()
+        
+        // Facebook login
+        
         FBLoginButton.readPermissions = ["public_profile", "email"]
         FBLoginButton.delegate = self
 

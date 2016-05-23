@@ -38,6 +38,8 @@
 		5B1351071CD0B43D004E1637 /* StoreAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1351061CD0B43D004E1637 /* StoreAdminViewController.swift */; };
 		5B1351091CD0C601004E1637 /* StoreAdminMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1351081CD0C601004E1637 /* StoreAdminMemberViewController.swift */; };
 		5B73EF501CF2D44200C388DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B73EF4F1CF2D44200C388DA /* GoogleService-Info.plist */; };
+		5B73EF521CF2E38200C388DA /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B73EF511CF2E38200C388DA /* CreateAccountViewController.swift */; };
+		5B73EF541CF2E39D00C388DA /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B73EF531CF2E39D00C388DA /* ForgetPasswordViewController.swift */; };
 		5BAB23861CE6DBCC0077A761 /* MRT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB23851CE6DBCC0077A761 /* MRT.swift */; };
 		5BAB23881CE6DECC0077A761 /* ShaStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB23871CE6DECC0077A761 /* ShaStore.swift */; };
 		5BAB238A1CE6DF200077A761 /* ShaBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB23891CE6DF200077A761 /* ShaBook.swift */; };
@@ -150,6 +152,8 @@
 		5B1351061CD0B43D004E1637 /* StoreAdminViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreAdminViewController.swift; sourceTree = "<group>"; };
 		5B1351081CD0C601004E1637 /* StoreAdminMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreAdminMemberViewController.swift; sourceTree = "<group>"; };
 		5B73EF4F1CF2D44200C388DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5B73EF511CF2E38200C388DA /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		5B73EF531CF2E39D00C388DA /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		5BAB23851CE6DBCC0077A761 /* MRT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRT.swift; sourceTree = "<group>"; };
 		5BAB23871CE6DECC0077A761 /* ShaStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShaStore.swift; sourceTree = "<group>"; };
 		5BAB23891CE6DF200077A761 /* ShaBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShaBook.swift; sourceTree = "<group>"; };
@@ -406,6 +410,8 @@
 		5BED59E81CC23499003D73AD /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				5B73EF531CF2E39D00C388DA /* ForgetPasswordViewController.swift */,
+				5B73EF511CF2E38200C388DA /* CreateAccountViewController.swift */,
 				5BED59EB1CC234EF003D73AD /* LoginViewController.swift */,
 				5BED59E91CC234A9003D73AD /* Login.storyboard */,
 			);
@@ -761,6 +767,7 @@
 				5BAB238C1CE6E0050077A761 /* ShaDefault.swift in Sources */,
 				5BD1BB2D1CDE622E002031E6 /* ShelfCategoryTableViewCell.swift in Sources */,
 				5B1350AB1CC9D6A3004E1637 /* BookTableViewController.swift in Sources */,
+				5B73EF521CF2E38200C388DA /* CreateAccountViewController.swift in Sources */,
 				5BAB23921CE711FA0077A761 /* MailAdminTableViewCell.swift in Sources */,
 				5BED5A0E1CC4E75C003D73AD /* BookCollectionViewCell.swift in Sources */,
 				5BED5A151CC5446A003D73AD /* BookTableViewCell.swift in Sources */,
@@ -774,6 +781,7 @@
 				5B1350941CC711F2004E1637 /* StoreTableViewCell.swift in Sources */,
 				5B1350971CC77838004E1637 /* ShelfCollectionViewCell.swift in Sources */,
 				5B1350EF1CCF3C64004E1637 /* BookStatusViewController.swift in Sources */,
+				5B73EF541CF2E39D00C388DA /* ForgetPasswordViewController.swift in Sources */,
 				5BAB23881CE6DECC0077A761 /* ShaStore.swift in Sources */,
 				5BAB23941CE857F80077A761 /* MailTableViewCell.swift in Sources */,
 				5BAF1C571CE19B49008B9B4D /* MessageFooterView.swift in Sources */,
